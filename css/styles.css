@@ -276,6 +276,12 @@ section { padding: 4rem 1.5rem; max-width: 900px; margin: 0 auto; }
   border-radius: 20px;
 }
 
+.section-whatsapp-cta {
+  margin-top: 1.1rem;
+  display: flex;
+  justify-content: center;
+}
+
 /* ─── PRECIOS ─── */
 .precios-section {
   background: linear-gradient(180deg, var(--navy) 0%, #0D1525 100%);
@@ -517,6 +523,8 @@ nav img { height: 36px; }
   list-style: none;
 }
 
+.nav-link-icon { display: none; }
+
 .nav-links a {
   font-size: 0.78rem;
   font-weight: 700;
@@ -530,7 +538,34 @@ nav img { height: 36px; }
 .nav-links a:hover { color: var(--gold); }
 
 @media (max-width: 480px) {
-  .nav-links { display: none; }
+  nav {
+    padding: 0.75rem 1rem;
+  }
+
+  nav img {
+    height: 30px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 0.45rem;
+  }
+
+  .nav-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 999px;
+    background: rgba(201,168,76,0.15);
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.25);
+  }
+
+  .nav-link-text { display: none; }
+  .nav-link-icon { display: inline-block; margin: 0; }
+
   .wa-float span { display: none; }
   .wa-float { padding: 1rem; border-radius: 50%; }
 }
