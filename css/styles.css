@@ -191,6 +191,10 @@ section { padding: 4rem 1.5rem; max-width: 900px; margin: 0 auto; }
   font-size: clamp(1.8rem, 7vw, 2.7rem);
 }
 
+.about-teaser .section-label {
+  font-size: clamp(1.35rem, 4.8vw, 1.9rem);
+}
+
 .about-teaser-link {
   color: var(--gold-light);
   text-decoration: none;
