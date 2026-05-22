@@ -3,6 +3,11 @@
   "whatsappDefaultMessage": "Hola! Me gustaría información sobre las clases de Pulso Latino",
   "navLinks": [
     {
+      "label": "Nosotros",
+      "href": "nosotros.html",
+      "icon": "fa-solid fa-users"
+    },
+    {
       "label": "Horarios",
       "href": "#horarios",
       "icon": "fa-solid fa-clock"
@@ -13,14 +18,14 @@
       "icon": "fa-solid fa-coins"
     },
     {
+      "label": "Ubicación",
+      "href": "#ubicacion",
+      "icon": "fa-solid fa-location-dot"
+    },
+    {
       "label": "Eventos",
       "href": "#eventos",
       "icon": "fa-solid fa-calendar-day"
-    },
-    {
-      "label": "Nosotros",
-      "href": "nosotros.html",
-      "icon": "fa-solid fa-users"
     }
   ],
   "hero": {
@@ -30,8 +35,8 @@
     "subheadline": "Salsa · Bachata · Cumbia<br>2 sucursales en Mérida, Yucatán",
     "primaryCtaLabel": "Informes por WhatsApp",
     "primaryCtaHref": "https://wa.me/529994195286?text=Hola!%20Me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20las%20clases%20de%20Pulso%20Latino",
-    "secondaryCtaLabel": "Ver horarios ↓",
-    "secondaryCtaHref": "#horarios"
+    "secondaryCtaLabel": "Empieza a bailar hoy ↓",
+    "secondaryCtaHref": "#about-teaser"
   },
   "schedulesSection": {
     "label": "Nuestras clases",

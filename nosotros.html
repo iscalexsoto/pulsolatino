@@ -43,9 +43,14 @@
     }
     .nav-logo { display: inline-flex; align-items: center; }
     nav img { height: 30px; }
-    .nav-links { display: flex; list-style: none; gap: 1rem; }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+      align-items: center;
+    }
     .nav-links a {
-      font-size: 0.72rem;
+      font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 1px;
       font-weight: 700;
@@ -55,6 +60,19 @@
     }
     .nav-links a:hover { color: var(--gold); }
     .nav-links a.active { color: var(--gold); }
+    .nav-toggle {
+      display: none;
+      width: 2.35rem;
+      height: 2.35rem;
+      border-radius: 999px;
+      border: 1px solid rgba(201,168,76,0.28);
+      background: rgba(201,168,76,0.14);
+      color: var(--gold);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .nav-toggle i { font-size: 1rem; }
 
     .hero-small {
       padding: 6.3rem 1.2rem 2.2rem;
@@ -336,11 +354,52 @@
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
     .reveal.visible { opacity: 1; transform: none; }
 
+    @media (max-width: 768px) {
+      .nav-toggle { display: inline-flex; }
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 0.4rem);
+        left: 1rem;
+        right: 1rem;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.35rem;
+        background: rgba(10,15,30,0.96);
+        border: 1px solid rgba(201,168,76,0.18);
+        border-radius: 12px;
+        padding: 0.55rem;
+        backdrop-filter: blur(10px);
+      }
+      nav.nav-open .nav-links { display: flex; }
+      .nav-links a {
+        display: block;
+        width: 100%;
+        font-size: 0.82rem;
+        padding: 0.62rem 0.72rem;
+        border-radius: 9px;
+        color: var(--white);
+        background: transparent;
+        border: 1px solid transparent;
+      }
+      .nav-links a:hover {
+        color: var(--gold-light);
+        background: rgba(201,168,76,0.12);
+        border-color: rgba(201,168,76,0.22);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .wa-float span { display: none; }
+      .wa-float {
+        padding: 1rem;
+        border-radius: 50%;
+      }
+    }
+
     @media (min-width: 740px) {
       nav { padding: 1rem 1.5rem; }
       nav img { height: 36px; }
-      .nav-links { gap: 1.5rem; }
-      .nav-links a { font-size: 0.78rem; }
       .hero-small { padding-top: 7.1rem; padding-bottom: 2.7rem; }
       section { padding: 3.5rem 1.6rem; }
       .values-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -356,11 +415,15 @@
     <a class="nav-logo" href="index.html" aria-label="Volver al inicio">
       <img src="assets/logos/logo-pulso.png" alt="Pulso Latino" />
     </a>
-    <ul class="nav-links">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">
+      <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="nosotros.html" class="active">Nosotros</a></li>
       <li><a href="index.html?go=horarios">Horarios</a></li>
       <li><a href="index.html?go=precios">Precios</a></li>
+      <li><a href="index.html?go=ubicacion">Ubicación</a></li>
       <li><a href="index.html?go=eventos">Eventos</a></li>
-      <li><a href="nosotros.html" class="active">Nosotros</a></li>
     </ul>
   </nav>
 
@@ -521,6 +584,26 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+
+    const nav = document.querySelector("nav");
+    const toggle = document.getElementById("nav-toggle");
+    const links = document.getElementById("nav-links");
+    const setOpen = (isOpen) => {
+      nav.classList.toggle("nav-open", isOpen);
+      toggle.setAttribute("aria-expanded", String(isOpen));
+    };
+
+    toggle.addEventListener("click", () => {
+      setOpen(!nav.classList.contains("nav-open"));
+    });
+
+    links.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setOpen(false));
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 768) setOpen(false);
+    });
   </script>
 </body>
 </html>

@@ -2,10 +2,11 @@ const FALLBACK_CONTENT = {
   site: {
     whatsappPhone: "529994195286",
     navLinks: [
+      { label: "Nosotros", href: "nosotros.html", icon: "fa-solid fa-users" },
       { label: "Horarios", href: "#horarios", icon: "fa-solid fa-clock" },
       { label: "Precios", href: "#precios", icon: "fa-solid fa-coins" },
-      { label: "Eventos", href: "#eventos", icon: "fa-solid fa-calendar-day" },
-      { label: "Nosotros", href: "nosotros.html", icon: "fa-solid fa-users" }
+      { label: "Ubicación", href: "#ubicacion", icon: "fa-solid fa-location-dot" },
+      { label: "Eventos", href: "#eventos", icon: "fa-solid fa-calendar-day" }
     ],
     hero: {
       tagline: "El lugar donde tus suenos encuentran el ritmo",
@@ -14,8 +15,8 @@ const FALLBACK_CONTENT = {
       subheadline: "Salsa · Bachata · Cumbia<br>2 sucursales en Merida, Yucatan",
       primaryCtaLabel: "Informes por WhatsApp",
       primaryCtaHref: "https://wa.me/529994195286?text=Hola!%20Me%20gustaria%20informacion%20sobre%20las%20clases%20de%20Pulso%20Latino",
-      secondaryCtaLabel: "Ver horarios ↓",
-      secondaryCtaHref: "#horarios"
+      secondaryCtaLabel: "Empieza a bailar hoy ↓",
+      secondaryCtaHref: "#about-teaser"
     },
     schedulesSection: {
       label: "Nuestras clases",
@@ -265,8 +266,7 @@ function renderSiteContent(site) {
         (item) => `
           <li>
             <a href="${item.href || "#"}" aria-label="${item.label || ""}">
-              <i class="${item.icon || ""} nav-link-icon" aria-hidden="true"></i>
-              <span class="nav-link-text">${item.label || ""}</span>
+              ${item.label || ""}
             </a>
           </li>
         `
@@ -466,6 +466,35 @@ function scrollToSectionFromQuery() {
   window.history.replaceState(null, "", cleanUrl);
 }
 
+function initMobileMenu() {
+  const nav = document.querySelector("nav");
+  const toggle = document.getElementById("nav-toggle");
+  const links = document.getElementById("nav-links");
+  if (!nav || !toggle || !links) return;
+
+  const setOpen = (isOpen) => {
+    nav.classList.toggle("nav-open", isOpen);
+    toggle.setAttribute("aria-expanded", String(isOpen));
+  };
+
+  toggle.addEventListener("click", () => {
+    const nextState = !nav.classList.contains("nav-open");
+    setOpen(nextState);
+  });
+
+  links.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      setOpen(false);
+    });
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+      setOpen(false);
+    }
+  });
+}
+
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") closeLightbox();
 });
@@ -488,6 +517,7 @@ async function boot() {
   renderEvents(events);
   initRevealObserver();
   initSmoothAnchorScroll();
+  initMobileMenu();
   requestAnimationFrame(() => requestAnimationFrame(scrollToSectionFromQuery));
 }
 
