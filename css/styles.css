@@ -116,7 +116,7 @@ body {
   background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
   background-size: 200% 100%;
   color: #0A0F1E;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Asap Condensed', sans-serif;
   font-weight: 900;
   font-size: 1rem;
   padding: 1rem 2.2rem;
@@ -134,6 +134,7 @@ body {
 }
 
 .btn-secondary {
+  font-family: 'Asap Condensed', sans-serif;
   font-size: 0.85rem;
   color: var(--gold);
   text-decoration: none;
@@ -222,7 +223,7 @@ section { padding: 4rem 1.5rem; max-width: 900px; margin: 0 auto; }
   border-radius: 50px;
   background: transparent;
   color: var(--text-muted);
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Asap Condensed', sans-serif;
   font-weight: 700;
   font-size: 0.8rem;
   letter-spacing: 0.5px;
@@ -409,6 +410,43 @@ section { padding: 4rem 1.5rem; max-width: 900px; margin: 0 auto; }
 .promo-banner strong { color: var(--gold-light); }
 .promo-banner i { margin-right: 0.45rem; color: var(--gold-light); }
 
+/* ─── UBICACION ─── */
+.ubicacion-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.ubicacion-card {
+  background: var(--navy-card);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.ubicacion-card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
+  font-size: 1.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.map-embed-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 65%;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(201,168,76,0.2);
+}
+
+.map-embed-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
 /* ─── GALERÍA / EVENTOS ─── */
 .eventos-grid {
   display: grid;
@@ -494,6 +532,24 @@ footer a {
   text-decoration: none;
 }
 footer i { color: var(--gold); }
+
+.footer-location-link {
+  color: var(--text-muted);
+}
+
+.footer-location-link:hover {
+  color: var(--gold);
+}
+
+.footer-social-link {
+  margin-top: 0.45rem;
+}
+
+.footer-social-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
 
 /* ─── WHATSAPP FLOTANTE ─── */
 .wa-float {
@@ -602,6 +658,17 @@ nav img { height: 36px; }
 
   .wa-float span { display: none; }
   .wa-float { padding: 1rem; border-radius: 50%; }
+}
+
+@media (min-width: 900px) {
+  .ubicacion-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem;
+  }
+
+  .map-embed-wrap {
+    padding-top: 72%;
+  }
 }
 
 /* scroll reveal */

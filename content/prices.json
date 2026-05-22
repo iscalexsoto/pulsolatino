@@ -1,5 +1,5 @@
 {
-  "promoHtml": "<i class=\"fa-solid fa-sparkles\" aria-hidden=\"true\"></i><strong>Promocion nuevo ingreso:</strong> Sin inscripcion + <strong>$350/mes los primeros 2 meses</strong> (individual, 1 ritmo)",
+  "promoHtml": "<i class=\"fa-solid fa-sparkles\" aria-hidden=\"true\"></i><strong>Promoción nuevo ingreso:</strong> Sin inscripción + <strong>$350/mes los primeros 2 meses</strong> (individual, 1 ritmo)",
   "individualTitle": "INDIVIDUAL",
   "individualPlans": [
     {
@@ -12,7 +12,7 @@
     {
       "icon": "fa-solid fa-person-running",
       "name": "2 Ritmos",
-      "description": "Cualquier combinacion por sucursal",
+      "description": "Cualquier combinación por sucursal",
       "amount": "$600",
       "suffix": "/mes"
     },
@@ -33,7 +33,7 @@
     {
       "icon": "fa-solid fa-crown",
       "name": "Pase Completo",
-      "description": "Todas las clases · Madero y Pacabtun · Todos los horarios",
+      "description": "Todas las clases · Madero y Pacabtún · Todos los horarios",
       "amount": "$1,000",
       "suffix": "/mes",
       "featured": true,
@@ -64,5 +64,5 @@
       "suffix": "/mes"
     }
   ],
-  "finePrint": "* Precios respetados para familia, antiguedad y permanencia activa de mas de un ano. La clase de Ritmos Latinos matutina es $450/mes (3 veces por semana)."
+  "finePrint": "* Precios respetados para familia, antigüedad y permanencia activa de más de un año. La clase de Ritmos Latinos matutina es $450/mes (3 veces por semana)."
 }

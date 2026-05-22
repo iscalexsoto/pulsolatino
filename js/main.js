@@ -291,7 +291,10 @@ function renderSiteContent(site) {
   textById("events-label", site.eventsSection?.label);
   textById("events-title", site.eventsSection?.title);
 
-  htmlById("footer-location", `<i class="fa-solid fa-location-dot" aria-hidden="true"></i> ${site.footer?.locationText || ""}`);
+  htmlById(
+    "footer-location",
+    `<i class="fa-solid fa-location-dot" aria-hidden="true"></i> <a class="footer-location-link" href="https://maps.app.goo.gl/mQiw4jJ8Ey9rUZYV7" target="_blank" rel="noopener">Av. Madero</a> &nbsp;·&nbsp; <i class="fa-solid fa-location-dot" aria-hidden="true"></i> <a class="footer-location-link" href="https://maps.app.goo.gl/N61xFc7rp7NcSdeZ7" target="_blank" rel="noopener">Pacabtún</a> · Mérida, Yucatán`
+  );
   textById("footer-whatsapp", site.footer?.whatsappText);
   setHrefById("footer-whatsapp", `https://wa.me/${site.whatsappPhone || "529994195286"}`);
   textById("footer-copyright", site.footer?.copyrightText);
@@ -442,6 +445,27 @@ function initSmoothAnchorScroll() {
   });
 }
 
+function scrollToSectionFromQuery() {
+  const params = new URLSearchParams(window.location.search);
+  const sectionId = params.get("go");
+  if (!sectionId) return;
+
+  const target = document.getElementById(sectionId);
+  if (!target) return;
+
+  const nav = document.querySelector("nav");
+  const navOffset = nav ? nav.offsetHeight + 12 : 0;
+  const targetTop = target.getBoundingClientRect().top + window.scrollY - navOffset;
+
+  window.scrollTo({
+    top: targetTop,
+    behavior: "smooth"
+  });
+
+  const cleanUrl = `${window.location.pathname}${window.location.hash || ""}`;
+  window.history.replaceState(null, "", cleanUrl);
+}
+
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") closeLightbox();
 });
@@ -464,6 +488,7 @@ async function boot() {
   renderEvents(events);
   initRevealObserver();
   initSmoothAnchorScroll();
+  requestAnimationFrame(() => requestAnimationFrame(scrollToSectionFromQuery));
 }
 
 boot();
