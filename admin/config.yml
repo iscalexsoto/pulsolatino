@@ -1,0 +1,243 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+site_url: https://www.pulsolatinoestudio.com
+display_url: https://www.pulsolatinoestudio.com
+
+locale: "es"
+
+collections:
+  - name: "site"
+    label: "Sitio"
+    files:
+      - label: "Contenido general"
+        name: "site"
+        file: "content/site.json"
+        format: "json"
+        fields:
+          - { label: "Telefono WhatsApp internacional", name: "whatsappPhone", widget: "string" }
+          - { label: "Mensaje WhatsApp por defecto", name: "whatsappDefaultMessage", widget: "text" }
+          - label: "Navegacion"
+            name: "navLinks"
+            widget: "list"
+            fields:
+              - { label: "Texto", name: "label", widget: "string" }
+              - { label: "Ancla", name: "href", widget: "string" }
+              - { label: "Icono Font Awesome", name: "icon", widget: "string" }
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Tagline", name: "tagline", widget: "string" }
+              - { label: "Titulo linea 1", name: "headlinePrefix", widget: "string" }
+              - { label: "Titulo destacado", name: "headlineHighlight", widget: "string" }
+              - { label: "Subtitulo", name: "subheadline", widget: "text" }
+              - { label: "Boton principal texto", name: "primaryCtaLabel", widget: "string" }
+              - { label: "Boton principal URL", name: "primaryCtaHref", widget: "string" }
+              - { label: "Boton secundario texto", name: "secondaryCtaLabel", widget: "string" }
+              - { label: "Boton secundario ancla", name: "secondaryCtaHref", widget: "string" }
+          - label: "Horarios"
+            name: "schedulesSection"
+            widget: "object"
+            fields:
+              - { label: "Etiqueta de seccion", name: "label", widget: "string" }
+              - { label: "Titulo de seccion", name: "title", widget: "string" }
+              - label: "Sucursales"
+                name: "branches"
+                widget: "list"
+                fields:
+                  - { label: "ID (ej. madero)", name: "id", widget: "string" }
+                  - { label: "Etiqueta", name: "label", widget: "string" }
+                  - { label: "Icono Font Awesome", name: "icon", widget: "string" }
+                  - { label: "Texto boton CTA", name: "ctaLabel", widget: "string" }
+                  - { label: "URL boton CTA", name: "ctaHref", widget: "string" }
+          - label: "Precios"
+            name: "pricesSection"
+            widget: "object"
+            fields:
+              - { label: "Etiqueta de seccion", name: "label", widget: "string" }
+              - { label: "Titulo de seccion", name: "title", widget: "string" }
+              - { label: "Texto boton CTA", name: "ctaLabel", widget: "string" }
+              - { label: "URL boton CTA", name: "ctaHref", widget: "string" }
+          - label: "Eventos"
+            name: "eventsSection"
+            widget: "object"
+            fields:
+              - { label: "Etiqueta de seccion", name: "label", widget: "string" }
+              - { label: "Titulo de seccion", name: "title", widget: "string" }
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { label: "Texto ubicacion", name: "locationText", widget: "string" }
+              - { label: "Texto WhatsApp", name: "whatsappText", widget: "string" }
+              - { label: "Copyright", name: "copyrightText", widget: "string" }
+          - label: "Boton WhatsApp flotante"
+            name: "floatingWhatsapp"
+            widget: "object"
+            fields:
+              - { label: "Texto", name: "label", widget: "string" }
+              - { label: "URL", name: "href", widget: "string" }
+
+  - name: "schedules"
+    label: "Horarios"
+    files:
+      - label: "Datos de horarios"
+        name: "schedules"
+        file: "content/schedules.json"
+        format: "json"
+        fields:
+          - label: "Sucursales"
+            name: "branches"
+            widget: "list"
+            fields:
+              - { label: "ID sucursal", name: "id", widget: "string" }
+              - label: "Bloques por dias"
+                name: "dayGroups"
+                widget: "list"
+                fields:
+                  - { label: "Titulo de bloque", name: "dayTitle", widget: "string" }
+                  - label: "Clases"
+                    name: "classes"
+                    widget: "list"
+                    fields:
+                      - { label: "Hora", name: "time", widget: "string" }
+                      - { label: "Estilo (salsa/bachata/cumbia/cardio)", name: "style", widget: "string" }
+                      - { label: "Nombre clase", name: "name", widget: "string" }
+                      - { label: "Area (opcional)", name: "area", widget: "string", required: false }
+
+  - name: "prices"
+    label: "Precios"
+    files:
+      - label: "Datos de precios"
+        name: "prices"
+        file: "content/prices.json"
+        format: "json"
+        fields:
+          - { label: "Texto promocion (HTML permitido)", name: "promoHtml", widget: "text" }
+          - { label: "Titulo bloque individual", name: "individualTitle", widget: "string" }
+          - label: "Planes individuales"
+            name: "individualPlans"
+            widget: "list"
+            fields:
+              - { label: "Icono Font Awesome", name: "icon", widget: "string" }
+              - { label: "Nombre", name: "name", widget: "string" }
+              - { label: "Descripcion", name: "description", widget: "string" }
+              - { label: "Monto", name: "amount", widget: "string" }
+              - { label: "Sufijo (ej. /mes)", name: "suffix", widget: "string" }
+              - { label: "Destacado", name: "featured", widget: "boolean", default: false, required: false }
+              - { label: "Badge (opcional)", name: "badge", widget: "string", required: false }
+          - { label: "Titulo bloque pareja", name: "coupleTitle", widget: "string" }
+          - label: "Planes en pareja"
+            name: "couplePlans"
+            widget: "list"
+            fields:
+              - { label: "Icono Font Awesome", name: "icon", widget: "string" }
+              - { label: "Nombre", name: "name", widget: "string" }
+              - { label: "Descripcion", name: "description", widget: "string" }
+              - { label: "Monto", name: "amount", widget: "string" }
+              - { label: "Sufijo (ej. /mes)", name: "suffix", widget: "string" }
+          - { label: "Nota inferior", name: "finePrint", widget: "text" }
+
+  - name: "events"
+    label: "Eventos y flyers"
+    files:
+      - label: "Galeria de eventos"
+        name: "events"
+        file: "content/events.json"
+        format: "json"
+        fields:
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Imagen", name: "image", widget: "image" }
+              - { label: "Texto alternativo", name: "alt", widget: "string" }
+
+  - name: "about"
+    label: "Nosotros"
+    files:
+      - label: "Contenido de Nosotros"
+        name: "about"
+        file: "content/nosotros.json"
+        format: "json"
+        fields:
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Tagline", name: "tagline", widget: "string" }
+              - { label: "Titulo", name: "title", widget: "string" }
+          - label: "Quienes somos"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "Etiqueta de seccion", name: "sectionLabel", widget: "string" }
+              - { label: "Titulo de seccion", name: "sectionTitle", widget: "string" }
+              - label: "Parrafos"
+                name: "paragraphs"
+                widget: "list"
+                field: { label: "Parrafo", name: "paragraph", widget: "text" }
+              - { label: "Frase destacada", name: "quote", widget: "string" }
+          - label: "Director"
+            name: "director"
+            widget: "object"
+            fields:
+              - { label: "Etiqueta de seccion", name: "sectionLabel", widget: "string" }
+              - { label: "Titulo de seccion", name: "sectionTitle", widget: "string" }
+              - { label: "Nombre", name: "name", widget: "string" }
+              - { label: "Biografia", name: "bio", widget: "text" }
+              - { label: "Imagen", name: "image", widget: "image" }
+              - { label: "Texto alternativo de imagen", name: "imageAlt", widget: "string" }
+          - label: "Historia"
+            name: "history"
+            widget: "object"
+            fields:
+              - { label: "Etiqueta de seccion", name: "sectionLabel", widget: "string" }
+              - { label: "Titulo de seccion", name: "sectionTitle", widget: "string" }
+              - label: "Items de historia"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Titulo", name: "title", widget: "string" }
+                  - { label: "Descripcion", name: "description", widget: "text" }
+                  - label: "Bullets (opcional)"
+                    name: "bullets"
+                    widget: "list"
+                    required: false
+                    field: { label: "Bullet", name: "bullet", widget: "string" }
+          - label: "Valores"
+            name: "values"
+            widget: "object"
+            fields:
+              - { label: "Etiqueta de seccion", name: "sectionLabel", widget: "string" }
+              - { label: "Titulo de seccion", name: "sectionTitle", widget: "string" }
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Nombre", name: "name", widget: "string" }
+                  - { label: "Descripcion", name: "description", widget: "text" }
+                  - { label: "Ancho completo", name: "wide", widget: "boolean", default: false, required: false }
+          - label: "Mision y Vision"
+            name: "missionVision"
+            widget: "object"
+            fields:
+              - { label: "Etiqueta de seccion", name: "sectionLabel", widget: "string" }
+              - { label: "Titulo de seccion", name: "sectionTitle", widget: "string" }
+              - { label: "Titulo mision", name: "missionTitle", widget: "string" }
+              - { label: "Texto mision", name: "missionText", widget: "text" }
+              - { label: "Titulo vision", name: "visionTitle", widget: "string" }
+              - { label: "Texto vision", name: "visionText", widget: "text" }
+          - label: "CTA final"
+            name: "finalCta"
+            widget: "object"
+            fields:
+              - { label: "Titulo", name: "title", widget: "string" }
+              - { label: "Descripcion", name: "description", widget: "text" }
+              - { label: "Texto del boton", name: "buttonLabel", widget: "string" }
+              - { label: "URL del boton", name: "buttonHref", widget: "string" }
