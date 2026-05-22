@@ -1,0 +1,92 @@
+{
+  "hero": {
+    "tagline": "El lugar donde tus sueños encuentran el ritmo",
+    "title": "PULSO LATINO"
+  },
+  "about": {
+    "sectionLabel": "Pulso Latino Estudio",
+    "sectionTitle": "Quiénes somos",
+    "paragraphs": [
+      "En PULSO LATINO ESTUDIO creemos que la danza es más que movimiento: es pasión, crecimiento y conexión. Somos un estudio dedicado a la enseñanza y promoción del baile latino, en ritmos como SALSA, BACHATA, CUMBIA, MERENGUE Y CHACHACHÁ creando un espacio donde jóvenes y adultos pueden interactuar en un ambiente de respeto, desarrollar su talento, confianza y amor por la danza.",
+      "Nuestro compromiso es brindar una formación dancística de calidad en un ambiente dinámico, inclusivo y motivador, guiamos a cada estudiante en su crecimiento personal y dancístico. Buscamos inspirar valores como trabajo en equipo, amistad y respeto a todos, porque todos son capaces de aprender no importando la edad.",
+      "En PULSO, cada clase es una experiencia llena de energía, aprendizaje y diversión, porque creemos que los sueños también se bailan."
+    ],
+    "quote": "El lugar donde tus sueños encuentran el ritmo."
+  },
+  "director": {
+    "sectionLabel": "Liderazgo",
+    "sectionTitle": "Nuestro director",
+    "name": "David Sinué Zalapa Requena",
+    "bio": "Director de Pulso Latino Estudio, impulsando con pasión la formación dancística, el crecimiento personal y la conexión de la comunidad a través del ritmo latino.",
+    "image": "assets/images/david_zalapa.png",
+    "imageAlt": "David Sinué Zalapa Requena, director de Pulso Latino Estudio"
+  },
+  "history": {
+    "sectionLabel": "Nuestra trayectoria",
+    "sectionTitle": "Historia",
+    "items": [
+      {
+        "title": "Inicio del sueño",
+        "description": "Pulso Latino Estudio se inaugura un 26 de enero 2016, por el Mtro. David Zalapa Requena después de 7 años de haber iniciado su carrera en el mundo de la danza, estuvo tomando clases y curso en disciplinas como ballet, Jazz, hawaiano, Hip hop y posteriormente salsa."
+      },
+      {
+        "title": "Competencias nacionales",
+        "description": "En el 2012, 2013 y 2014 participó en múltiples competencias a nivel nacional obteniendo primeros lugares en competencias como...",
+        "bullets": [
+          "Mérida baila",
+          "Euroson Latino",
+          "Entre otras competencias locales y nacionales"
+        ]
+      },
+      {
+        "title": "Impacto en Mérida",
+        "description": "También ha sido coreógrafo de personalidades en Mérida como Malena Barquín conductora destacada en el estado, fue creador de UNIDOS X LA DANZA una de las demostraciones dancísticas en Mérida más impresionantes donde combina baile, música y circo."
+      },
+      {
+        "title": "Consolidación de Pulso",
+        "description": "Los inicios de la academia fueron en la Col. Bojórquez lugar perteneciente a unas grandes personalidades de la salsa \"LOS PADRINOS\" la cual apoyaron mucho para el inicio de este sueño así como otras personas confiaron en mi trabajo, hoy la academia tiene 10 años de haber iniciado y se consolida como una de las academias con más años activa."
+      }
+    ]
+  },
+  "values": {
+    "sectionLabel": "Nuestra esencia",
+    "sectionTitle": "Valores",
+    "items": [
+      {
+        "name": "Pasión",
+        "description": "Vivimos y enseñamos el baile con energía, amor y entrega en cada clase y presentación."
+      },
+      {
+        "name": "Excelencia",
+        "description": "Buscamos siempre ofrecer enseñanza de calidad y formar bailarines seguros, preparados e inspiradores."
+      },
+      {
+        "name": "Respeto",
+        "description": "Valoramos a cada persona, promoviendo un ambiente inclusivo, amable y de trabajo en equipo."
+      },
+      {
+        "name": "Creatividad",
+        "description": "Impulsamos la expresión artística, la innovación y el desarrollo del estilo propio en cada alumno."
+      },
+      {
+        "name": "Disciplina",
+        "description": "Fomentamos el compromiso, la constancia y el esfuerzo como base del crecimiento dancístico y personal.",
+        "wide": true
+      }
+    ]
+  },
+  "missionVision": {
+    "sectionLabel": "Mirando al futuro",
+    "sectionTitle": "Misión y Visión",
+    "missionTitle": "Misión",
+    "missionText": "Brindar enseñanza de danza y baile latino con pasión, disciplina y creatividad, creando un espacio donde las personas desarrollen su talento, confianza y amor por el baile en un ambiente inclusivo y motivador.",
+    "visionTitle": "Visión",
+    "visionText": "Ser un estudio de danza reconocido por formar bailarines y bailadores con excelencia artística y humana, inspirando a la comunidad a vivir el ritmo latino como una forma de expresión, crecimiento y felicidad."
+  },
+  "finalCta": {
+    "title": "Vive Pulso con nosotros",
+    "description": "Estamos listos para acompañarte en tu camino dancístico, con clases llenas de energía y una comunidad que te impulsa a crecer.",
+    "buttonLabel": "Escríbenos por WhatsApp",
+    "buttonHref": "https://wa.me/529994195286?text=Hola%2C%20me%20gustaria%20informacion%20sobre%20Pulso%20Latino%20Estudio"
+  }
+}
