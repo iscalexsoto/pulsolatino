@@ -1,0 +1,42 @@
+---
+description: Contexto operativo y decisiones de producto para la landing de Pulso Latino
+alwaysApply: true
+---
+
+# Pulso Latino Landing Context
+
+## Tipo de proyecto
+- Sitio web estatico (HTML, CSS y JS vanilla), mobile-first.
+- Priorizar rendimiento, legibilidad y mantenimiento simple.
+- Evitar frameworks pesados salvo necesidad clara.
+
+## Objetivo del sitio
+- Landing oficial de Pulso Latino Estudio de Danza y Baile Latino.
+- Comunicar clases, horarios, precios, promociones y eventos.
+- Llevar conversion a WhatsApp con CTAs claros en secciones clave.
+
+## Contenido y estructura actual
+- Secciones principales: Hero, Horarios, Precios, Eventos, Footer.
+- La academia tiene dos sucursales: Av. Madero y Pacabtun.
+- Horarios presentados por sucursal con tabs.
+- Precios separados por planes individuales y en pareja.
+- Eventos/promociones mostrados con galeria de flyers y lightbox.
+- CTA de WhatsApp en hero, horarios, precios y boton flotante.
+
+## Decisiones de diseno vigentes
+- Estetica oscura con acentos dorados inspirada en flyers de marca.
+- Titulares de alto impacto + cuerpo legible.
+- Iconografia con Font Awesome CDN.
+- En desktop, nav con texto; en movil, nav con iconos.
+- Mantener consistencia visual y jerarquia de informacion.
+
+## Publicacion y roadmap
+- Proyecto desplegado en GitHub Pages.
+- Dominio en produccion: https://www.pulsolatinoestudio.com
+- Objetivo proximo: integrar Decap CMS para editar contenido sin tocar codigo.
+- Mantener compatibilidad con hosting estatico y flujo de deploy actual.
+
+## Guardrails de cambios
+- No romper rutas de assets ni enlaces de WhatsApp personalizados.
+- Mantener separacion de responsabilidades: HTML estructura, CSS estilos, JS comportamiento.
+- Cualquier nuevo bloque debe respetar enfoque mobile-first.
