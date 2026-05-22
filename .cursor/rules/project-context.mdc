@@ -15,25 +15,38 @@ alwaysApply: true
 - Comunicar clases, horarios, precios, promociones y eventos.
 - Llevar conversion a WhatsApp con CTAs claros en secciones clave.
 
-## Contenido y estructura actual
-- Secciones principales: Hero, Horarios, Precios, Eventos, Footer.
-- La academia tiene dos sucursales: Av. Madero y Pacabtun.
-- Horarios presentados por sucursal con tabs.
-- Precios separados por planes individuales y en pareja.
-- Eventos/promociones mostrados con galeria de flyers y lightbox.
-- CTA de WhatsApp en hero, horarios, precios y boton flotante.
+## Estructura y fuentes de contenido
+- Paginas principales: `index.html` y `nosotros.html`.
+- Contenido editable en JSON dentro de `content/` (`site`, `schedules`, `prices`, `events`, `nosotros`).
+- Render dinamico en cliente via `js/main.js` y `js/nosotros.js`.
+- Logica de render compartida y reusable en `js/renderers.js`.
+- CSS separado por pagina: `css/styles.css` (landing) y `css/nosotros.css` (nosotros).
+
+## Reglas de renderer (obligatorias)
+- Antes de crear nueva logica de pintado, reutilizar o extender `js/renderers.js`.
+- Evitar duplicar funciones de render entre `main.js`, `nosotros.js` y `admin/preview.js`.
+- Mantener funciones de render lo mas puras posible (reciben datos + root, sin acoplar a fetch).
+- Si cambias markup de una seccion, validar impacto en:
+  - sitio publico (`index.html` / `nosotros.html`)
+  - previews Decap (`admin/preview.js`)
+- Si agregas campos en JSON del CMS, actualizar renderer correspondiente para que produccion y preview sigan alineados.
+
+## Decap CMS y previews
+- CMS activo en `admin/` con configuracion en `admin/config.yml`.
+- Previews personalizados por coleccion en `admin/preview.js`.
+- Los previews deben cargar estilos reales del sitio con `CMS.registerPreviewStyle` (sin copiar CSS en paralelo).
+- El preview de `schedules` depende de metadatos de `site.schedulesSection.branches`; conservar compatibilidad por `id` de sucursal.
 
 ## Decisiones de diseno vigentes
 - Estetica oscura con acentos dorados inspirada en flyers de marca.
 - Titulares de alto impacto + cuerpo legible.
 - Iconografia con Font Awesome CDN.
-- En desktop, nav con texto; en movil, nav con iconos.
+- Navegacion responsive con menu desplegable en movil.
 - Mantener consistencia visual y jerarquia de informacion.
 
-## Publicacion y roadmap
+## Publicacion
 - Proyecto desplegado en GitHub Pages.
 - Dominio en produccion: https://www.pulsolatinoestudio.com
-- Objetivo proximo: integrar Decap CMS para editar contenido sin tocar codigo.
 - Mantener compatibilidad con hosting estatico y flujo de deploy actual.
 
 ## Guardrails de cambios

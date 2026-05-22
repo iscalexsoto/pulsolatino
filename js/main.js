@@ -143,88 +143,15 @@ const FALLBACK_CONTENT = {
 
 let revealObserver;
 
-function textById(id, value) {
-  const node = document.getElementById(id);
-  if (node && typeof value === "string") {
-    node.textContent = value;
+function getRenderers() {
+  if (!window.PulsoRenderers) {
+    throw new Error("PulsoRenderers no está disponible.");
   }
-}
-
-function htmlById(id, value) {
-  const node = document.getElementById(id);
-  if (node && typeof value === "string") {
-    node.innerHTML = value;
-  }
-}
-
-function setHrefById(id, href) {
-  const node = document.getElementById(id);
-  if (node && href) {
-    node.setAttribute("href", href);
-  }
-}
-
-function buildPriceCard(plan) {
-  const featuredClass = plan.featured ? " featured" : "";
-  const badge = plan.badge ? `<div class="precio-badge">${plan.badge}</div>` : "";
-  return `
-    <div class="precio-card${featuredClass}">
-      ${badge}
-      <div class="precio-icon"><i class="${plan.icon}" aria-hidden="true"></i></div>
-      <div class="precio-name">${plan.name}</div>
-      <div class="precio-desc">${plan.description}</div>
-      <div class="precio-amount">${plan.amount} <span>${plan.suffix || ""}</span></div>
-    </div>
-  `;
-}
-
-function buildSchedulePanel(branchMeta, scheduleBranch, isActive) {
-  const groups = (scheduleBranch?.dayGroups || [])
-    .map((group) => {
-      const classes = (group.classes || [])
-        .map((item) => {
-          const area = item.area ? `<span class="class-area">${item.area}</span>` : "";
-          return `
-            <div class="class-row">
-              <span class="class-time">${item.time || ""}</span>
-              <span class="class-dot dot-${item.style || "salsa"}"></span>
-              <span class="class-name">${item.name || ""}</span>
-              ${area}
-            </div>
-          `;
-        })
-        .join("");
-
-      return `
-        <div class="schedule-day">
-          <div class="day-header">${group.dayTitle || ""}</div>
-          ${classes}
-        </div>
-      `;
-    })
-    .join("");
-
-  return `
-    <div class="tab-content${isActive ? " active" : ""}" id="tab-${branchMeta.id}">
-      <div class="schedule-grid">${groups}</div>
-      <div class="section-whatsapp-cta">
-        <a class="btn-primary" href="${branchMeta.ctaHref || "#"}" target="_blank" rel="noopener">
-          <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-          ${branchMeta.ctaLabel || "Agenda tu clase"}
-        </a>
-      </div>
-    </div>
-  `;
+  return window.PulsoRenderers;
 }
 
 function switchTab(id) {
-  document.querySelectorAll("#schedules-tabs .tab-btn").forEach((button) => {
-    button.classList.toggle("active", button.dataset.branchId === id);
-  });
-
-  document.querySelectorAll("#schedules-panels .tab-content").forEach((panel) => {
-    panel.classList.toggle("active", panel.id === `tab-${id}`);
-  });
+  getRenderers().switchTab(document, id);
 }
 
 function openLightbox(src, alt) {
@@ -249,124 +176,13 @@ async function fetchJson(path, fallback) {
   try {
     const response = await fetch(path, { cache: "no-store" });
     if (!response.ok) {
-      throw new Error(`status ${response.status}`);
+      throw new Error("status " + response.status);
     }
     return await response.json();
   } catch (error) {
-    console.warn(`[content] using fallback for ${path}`, error);
+    console.warn("[content] using fallback for " + path, error);
     return fallback;
   }
-}
-
-function renderSiteContent(site) {
-  const navContainer = document.getElementById("nav-links");
-  if (navContainer && Array.isArray(site.navLinks)) {
-    navContainer.innerHTML = site.navLinks
-      .map(
-        (item) => `
-          <li>
-            <a href="${item.href || "#"}" aria-label="${item.label || ""}">
-              ${item.label || ""}
-            </a>
-          </li>
-        `
-      )
-      .join("");
-  }
-
-  textById("hero-tagline", site.hero?.tagline);
-  htmlById("hero-headline", `${site.hero?.headlinePrefix || ""}<br><span>${site.hero?.headlineHighlight || ""}</span>`);
-  htmlById("hero-subheadline", site.hero?.subheadline);
-  textById("hero-primary-cta-label", site.hero?.primaryCtaLabel);
-  setHrefById("hero-primary-cta", site.hero?.primaryCtaHref);
-  textById("hero-secondary-cta", site.hero?.secondaryCtaLabel);
-  setHrefById("hero-secondary-cta", site.hero?.secondaryCtaHref);
-
-  textById("schedules-label", site.schedulesSection?.label);
-  textById("schedules-title", site.schedulesSection?.title);
-  textById("prices-label", site.pricesSection?.label);
-  textById("prices-title", site.pricesSection?.title);
-  textById("prices-cta-label", site.pricesSection?.ctaLabel);
-  setHrefById("prices-cta", site.pricesSection?.ctaHref);
-  textById("events-label", site.eventsSection?.label);
-  textById("events-title", site.eventsSection?.title);
-
-  htmlById(
-    "footer-location",
-    `<i class="fa-solid fa-location-dot" aria-hidden="true"></i> <a class="footer-location-link" href="https://maps.app.goo.gl/mQiw4jJ8Ey9rUZYV7" target="_blank" rel="noopener">Av. Madero</a> &nbsp;·&nbsp; <i class="fa-solid fa-location-dot" aria-hidden="true"></i> <a class="footer-location-link" href="https://maps.app.goo.gl/N61xFc7rp7NcSdeZ7" target="_blank" rel="noopener">Pacabtún</a> · Mérida, Yucatán`
-  );
-  textById("footer-whatsapp", site.footer?.whatsappText);
-  setHrefById("footer-whatsapp", `https://wa.me/${site.whatsappPhone || "529994195286"}`);
-  textById("footer-copyright", site.footer?.copyrightText);
-
-  textById("floating-whatsapp-label", site.floatingWhatsapp?.label);
-  setHrefById("floating-whatsapp", site.floatingWhatsapp?.href);
-}
-
-function renderSchedules(site, schedules) {
-  const branchesMeta = site.schedulesSection?.branches || [];
-  const branchesData = schedules.branches || [];
-
-  const tabsContainer = document.getElementById("schedules-tabs");
-  const panelsContainer = document.getElementById("schedules-panels");
-  if (!tabsContainer || !panelsContainer || branchesMeta.length === 0) return;
-
-  tabsContainer.innerHTML = branchesMeta
-    .map(
-      (branch, index) => `
-        <button class="tab-btn${index === 0 ? " active" : ""}" data-branch-id="${branch.id}">
-          <i class="${branch.icon || "fa-solid fa-location-dot"}" aria-hidden="true"></i>${branch.label || ""}
-        </button>
-      `
-    )
-    .join("");
-
-  panelsContainer.innerHTML = branchesMeta
-    .map((branch, index) => {
-      const scheduleBranch = branchesData.find((item) => item.id === branch.id);
-      return buildSchedulePanel(branch, scheduleBranch, index === 0);
-    })
-    .join("");
-
-  tabsContainer.querySelectorAll(".tab-btn").forEach((button) => {
-    button.addEventListener("click", () => switchTab(button.dataset.branchId));
-  });
-}
-
-function renderPrices(prices) {
-  htmlById("prices-promo", prices.promoHtml || "");
-  textById("prices-individual-title", prices.individualTitle);
-  textById("prices-couple-title", prices.coupleTitle);
-  textById("prices-fineprint", prices.finePrint);
-
-  const individualGrid = document.getElementById("prices-individual-grid");
-  if (individualGrid) {
-    individualGrid.innerHTML = (prices.individualPlans || []).map(buildPriceCard).join("");
-  }
-
-  const coupleGrid = document.getElementById("prices-couple-grid");
-  if (coupleGrid) {
-    coupleGrid.innerHTML = (prices.couplePlans || []).map(buildPriceCard).join("");
-  }
-}
-
-function renderEvents(events) {
-  const grid = document.getElementById("events-grid");
-  if (!grid) return;
-
-  grid.innerHTML = (events.items || [])
-    .map(
-      (item) => `
-        <div class="evento-card" data-image="${item.image || ""}" data-alt="${item.alt || ""}">
-          <img src="${item.image || ""}" alt="${item.alt || ""}" loading="lazy" />
-        </div>
-      `
-    )
-    .join("");
-
-  grid.querySelectorAll(".evento-card").forEach((card) => {
-    card.addEventListener("click", () => openLightbox(card.dataset.image, card.dataset.alt));
-  });
 }
 
 function initRevealObserver() {
@@ -390,7 +206,7 @@ function initRevealObserver() {
 
 function initSmoothAnchorScroll() {
   const clearHashFromUrl = () => {
-    const cleanUrl = `${window.location.pathname}${window.location.search}`;
+    const cleanUrl = window.location.pathname + window.location.search;
     window.history.replaceState(null, "", cleanUrl);
   };
 
@@ -462,7 +278,7 @@ function scrollToSectionFromQuery() {
     behavior: "smooth"
   });
 
-  const cleanUrl = `${window.location.pathname}${window.location.hash || ""}`;
+  const cleanUrl = window.location.pathname + (window.location.hash || "");
   window.history.replaceState(null, "", cleanUrl);
 }
 
@@ -511,10 +327,12 @@ async function boot() {
     fetchJson("content/events.json", FALLBACK_CONTENT.events)
   ]);
 
-  renderSiteContent(site);
-  renderSchedules(site, schedules);
-  renderPrices(prices);
-  renderEvents(events);
+  const renderers = getRenderers();
+  renderers.renderLandingSiteContent(document, site);
+  renderers.renderSchedules(document, site, schedules);
+  renderers.renderPrices(document, prices);
+  renderers.renderEvents(document, events, { onSelect: openLightbox });
+
   initRevealObserver();
   initSmoothAnchorScroll();
   initMobileMenu();

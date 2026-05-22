@@ -1,107 +1,65 @@
-# Pulso Latino Landing + Decap CMS
+# Pulso Latino - Landing Oficial
 
-Este proyecto es una landing estatica (HTML/CSS/JS) con Decap CMS para editar contenido sin tocar codigo.
+Landing oficial de **Pulso Latino Estudio de Danza y Baile Latino**.
 
-## Estructura relevante
+Sitio estatico, mobile-first y optimizado para conversion a WhatsApp.  
+El contenido principal se administra con JSON y se puede editar desde Decap CMS.
 
-- `index.html`: estructura principal de la landing.
-- `js/main.js`: carga y render dinamico de contenido JSON.
-- `content/site.json`: textos generales, CTAs y footer.
-- `content/schedules.json`: horarios por sucursal.
-- `content/prices.json`: tarjetas y textos de precios.
-- `content/events.json`: galeria de flyers/eventos.
-- `admin/index.html`: panel Decap (`/admin`).
-- `admin/config.yml`: configuracion Decap.
+## Tecnologias
 
-## Configurar Decap para GitHub Pages
+- HTML5
+- CSS3 (estilos globales + estilos de pagina `Nosotros`)
+- JavaScript vanilla (sin framework)
+- Decap CMS (`/admin`)
+- GitHub Pages (publicacion)
 
-### 1) Configura `admin/config.yml`
+## Sitio en produccion
 
-Reemplaza estos valores:
+- [https://www.pulsolatinoestudio.com](https://www.pulsolatinoestudio.com)
 
-- `backend.repo`: `OWNER/REPO`
-- `backend.branch`: rama de publicacion (ej. `main`)
-- `backend.base_url`: URL publica de tu Worker (ej. `https://pulso-auth.workers.dev`)
-- `backend.auth_endpoint`: deja `/auth` si usas el Worker de ejemplo
+## Estructura del proyecto
 
-### 2) Crea una GitHub OAuth App
+- `index.html`: landing principal (Hero, Horarios, Precios, Ubicacion, Eventos, Footer)
+- `nosotros.html`: pagina Nosotros
+- `css/styles.css`: estilos de la landing principal
+- `css/nosotros.css`: estilos de la pagina Nosotros
+- `js/renderers.js`: renderers compartidos entre sitio y previews del CMS
+- `js/main.js`: boot de la landing y logica de interaccion
+- `js/nosotros.js`: boot de la pagina Nosotros
+- `content/site.json`: contenido global (nav, hero, labels, footer, WhatsApp)
+- `content/schedules.json`: horarios por sucursal
+- `content/prices.json`: tarjetas y textos de precios
+- `content/events.json`: galeria de flyers/eventos
+- `content/nosotros.json`: contenido de la pagina Nosotros
+- `admin/config.yml`: colecciones y campos de Decap CMS
+- `admin/index.html`: entrada del panel Decap CMS
+- `admin/preview.js`: previews visuales del CMS usando estilos reales del sitio
 
-En GitHub:
+## Flujo de contenido
 
-- `Homepage URL`: `https://www.pulsolatinoestudio.com`
-- `Authorization callback URL`: `https://TU_WORKER.workers.dev/callback`
+1. El sitio carga JSON desde `content/`.
+2. Los scripts (`js/main.js` y `js/nosotros.js`) usan `js/renderers.js` para pintar secciones.
+3. El CMS edita esos mismos JSON.
+4. Los previews de Decap reutilizan clases/estilos/renderers del sitio para mantener paridad visual.
 
-Guarda:
+## Ejecutar localmente
 
-- `Client ID`
-- `Client Secret`
+Al ser un sitio estatico, puedes abrir con cualquier servidor local simple.
 
-### 3) Despliega Cloudflare Worker para OAuth
+Ejemplo con VS Code Live Server o equivalente:
 
-Puedes usar un Worker sencillo con `@decap-cms/oauth-client`.
+1. Levanta el workspace como servidor estatico.
+2. Abre:
+   - `/` para la landing
+   - `/nosotros.html` para la pagina Nosotros
+   - `/admin` para el panel CMS
 
-Instalacion local:
+## Convenciones importantes del proyecto
 
-```bash
-npm init -y
-npm i @decap-cms/oauth-client
-npm i -D wrangler
-```
-
-`wrangler.toml` minimo:
-
-```toml
-name = "pulso-decap-auth"
-main = "src/index.js"
-compatibility_date = "2025-01-01"
-```
-
-`src/index.js`:
-
-```js
-import { createHandler } from "@decap-cms/oauth-client";
-
-const handler = createHandler({
-  github: {
-    clientId: globalThis.GITHUB_CLIENT_ID,
-    clientSecret: globalThis.GITHUB_CLIENT_SECRET
-  },
-  secret: globalThis.OAUTH_SECRET
-});
-
-export default {
-  fetch(request) {
-    return handler(request);
-  }
-};
-```
-
-Define secrets:
-
-```bash
-npx wrangler secret put GITHUB_CLIENT_ID
-npx wrangler secret put GITHUB_CLIENT_SECRET
-npx wrangler secret put OAUTH_SECRET
-```
-
-Despliegue:
-
-```bash
-npx wrangler deploy
-```
-
-## Flujo editorial esperado
-
-1. Entrar a `/admin`.
-2. Iniciar sesion con GitHub.
-3. Editar contenido en colecciones:
-   - Sitio
-   - Horarios
-   - Precios
-   - Eventos y flyers
-4. Guardar y publicar (commit al repo).
-5. GitHub Pages publica los cambios.
-
-## Nota sobre assets de eventos
-
-En la coleccion de eventos, el campo `image` sube imagenes a `assets/uploads`. Si quieres seguir usando `assets/flyers`, tambien puedes pegar rutas manuales.
+- Mantener enfoque **mobile-first**.
+- No romper rutas de assets (`assets/...`) ni enlaces de WhatsApp.
+- Respetar separacion de responsabilidades:
+  - HTML: estructura
+  - CSS: estilos
+  - JS: comportamiento/render
+- Reutilizar `js/renderers.js` y hojas de estilo compartidas antes de duplicar logica o estilos.

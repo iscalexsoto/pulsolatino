@@ -13,6 +13,7 @@ locale: "es"
 collections:
   - name: "site"
     label: "Sitio"
+    preview: true
     files:
       - label: "Contenido general"
         name: "site"
@@ -85,6 +86,7 @@ collections:
 
   - name: "schedules"
     label: "Horarios"
+    preview: true
     files:
       - label: "Datos de horarios"
         name: "schedules"
@@ -112,6 +114,7 @@ collections:
 
   - name: "prices"
     label: "Precios"
+    preview: true
     files:
       - label: "Datos de precios"
         name: "prices"
@@ -145,6 +148,7 @@ collections:
 
   - name: "events"
     label: "Eventos y flyers"
+    preview: true
     files:
       - label: "Galeria de eventos"
         name: "events"
@@ -160,6 +164,7 @@ collections:
 
   - name: "about"
     label: "Nosotros"
+    preview: true
     files:
       - label: "Contenido de Nosotros"
         name: "about"

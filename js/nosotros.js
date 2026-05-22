@@ -109,160 +109,24 @@ const FALLBACK_CONTENT = {
 
 let revealObserver;
 
-function textById(id, value) {
-  const node = document.getElementById(id);
-  if (node && typeof value === "string") {
-    node.textContent = value;
+function getRenderers() {
+  if (!window.PulsoRenderers) {
+    throw new Error("PulsoRenderers no está disponible.");
   }
-}
-
-function htmlById(id, value) {
-  const node = document.getElementById(id);
-  if (node && typeof value === "string") {
-    node.innerHTML = value;
-  }
-}
-
-function setHrefById(id, href) {
-  const node = document.getElementById(id);
-  if (node && href) {
-    node.setAttribute("href", href);
-  }
-}
-
-function setAttrById(id, attr, value) {
-  const node = document.getElementById(id);
-  if (node && typeof value === "string") {
-    node.setAttribute(attr, value);
-  }
-}
-
-function navHrefForAboutPage(href) {
-  if (!href) return "#";
-  if (href.startsWith("#")) {
-    return `index.html?go=${href.slice(1)}`;
-  }
-  return href;
+  return window.PulsoRenderers;
 }
 
 async function fetchJson(path, fallback) {
   try {
     const response = await fetch(path, { cache: "no-store" });
     if (!response.ok) {
-      throw new Error(`status ${response.status}`);
+      throw new Error("status " + response.status);
     }
     return await response.json();
   } catch (error) {
-    console.warn(`[content] using fallback for ${path}`, error);
+    console.warn("[content] using fallback for " + path, error);
     return fallback;
   }
-}
-
-function renderNav(site) {
-  const navContainer = document.getElementById("nav-links");
-  if (!navContainer || !Array.isArray(site.navLinks)) return;
-
-  navContainer.innerHTML = site.navLinks
-    .map((item) => {
-      const href = navHrefForAboutPage(item.href);
-      const isActive = item.href === "nosotros.html" ? " class=\"active\"" : "";
-      return `<li><a href="${href}"${isActive}>${item.label || ""}</a></li>`;
-    })
-    .join("");
-}
-
-function renderSharedSite(site) {
-  renderNav(site);
-
-  htmlById(
-    "footer-location",
-    `<i class="fa-solid fa-location-dot" aria-hidden="true"></i> <a class="footer-location-link" href="https://maps.app.goo.gl/mQiw4jJ8Ey9rUZYV7" target="_blank" rel="noopener">Av. Madero</a> &nbsp;·&nbsp; <i class="fa-solid fa-location-dot" aria-hidden="true"></i> <a class="footer-location-link" href="https://maps.app.goo.gl/N61xFc7rp7NcSdeZ7" target="_blank" rel="noopener">Pacabtún</a> · Mérida, Yucatán`
-  );
-
-  textById("footer-whatsapp", site.footer?.whatsappText);
-  setHrefById("footer-whatsapp", `https://wa.me/${site.whatsappPhone || "529994195286"}`);
-  textById("footer-copyright", site.footer?.copyrightText);
-
-  textById("floating-whatsapp-label", site.floatingWhatsapp?.label);
-  setHrefById("floating-whatsapp", site.floatingWhatsapp?.href);
-}
-
-function renderAboutContent(content) {
-  textById("about-hero-tagline", content.hero?.tagline);
-  textById("about-hero-title", content.hero?.title);
-
-  textById("about-section-label", content.about?.sectionLabel);
-  textById("about-section-title", content.about?.sectionTitle);
-
-  const aboutParagraphs = document.getElementById("about-paragraphs");
-  if (aboutParagraphs) {
-    aboutParagraphs.innerHTML = (content.about?.paragraphs || [])
-      .map((paragraph) => `<p>${paragraph || ""}</p>`)
-      .join("");
-  }
-
-  textById("about-quote", content.about?.quote);
-
-  textById("director-section-label", content.director?.sectionLabel);
-  textById("director-section-title", content.director?.sectionTitle);
-  textById("director-name", content.director?.name);
-  textById("director-bio", content.director?.bio);
-  setAttrById("director-image", "src", content.director?.image);
-  setAttrById("director-image", "alt", content.director?.imageAlt);
-
-  textById("history-section-label", content.history?.sectionLabel);
-  textById("history-section-title", content.history?.sectionTitle);
-
-  const historyItems = document.getElementById("history-items");
-  if (historyItems) {
-    historyItems.innerHTML = (content.history?.items || [])
-      .map((item) => {
-        const bullets = Array.isArray(item.bullets) && item.bullets.length > 0
-          ? `<ul>${item.bullets
-              .map((bullet) => `<li><i class="fa-solid fa-trophy" aria-hidden="true"></i><span>${bullet || ""}</span></li>`)
-              .join("")}</ul>`
-          : "";
-
-        return `
-          <article class="timeline-item">
-            <h3>${item.title || ""}</h3>
-            <p>${item.description || ""}</p>
-            ${bullets}
-          </article>
-        `;
-      })
-      .join("");
-  }
-
-  textById("values-section-label", content.values?.sectionLabel);
-  textById("values-section-title", content.values?.sectionTitle);
-
-  const valuesItems = document.getElementById("values-items");
-  if (valuesItems) {
-    valuesItems.innerHTML = (content.values?.items || [])
-      .map((item) => {
-        const wide = item.wide ? " wide" : "";
-        return `
-          <article class="value-card${wide}">
-            <h3 class="value-name">${item.name || ""}</h3>
-            <p>${item.description || ""}</p>
-          </article>
-        `;
-      })
-      .join("");
-  }
-
-  textById("mv-section-label", content.missionVision?.sectionLabel);
-  textById("mv-section-title", content.missionVision?.sectionTitle);
-  textById("mission-title", content.missionVision?.missionTitle);
-  textById("mission-text", content.missionVision?.missionText);
-  textById("vision-title", content.missionVision?.visionTitle);
-  textById("vision-text", content.missionVision?.visionText);
-
-  textById("final-cta-title", content.finalCta?.title);
-  textById("final-cta-description", content.finalCta?.description);
-  textById("final-cta-button-label", content.finalCta?.buttonLabel);
-  setHrefById("final-cta-button", content.finalCta?.buttonHref);
 }
 
 function initRevealObserver() {
@@ -318,8 +182,10 @@ async function boot() {
     fetchJson("content/nosotros.json", FALLBACK_CONTENT.about)
   ]);
 
-  renderSharedSite(site);
-  renderAboutContent(about);
+  const renderers = getRenderers();
+  renderers.renderSharedSite(document, site);
+  renderers.renderAboutContent(document, about);
+
   initRevealObserver();
   initMobileMenu();
 }
