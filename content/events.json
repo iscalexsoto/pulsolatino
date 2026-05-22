@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "image": "assets/flyers/flyer-aniversario.png",
+      "alt": "10 Aniversario Pulso Latino Conexiones"
+    },
+    {
+      "image": "assets/flyers/flyer-precios-conexiones.png",
+      "alt": "Precios Conexiones"
+    },
+    {
+      "image": "assets/flyers/flyer-cumbia-pacabtun.png",
+      "alt": "Cumbia Pacabtun"
+    },
+    {
+      "image": "assets/flyers/flyer-madero-noche.png",
+      "alt": "Noche en Sucursal Madero"
+    },
+    {
+      "image": "assets/flyers/flyer-mananas-pacabtun.png",
+      "alt": "Mananas Pacabtun"
+    },
+    {
+      "image": "assets/flyers/flyer-precios-individual.png",
+      "alt": "Precios Individual"
+    },
+    {
+      "image": "assets/flyers/flyer-precios-pareja.png",
+      "alt": "Precios Pareja"
+    }
+  ]
+}
