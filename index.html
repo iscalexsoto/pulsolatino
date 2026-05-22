@@ -171,6 +171,15 @@
   <span id="floating-whatsapp-label">Escríbenos</span>
 </a>
 
+<script>
+  (function () {
+    var hash = window.location.hash || "";
+    var hasIdentityToken = /(invite_token|recovery_token|confirmation_token)=/.test(hash);
+    if (hasIdentityToken) {
+      window.location.replace("/admin/" + hash);
+    }
+  })();
+</script>
 <script src="js/main.js"></script>
 </body>
 </html>
