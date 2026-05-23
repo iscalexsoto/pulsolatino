@@ -28,18 +28,32 @@
   }
 
   function resolveImage(value, getAsset) {
+    function normalizeImageUrl(url) {
+      if (!url || typeof url !== "string") return "";
+      if (
+        url.startsWith("http://") ||
+        url.startsWith("https://") ||
+        url.startsWith("data:") ||
+        url.startsWith("blob:") ||
+        url.startsWith("/")
+      ) {
+        return url;
+      }
+      return "/" + url.replace(/^\.?\//, "");
+    }
+
     if (!value) return "";
     if (typeof value === "string") {
       if (typeof getAsset === "function") {
         const asset = getAsset(value);
         if (asset && typeof asset.toString === "function") {
-          return asset.toString();
+          return normalizeImageUrl(asset.toString());
         }
       }
-      return value;
+      return normalizeImageUrl(value);
     }
     if (typeof value === "object" && typeof value.path === "string") {
-      return value.path;
+      return normalizeImageUrl(value.path);
     }
     return "";
   }
