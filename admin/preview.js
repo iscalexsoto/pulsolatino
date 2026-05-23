@@ -16,8 +16,9 @@
   CMS.registerPreviewStyle("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;900&family=Dancing+Script:wght@700&family=Asap+Condensed:wght@500;700;900&display=swap");
 
   function entryToObject(entry) {
-    if (!entry || typeof entry.toJS !== "function") return {};
-    return entry.toJS();
+    if (!entry || typeof entry.getIn !== "function") return {};
+    const data = entry.getIn(["data"]);
+    return data && typeof data.toJS === "function" ? data.toJS() : {};
   }
 
   function revealAll(root) {
