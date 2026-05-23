@@ -120,16 +120,68 @@
     `;
   }
 
+  function buildSiteShell() {
+    return `
+      <div id="top">
+        <div class="hero" style="padding-top:5rem; min-height:auto;">
+          <img class="hero-logo" src="/assets/logos/logo-pulso.png" alt="Pulso Latino" />
+          <p class="hero-tagline" id="hero-tagline"></p>
+          <h1 class="hero-headline" id="hero-headline"></h1>
+          <p class="hero-sub" id="hero-subheadline"></p>
+          <div class="hero-cta">
+            <a class="btn-primary" id="hero-primary-cta" href="#" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+              <span id="hero-primary-cta-label"></span>
+            </a>
+            <a class="btn-secondary" id="hero-secondary-cta" href="#"></a>
+          </div>
+        </div>
+
+        <section>
+          <span class="section-label" id="schedules-label"></span>
+          <h2 class="section-title reveal" id="schedules-title"></h2>
+          <div class="divider"></div>
+        </section>
+
+        <section>
+          <span class="section-label" id="prices-label"></span>
+          <h2 class="section-title reveal" id="prices-title"></h2>
+          <div class="divider"></div>
+          <div class="section-whatsapp-cta">
+            <a class="btn-primary" id="prices-cta" href="#" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+              <span id="prices-cta-label"></span>
+            </a>
+          </div>
+        </section>
+
+        <section>
+          <span class="section-label" id="events-label"></span>
+          <h2 class="section-title reveal" id="events-title"></h2>
+          <div class="divider"></div>
+        </section>
+
+        <section>
+          <span class="section-label">Contacto</span>
+          <div class="copy-card">
+            <p id="footer-location"></p>
+            <p><a id="footer-whatsapp" href="#" target="_blank" rel="noopener"></a></p>
+            <p id="footer-copyright"></p>
+            <div class="section-whatsapp-cta">
+              <a class="btn-primary" id="floating-whatsapp" href="#" target="_blank" rel="noopener">
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                <span id="floating-whatsapp-label"></span>
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    `;
+  }
+
   function buildAboutShell() {
     return `
       <div id="top">
-        <nav>
-          <a class="nav-logo" href="index.html" aria-label="Volver al inicio">
-            <img src="/assets/logos/logo-pulso.png" alt="Pulso Latino" />
-          </a>
-          <ul class="nav-links" id="nav-links"></ul>
-        </nav>
-
         <header class="hero-small">
           <p class="hero-tagline" id="about-hero-tagline"></p>
           <h1 class="hero-title" id="about-hero-title"></h1>
@@ -200,20 +252,6 @@
             </a>
           </article>
         </section>
-
-        <footer>
-          <img src="/assets/logos/logo-pulso.png" alt="Pulso Latino" />
-          <p id="footer-location"></p>
-          <p style="margin-top:0.5rem;">
-            <a id="footer-whatsapp" href="#" target="_blank" rel="noopener"></a>
-          </p>
-          <p id="footer-copyright" style="margin-top:1rem; opacity:0.4;"></p>
-        </footer>
-
-        <a class="wa-float" id="floating-whatsapp" href="#" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
-          <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-          <span id="floating-whatsapp-label"></span>
-        </a>
       </div>
     `;
   }
@@ -226,6 +264,41 @@
         <div class="divider"></div>
         <div class="tabs reveal" id="schedules-tabs"></div>
         <div id="schedules-panels"></div>
+      </section>
+    `;
+  }
+
+  function buildPricesShell() {
+    return `
+      <section id="precios" class="precios-section" style="max-width:100%; padding: 4rem 1.5rem;">
+        <div style="max-width:900px; margin:0 auto;">
+          <span class="section-label" id="prices-label"></span>
+          <h2 class="section-title reveal" id="prices-title"></h2>
+          <div class="divider"></div>
+          <div class="promo-banner reveal" id="prices-promo"></div>
+          <h3 id="prices-individual-title" style="font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:1px; margin-bottom:1rem; color:var(--text-muted);"></h3>
+          <div class="precios-grid reveal" id="prices-individual-grid"></div>
+          <h3 id="prices-couple-title" style="font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:1px; margin: 2rem 0 1rem; color:var(--text-muted);"></h3>
+          <div class="precios-grid reveal" id="prices-couple-grid"></div>
+          <p id="prices-fineprint" style="margin-top:1rem; font-size:0.75rem; color:var(--text-muted); line-height:1.6;"></p>
+          <div class="section-whatsapp-cta">
+            <a class="btn-primary" id="prices-cta" href="#" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+              <span id="prices-cta-label"></span>
+            </a>
+          </div>
+        </div>
+      </section>
+    `;
+  }
+
+  function buildEventsShell() {
+    return `
+      <section id="eventos">
+        <span class="section-label" id="events-label"></span>
+        <h2 class="section-title reveal" id="events-title"></h2>
+        <div class="divider"></div>
+        <div class="eventos-grid reveal" id="events-grid"></div>
       </section>
     `;
   }
@@ -253,7 +326,7 @@
   }
 
   const sitePreview = createStaticPreview(function (rootEl, props) {
-    rootEl.innerHTML = buildLandingShell();
+    rootEl.innerHTML = buildSiteShell();
     const site = entryToObject(props.entry);
     renderers.renderLandingSiteContent(rootEl, site);
     revealAll(rootEl);
@@ -320,6 +393,44 @@
     return buildSchedulesMetaFallback(schedulesEntry);
   }
 
+  function getEffectivePricesSiteData(siteData) {
+    const hasPricesMeta =
+      siteData &&
+      siteData.pricesSection &&
+      (siteData.pricesSection.label || siteData.pricesSection.title || siteData.pricesSection.ctaLabel);
+
+    if (hasPricesMeta) {
+      return siteData;
+    }
+
+    return {
+      pricesSection: {
+        label: "Sin inscripción para nuevos alumnos",
+        title: "PRECIOS",
+        ctaLabel: "Pregunta por nuestras promociones",
+        ctaHref: "#"
+      }
+    };
+  }
+
+  function getEffectiveEventsSiteData(siteData) {
+    const hasEventsMeta =
+      siteData &&
+      siteData.eventsSection &&
+      (siteData.eventsSection.label || siteData.eventsSection.title);
+
+    if (hasEventsMeta) {
+      return siteData;
+    }
+
+    return {
+      eventsSection: {
+        label: "Flyers y promociones",
+        title: "EVENTOS"
+      }
+    };
+  }
+
   const schedulesPreview = createClass({
     componentDidMount: function () {
       this._mounted = true;
@@ -358,14 +469,19 @@
   });
 
   const pricesPreview = createStaticPreview(function (rootEl, props) {
-    rootEl.innerHTML = buildLandingShell();
+    rootEl.innerHTML = buildPricesShell();
     const prices = entryToObject(props.entry);
-    renderers.renderPrices(rootEl, prices);
-    revealAll(rootEl);
+
+    getSiteData().then(function (siteData) {
+      const effectiveSiteData = getEffectivePricesSiteData(siteData || {});
+      renderers.renderLandingSiteContent(rootEl, effectiveSiteData);
+      renderers.renderPrices(rootEl, prices || {});
+      revealAll(rootEl);
+    });
   });
 
   const eventsPreview = createStaticPreview(function (rootEl, props) {
-    rootEl.innerHTML = buildLandingShell();
+    rootEl.innerHTML = buildEventsShell();
     const events = entryToObject(props.entry);
     const items = Array.isArray(events.items) ? events.items : [];
     events.items = items.map(function (item) {
@@ -374,8 +490,13 @@
         alt: item.alt || ""
       };
     });
-    renderers.renderEvents(rootEl, events);
-    revealAll(rootEl);
+
+    getSiteData().then(function (siteData) {
+      const effectiveSiteData = getEffectiveEventsSiteData(siteData || {});
+      renderers.renderLandingSiteContent(rootEl, effectiveSiteData);
+      renderers.renderEvents(rootEl, events);
+      revealAll(rootEl);
+    });
   });
 
   const aboutPreview = createClass({
@@ -398,13 +519,9 @@
       if (about.director) {
         about.director.image = resolveImage(about.director.image, this.props.getAsset);
       }
-
-      getSiteData().then(function (siteData) {
-        if (!self._mounted || !self.rootEl) return;
-        renderers.renderSharedSite(self.rootEl, siteData || {});
-        renderers.renderAboutContent(self.rootEl, about || {});
-        revealAll(self.rootEl);
-      });
+      if (!self._mounted || !self.rootEl) return;
+      renderers.renderAboutContent(self.rootEl, about || {});
+      revealAll(self.rootEl);
     },
     render: function () {
       return h("div", {
