@@ -32,7 +32,7 @@
     },
     {
       "icon": "fa-solid fa-crown",
-      "name": "Pase Completo",
+      "name": "TODAS LAS CLASES",
       "description": "Todas las clases · Madero y Pacabtún · Todos los horarios (no aplica en talleres especiales)",
       "amount": "$1,000",
       "suffix": "/mes",
@@ -50,14 +50,14 @@
       "suffix": "/mes"
     },
     {
-      "icon": "fa-solid fa-user-group",
+      "icon": "fa-solid fa-face-smile",
       "name": "2 Ritmos",
       "description": "Promo primeros 2 meses: $900 x pareja",
       "amount": "$1,200",
       "suffix": "/mes"
     },
     {
-      "icon": "fa-solid fa-trophy",
+      "icon": "fa-solid fa- trophy",
       "name": "3 Ritmos",
       "description": "La experiencia completa en pareja",
       "amount": "$1,500",
