@@ -217,6 +217,18 @@
     `;
   }
 
+  function buildSchedulesShell() {
+    return `
+      <section id="horarios">
+        <span class="section-label" id="schedules-label"></span>
+        <h2 class="section-title reveal" id="schedules-title"></h2>
+        <div class="divider"></div>
+        <div class="tabs reveal" id="schedules-tabs"></div>
+        <div id="schedules-panels"></div>
+      </section>
+    `;
+  }
+
   function createStaticPreview(renderFn) {
     return createClass({
       componentDidMount: function () {
@@ -261,6 +273,52 @@
     return siteDataPromise;
   }
 
+  function buildSchedulesMetaFallback(schedulesEntry) {
+    const branches = Array.isArray(schedulesEntry && schedulesEntry.branches) ? schedulesEntry.branches : [];
+    const defaults = {
+      icon: "fa-solid fa-location-dot",
+      ctaLabel: "Agenda tu clase",
+      ctaHref: "#"
+    };
+
+    return {
+      schedulesSection: {
+        label: "Nuestras clases",
+        title: "HORARIOS",
+        branches: branches.map(function (branch) {
+          const id = branch && branch.id ? branch.id : "sucursal";
+          const normalizedId = String(id).trim();
+          const labelById = {
+            madero: "Av. Madero",
+            pacabtun: "Pacabtún"
+          };
+
+          return {
+            id: normalizedId,
+            label: labelById[normalizedId.toLowerCase()] || normalizedId,
+            icon: defaults.icon,
+            ctaLabel: defaults.ctaLabel,
+            ctaHref: defaults.ctaHref
+          };
+        })
+      }
+    };
+  }
+
+  function getEffectiveSchedulesSiteData(siteData, schedulesEntry) {
+    const metaBranches =
+      siteData &&
+      siteData.schedulesSection &&
+      Array.isArray(siteData.schedulesSection.branches) &&
+      siteData.schedulesSection.branches.length > 0;
+
+    if (metaBranches) {
+      return siteData;
+    }
+
+    return buildSchedulesMetaFallback(schedulesEntry);
+  }
+
   const schedulesPreview = createClass({
     componentDidMount: function () {
       this._mounted = true;
@@ -275,13 +333,17 @@
     paint: function () {
       if (!this.rootEl) return;
       const schedules = entryToObject(this.props.entry);
-      this.rootEl.innerHTML = buildLandingShell();
+      this.rootEl.innerHTML = buildSchedulesShell();
       const self = this;
 
       getSiteData().then(function (siteData) {
         if (!self._mounted || !self.rootEl) return;
-        renderers.renderLandingSiteContent(self.rootEl, siteData || {});
-        renderers.renderSchedules(self.rootEl, siteData || {}, schedules || {}, { bindEvents: true });
+        const effectiveSiteData = getEffectiveSchedulesSiteData(siteData || {}, schedules || {});
+        const sectionData = effectiveSiteData.schedulesSection || {};
+
+        renderers.textById(self.rootEl, "schedules-label", sectionData.label || "Nuestras clases");
+        renderers.textById(self.rootEl, "schedules-title", sectionData.title || "HORARIOS");
+        renderers.renderSchedules(self.rootEl, effectiveSiteData, schedules || {}, { bindEvents: true });
         revealAll(self.rootEl);
       });
     },
