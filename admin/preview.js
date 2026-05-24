@@ -342,6 +342,39 @@
     return schedulesEntry || {};
   }
 
+  function normalizeSchedulesEntry(schedulesEntry) {
+    const source = schedulesEntry || {};
+    const branches = Array.isArray(source.branches) ? source.branches : [];
+    const asString = function (value) {
+      if (value === null || value === undefined) return "";
+      if (typeof value === "string") return value;
+      return String(value);
+    };
+
+    return {
+      sectionLabel: asString(source.sectionLabel),
+      sectionTitle: asString(source.sectionTitle),
+      branches: branches.map(function (branch) {
+        const id = asString(branch && branch.id);
+        const label = asString((branch && branch.label) || (branch && branch.branchLabel));
+        const ctaLabel = asString(
+          (branch && branch.ctaLabel) ||
+            (branch && branch.ctaText) ||
+            (branch && branch.buttonLabel) ||
+            "Agenda tu clase"
+        );
+        return {
+          id: id,
+          label: label,
+          icon: asString(branch && branch.icon),
+          ctaLabel: ctaLabel,
+          ctaMessage: asString((branch && branch.ctaMessage) || (branch && branch.ctaWhatsappMessage)),
+          dayGroups: Array.isArray(branch && branch.dayGroups) ? branch.dayGroups : []
+        };
+      })
+    };
+  }
+
   function getEffectiveSchedulesSiteData(siteData, schedulesEntry) {
     return {
       whatsappPhone: (siteData && siteData.whatsappPhone) || "529994195286",
@@ -370,13 +403,38 @@
     paint: function () {
       if (!this.rootEl) return;
       const schedules = entryToObject(this.props.entry);
+      const normalizedSchedules = normalizeSchedulesEntry(buildSchedulesMetaFallback(schedules || {}));
+      const activeBeforePaint = this.rootEl.querySelector("#schedules-tabs .tab-btn.active");
+      const previousSelectedBranchId =
+        this.selectedBranchId ||
+        (activeBeforePaint && activeBeforePaint.dataset ? activeBeforePaint.dataset.branchId : "") ||
+        "";
       this.rootEl.innerHTML = buildSchedulesShell();
       const self = this;
 
       getSiteData().then(function (siteData) {
         if (!self._mounted || !self.rootEl) return;
         const effectiveSiteData = getEffectiveSchedulesSiteData(siteData || {}, schedules || {});
-        renderers.renderSchedules(self.rootEl, buildSchedulesMetaFallback(schedules || {}), effectiveSiteData, { bindEvents: true });
+        renderers.renderSchedules(self.rootEl, normalizedSchedules, effectiveSiteData, { bindEvents: true });
+
+        if (previousSelectedBranchId) {
+          const selectedExists = normalizedSchedules.branches.some(function (branch) {
+            return branch.id === previousSelectedBranchId;
+          });
+          if (selectedExists) {
+            renderers.switchTab(self.rootEl, previousSelectedBranchId);
+          }
+        }
+
+        const activeButton = self.rootEl.querySelector("#schedules-tabs .tab-btn.active");
+        self.selectedBranchId = activeButton ? activeButton.dataset.branchId : "";
+
+        self.rootEl.querySelectorAll("#schedules-tabs .tab-btn").forEach(function (button) {
+          button.addEventListener("click", function () {
+            self.selectedBranchId = button.dataset.branchId || "";
+          });
+        });
+
         revealAll(self.rootEl);
       });
     },
