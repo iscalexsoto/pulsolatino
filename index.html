@@ -15,7 +15,16 @@
   <link rel="icon" type="image/png" href="/assets/logos/logo-pulso.png" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;900&family=Dancing+Script:wght@700&family=Asap+Condensed:wght@500;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-  <link rel="stylesheet" href="css/styles.css?v=20260526" />
+  <script>
+    (function () {
+      var version = Date.now();
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "css/styles.css?v=" + version;
+      document.head.appendChild(link);
+      window.__pulsoAssetVersion = version;
+    })();
+  </script>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -207,7 +216,18 @@
     }
   })();
 </script>
-<script src="js/renderers.js?v=20260526"></script>
-<script src="js/main.js?v=20260526"></script>
+<script>
+  (function () {
+    var version = window.__pulsoAssetVersion || Date.now();
+    var renderersScript = document.createElement("script");
+    renderersScript.src = "js/renderers.js?v=" + version;
+    renderersScript.onload = function () {
+      var mainScript = document.createElement("script");
+      mainScript.src = "js/main.js?v=" + version;
+      document.body.appendChild(mainScript);
+    };
+    document.body.appendChild(renderersScript);
+  })();
+</script>
 </body>
 </html>

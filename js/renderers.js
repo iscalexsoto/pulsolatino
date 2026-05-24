@@ -79,6 +79,15 @@
     if (!url || typeof url !== "string") return "";
     const normalized = url.trim();
     if (!normalized) return "";
+    const isFileProtocol =
+      typeof global !== "undefined" &&
+      global.location &&
+      typeof global.location.protocol === "string" &&
+      global.location.protocol === "file:";
+
+    if (isFileProtocol && normalized.startsWith("/")) {
+      return "." + normalized;
+    }
     if (
       normalized.startsWith("http://") ||
       normalized.startsWith("https://") ||
