@@ -35,7 +35,7 @@ alwaysApply: true
 - CMS activo en `admin/` con configuracion en `admin/config.yml`.
 - Previews personalizados por coleccion en `admin/preview.js`.
 - Los previews deben cargar estilos reales del sitio con `CMS.registerPreviewStyle` (sin copiar CSS en paralelo).
-- El preview de `schedules` depende de metadatos de `site.schedulesSection.branches`; conservar compatibilidad por `id` de sucursal.
+- El preview de `schedules` usa metadatos en `content/schedules.json` (ya no en `site.schedulesSection`).
 
 ## Decisiones de diseno vigentes
 - Estetica oscura con acentos dorados inspirada en flyers de marca.

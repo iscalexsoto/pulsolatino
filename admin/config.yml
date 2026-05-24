@@ -24,13 +24,6 @@ collections:
         fields:
           - { label: "Telefono WhatsApp internacional", name: "whatsappPhone", widget: "string" }
           - { label: "Mensaje WhatsApp por defecto", name: "whatsappDefaultMessage", widget: "text" }
-          - label: "Navegacion"
-            name: "navLinks"
-            widget: "list"
-            fields:
-              - { label: "Texto", name: "label", widget: "string" }
-              - { label: "Ancla", name: "href", widget: "string" }
-              - { label: "Icono Font Awesome", name: "icon", widget: "string" }
           - label: "Hero"
             name: "hero"
             widget: "object"
@@ -40,38 +33,8 @@ collections:
               - { label: "Titulo destacado", name: "headlineHighlight", widget: "string" }
               - { label: "Subtitulo", name: "subheadline", widget: "text" }
               - { label: "Boton principal texto", name: "primaryCtaLabel", widget: "string" }
-              - { label: "Boton principal URL", name: "primaryCtaHref", widget: "string" }
+              - { label: "Mensaje de WhatsApp del boton principal (opcional)", name: "primaryCtaMessage", widget: "text", required: false }
               - { label: "Boton secundario texto", name: "secondaryCtaLabel", widget: "string" }
-              - { label: "Boton secundario ancla", name: "secondaryCtaHref", widget: "string" }
-          - label: "Horarios"
-            name: "schedulesSection"
-            widget: "object"
-            fields:
-              - { label: "Etiqueta de seccion", name: "label", widget: "string" }
-              - { label: "Titulo de seccion", name: "title", widget: "string" }
-              - label: "Sucursales"
-                name: "branches"
-                widget: "list"
-                fields:
-                  - { label: "ID (ej. madero)", name: "id", widget: "string" }
-                  - { label: "Etiqueta", name: "label", widget: "string" }
-                  - { label: "Icono Font Awesome", name: "icon", widget: "string" }
-                  - { label: "Texto boton CTA", name: "ctaLabel", widget: "string" }
-                  - { label: "URL boton CTA", name: "ctaHref", widget: "string" }
-          - label: "Precios"
-            name: "pricesSection"
-            widget: "object"
-            fields:
-              - { label: "Etiqueta de seccion", name: "label", widget: "string" }
-              - { label: "Titulo de seccion", name: "title", widget: "string" }
-              - { label: "Texto boton CTA", name: "ctaLabel", widget: "string" }
-              - { label: "URL boton CTA", name: "ctaHref", widget: "string" }
-          - label: "Eventos"
-            name: "eventsSection"
-            widget: "object"
-            fields:
-              - { label: "Etiqueta de seccion", name: "label", widget: "string" }
-              - { label: "Titulo de seccion", name: "title", widget: "string" }
           - label: "Footer"
             name: "footer"
             widget: "object"
@@ -79,12 +42,20 @@ collections:
               - { label: "Texto ubicacion", name: "locationText", widget: "string" }
               - { label: "Texto WhatsApp", name: "whatsappText", widget: "string" }
               - { label: "Copyright", name: "copyrightText", widget: "string" }
+              - label: "Redes"
+                name: "socials"
+                widget: "list"
+                required: false
+                fields:
+                  - { label: "Icono Font Awesome", name: "icon", widget: "string" }
+                  - { label: "Texto", name: "label", widget: "string" }
+                  - { label: "Link", name: "href", widget: "string" }
           - label: "Boton WhatsApp flotante"
             name: "floatingWhatsapp"
             widget: "object"
             fields:
               - { label: "Texto", name: "label", widget: "string" }
-              - { label: "URL", name: "href", widget: "string" }
+              - { label: "Mensaje de WhatsApp (opcional)", name: "message", widget: "text", required: false }
 
   - name: "schedules"
     label: "Horarios"
@@ -95,11 +66,17 @@ collections:
         file: "content/schedules.json"
         format: "json"
         fields:
+          - { label: "Etiqueta de seccion", name: "sectionLabel", widget: "string" }
+          - { label: "Titulo de seccion", name: "sectionTitle", widget: "string" }
           - label: "Sucursales"
             name: "branches"
             widget: "list"
             fields:
               - { label: "ID sucursal", name: "id", widget: "string" }
+              - { label: "Etiqueta", name: "label", widget: "string" }
+              - { label: "Icono Font Awesome", name: "icon", widget: "string" }
+              - { label: "Texto boton CTA", name: "ctaLabel", widget: "string" }
+              - { label: "Mensaje de WhatsApp del CTA (opcional)", name: "ctaMessage", widget: "text", required: false }
               - label: "Bloques por dias"
                 name: "dayGroups"
                 widget: "list"
@@ -123,6 +100,10 @@ collections:
         file: "content/prices.json"
         format: "json"
         fields:
+          - { label: "Etiqueta de seccion", name: "sectionLabel", widget: "string" }
+          - { label: "Titulo de seccion", name: "sectionTitle", widget: "string" }
+          - { label: "Texto boton CTA", name: "ctaLabel", widget: "string" }
+          - { label: "Mensaje de WhatsApp del CTA (opcional)", name: "ctaMessage", widget: "text", required: false }
           - { label: "Texto promocion (HTML permitido)", name: "promoHtml", widget: "text" }
           - { label: "Titulo bloque individual", name: "individualTitle", widget: "string" }
           - label: "Planes individuales"
@@ -157,6 +138,8 @@ collections:
         file: "content/events.json"
         format: "json"
         fields:
+          - { label: "Etiqueta de seccion", name: "sectionLabel", widget: "string" }
+          - { label: "Titulo de seccion", name: "sectionTitle", widget: "string" }
           - label: "Items"
             name: "items"
             widget: "list"

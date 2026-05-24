@@ -41,12 +41,19 @@
     }
   }
 
-  function navHrefForAboutPage(href) {
-    if (!href) return "#";
-    if (href.startsWith("#")) {
-      return "index.html?go=" + href.slice(1);
+  function buildWhatsAppUrl(phone, message, defaultMessage) {
+    const normalizedPhone = String(phone || "").replace(/\D/g, "");
+    if (!normalizedPhone) return "#";
+
+    const customMessage = typeof message === "string" ? message.trim() : "";
+    const fallbackMessage = typeof defaultMessage === "string" ? defaultMessage.trim() : "";
+    const finalMessage = customMessage || fallbackMessage;
+
+    if (!finalMessage) {
+      return "https://wa.me/" + normalizedPhone;
     }
-    return href;
+
+    return "https://wa.me/" + normalizedPhone + "?text=" + encodeURIComponent(finalMessage);
   }
 
   function normalizeSimpleList(list, keyName) {
@@ -140,15 +147,6 @@
   }
 
   function renderLandingSiteContent(root, site) {
-    const navContainer = findById(root, "nav-links");
-    if (navContainer && Array.isArray(site.navLinks)) {
-      navContainer.innerHTML = site.navLinks
-        .map(function (item) {
-          return '\n          <li>\n            <a href="' + (item.href || "#") + '" aria-label="' + (item.label || "") + '">\n              ' + (item.label || "") + "\n            </a>\n          </li>\n        ";
-        })
-        .join("");
-    }
-
     textById(root, "hero-tagline", site.hero && site.hero.tagline);
     htmlById(
       root,
@@ -160,52 +158,80 @@
     );
     htmlById(root, "hero-subheadline", site.hero && site.hero.subheadline);
     textById(root, "hero-primary-cta-label", site.hero && site.hero.primaryCtaLabel);
-    setHrefById(root, "hero-primary-cta", site.hero && site.hero.primaryCtaHref);
-    textById(root, "hero-secondary-cta", site.hero && site.hero.secondaryCtaLabel);
-    setHrefById(root, "hero-secondary-cta", site.hero && site.hero.secondaryCtaHref);
-
-    textById(root, "schedules-label", site.schedulesSection && site.schedulesSection.label);
-    textById(root, "schedules-title", site.schedulesSection && site.schedulesSection.title);
-    textById(root, "prices-label", site.pricesSection && site.pricesSection.label);
-    textById(root, "prices-title", site.pricesSection && site.pricesSection.title);
-    textById(root, "prices-cta-label", site.pricesSection && site.pricesSection.ctaLabel);
-    setHrefById(root, "prices-cta", site.pricesSection && site.pricesSection.ctaHref);
-    textById(root, "events-label", site.eventsSection && site.eventsSection.label);
-    textById(root, "events-title", site.eventsSection && site.eventsSection.title);
-
-    htmlById(
+    setHrefById(
       root,
-      "footer-location",
-      '<i class="fa-solid fa-location-dot" aria-hidden="true"></i> <a class="footer-location-link" href="https://maps.app.goo.gl/mQiw4jJ8Ey9rUZYV7" target="_blank" rel="noopener">Av. Madero</a> &nbsp;·&nbsp; <i class="fa-solid fa-location-dot" aria-hidden="true"></i> <a class="footer-location-link" href="https://maps.app.goo.gl/N61xFc7rp7NcSdeZ7" target="_blank" rel="noopener">Pacabtún</a> · Mérida, Yucatán'
+      "hero-primary-cta",
+      buildWhatsAppUrl(site.whatsappPhone, site.hero && site.hero.primaryCtaMessage, site.whatsappDefaultMessage)
     );
+    textById(root, "hero-secondary-cta", site.hero && site.hero.secondaryCtaLabel);
+    setHrefById(root, "hero-secondary-cta", "#about-teaser");
+
+    textById(root, "footer-location", site.footer && site.footer.locationText);
     textById(root, "footer-whatsapp", site.footer && site.footer.whatsappText);
-    setHrefById(root, "footer-whatsapp", "https://wa.me/" + (site.whatsappPhone || "529994195286"));
+    setHrefById(root, "footer-whatsapp", buildWhatsAppUrl(site.whatsappPhone, "", ""));
     textById(root, "footer-copyright", site.footer && site.footer.copyrightText);
+
+    const socialsContainer = findById(root, "footer-socials");
+    if (socialsContainer && Array.isArray(site.footer && site.footer.socials)) {
+      socialsContainer.innerHTML = site.footer.socials
+        .map(function (social) {
+          return (
+            '<p class="footer-social-link"><a href="' +
+            (social.href || "#") +
+            '" target="_blank" rel="noopener"><i class="' +
+            (social.icon || "fa-solid fa-link") +
+            '" aria-hidden="true"></i>' +
+            (social.label || "") +
+            "</a></p>"
+          );
+        })
+        .join("");
+    }
+
     textById(root, "floating-whatsapp-label", site.floatingWhatsapp && site.floatingWhatsapp.label);
-    setHrefById(root, "floating-whatsapp", site.floatingWhatsapp && site.floatingWhatsapp.href);
+    setHrefById(
+      root,
+      "floating-whatsapp",
+      buildWhatsAppUrl(site.whatsappPhone, site.floatingWhatsapp && site.floatingWhatsapp.message, site.whatsappDefaultMessage)
+    );
   }
 
-  function renderSchedules(root, site, schedules, options) {
-    const branchesMeta = (site.schedulesSection && site.schedulesSection.branches) || [];
-    const branchesData = schedules.branches || [];
+  function renderSchedules(root, schedules, site, options) {
+    const branchesData = Array.isArray(schedules.branches) ? schedules.branches : [];
+    const phone = site && site.whatsappPhone;
+    const defaultMessage = site && site.whatsappDefaultMessage;
     const opts = options || {};
     const tabsContainer = findById(root, "schedules-tabs");
     const panelsContainer = findById(root, "schedules-panels");
 
-    if (!tabsContainer || !panelsContainer || branchesMeta.length === 0) return;
+    textById(root, "schedules-label", schedules.sectionLabel || "Nuestras clases");
+    textById(root, "schedules-title", schedules.sectionTitle || "HORARIOS");
+    if (!tabsContainer || !panelsContainer || branchesData.length === 0) return;
 
-    tabsContainer.innerHTML = branchesMeta
+    tabsContainer.innerHTML = branchesData
       .map(function (branch, index) {
-        return '\n        <button class="tab-btn' + (index === 0 ? " active" : "") + '" data-branch-id="' + branch.id + '">\n          <i class="' + (branch.icon || "fa-solid fa-location-dot") + '" aria-hidden="true"></i>' + (branch.label || "") + "\n        </button>\n      ";
+        return (
+          '\n        <button class="tab-btn' +
+          (index === 0 ? " active" : "") +
+          '" data-branch-id="' +
+          (branch.id || "") +
+          '">\n          <i class="' +
+          (branch.icon || "fa-solid fa-location-dot") +
+          '" aria-hidden="true"></i>' +
+          (branch.label || branch.id || "") +
+          "\n        </button>\n      "
+        );
       })
       .join("");
 
-    panelsContainer.innerHTML = branchesMeta
+    panelsContainer.innerHTML = branchesData
       .map(function (branch, index) {
-        const scheduleBranch = branchesData.find(function (item) {
-          return item.id === branch.id;
-        });
-        return buildSchedulePanel(branch, scheduleBranch, index === 0);
+        const meta = {
+          id: branch.id,
+          ctaLabel: branch.ctaLabel || "Agenda tu clase",
+          ctaHref: buildWhatsAppUrl(phone, branch.ctaMessage, defaultMessage)
+        };
+        return buildSchedulePanel(meta, branch, index === 0);
       })
       .join("");
 
@@ -218,11 +244,19 @@
     }
   }
 
-  function renderPrices(root, prices) {
+  function renderPrices(root, prices, site) {
+    textById(root, "prices-label", prices.sectionLabel || "Sin inscripción para nuevos alumnos");
+    textById(root, "prices-title", prices.sectionTitle || "PRECIOS");
     htmlById(root, "prices-promo", prices.promoHtml || "");
     textById(root, "prices-individual-title", prices.individualTitle);
     textById(root, "prices-couple-title", prices.coupleTitle);
     textById(root, "prices-fineprint", prices.finePrint);
+    textById(root, "prices-cta-label", prices.ctaLabel || "Pregunta por nuestras promociones");
+    setHrefById(
+      root,
+      "prices-cta",
+      buildWhatsAppUrl(site && site.whatsappPhone, prices.ctaMessage, site && site.whatsappDefaultMessage)
+    );
 
     const individualGrid = findById(root, "prices-individual-grid");
     if (individualGrid) {
@@ -236,6 +270,8 @@
   }
 
   function renderEvents(root, events, options) {
+    textById(root, "events-label", events.sectionLabel || "Flyers y promociones");
+    textById(root, "events-title", events.sectionTitle || "EVENTOS");
     const grid = findById(root, "events-grid");
     const opts = options || {};
     if (!grid) return;
@@ -255,33 +291,33 @@
     }
   }
 
-  function renderAboutNav(root, site) {
-    const navContainer = findById(root, "nav-links");
-    if (!navContainer || !Array.isArray(site.navLinks)) return;
-
-    navContainer.innerHTML = site.navLinks
-      .map(function (item) {
-        const href = navHrefForAboutPage(item.href);
-        const isActive = item.href === "nosotros.html" ? ' class="active"' : "";
-        return '<li><a href="' + href + '"' + isActive + ">" + (item.label || "") + "</a></li>";
-      })
-      .join("");
-  }
-
   function renderSharedSite(root, site) {
-    renderAboutNav(root, site);
-
-    htmlById(
-      root,
-      "footer-location",
-      '<i class="fa-solid fa-location-dot" aria-hidden="true"></i> <a class="footer-location-link" href="https://maps.app.goo.gl/mQiw4jJ8Ey9rUZYV7" target="_blank" rel="noopener">Av. Madero</a> &nbsp;·&nbsp; <i class="fa-solid fa-location-dot" aria-hidden="true"></i> <a class="footer-location-link" href="https://maps.app.goo.gl/N61xFc7rp7NcSdeZ7" target="_blank" rel="noopener">Pacabtún</a> · Mérida, Yucatán'
-    );
-
+    textById(root, "footer-location", site.footer && site.footer.locationText);
     textById(root, "footer-whatsapp", site.footer && site.footer.whatsappText);
-    setHrefById(root, "footer-whatsapp", "https://wa.me/" + (site.whatsappPhone || "529994195286"));
+    setHrefById(root, "footer-whatsapp", buildWhatsAppUrl(site.whatsappPhone, "", ""));
     textById(root, "footer-copyright", site.footer && site.footer.copyrightText);
+    const socialsContainer = findById(root, "footer-socials");
+    if (socialsContainer && Array.isArray(site.footer && site.footer.socials)) {
+      socialsContainer.innerHTML = site.footer.socials
+        .map(function (social) {
+          return (
+            '<p class="footer-social-link"><a href="' +
+            (social.href || "#") +
+            '" target="_blank" rel="noopener"><i class="' +
+            (social.icon || "fa-solid fa-link") +
+            '" aria-hidden="true"></i>' +
+            (social.label || "") +
+            "</a></p>"
+          );
+        })
+        .join("");
+    }
     textById(root, "floating-whatsapp-label", site.floatingWhatsapp && site.floatingWhatsapp.label);
-    setHrefById(root, "floating-whatsapp", site.floatingWhatsapp && site.floatingWhatsapp.href);
+    setHrefById(
+      root,
+      "floating-whatsapp",
+      buildWhatsAppUrl(site.whatsappPhone, site.floatingWhatsapp && site.floatingWhatsapp.message, site.whatsappDefaultMessage)
+    );
   }
 
   function renderAboutContent(root, content) {
@@ -370,8 +406,8 @@
   }
 
   global.PulsoRenderers = {
+    buildWhatsAppUrl: buildWhatsAppUrl,
     normalizeSimpleList: normalizeSimpleList,
-    navHrefForAboutPage: navHrefForAboutPage,
     textById: textById,
     htmlById: htmlById,
     setHrefById: setHrefById,
@@ -383,7 +419,6 @@
     renderSchedules: renderSchedules,
     renderPrices: renderPrices,
     renderEvents: renderEvents,
-    renderAboutNav: renderAboutNav,
     renderSharedSite: renderSharedSite,
     renderAboutContent: renderAboutContent
   };

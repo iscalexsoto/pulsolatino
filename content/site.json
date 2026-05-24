@@ -1,80 +1,34 @@
 {
   "whatsappPhone": "529994195286",
   "whatsappDefaultMessage": "Hola! Me gustaría información sobre las clases de Pulso Latino",
-  "navLinks": [
-    {
-      "label": "Nosotros",
-      "href": "nosotros.html",
-      "icon": "fa-solid fa-users"
-    },
-    {
-      "label": "Horarios",
-      "href": "#horarios",
-      "icon": "fa-solid fa-clock"
-    },
-    {
-      "label": "Precios",
-      "href": "#precios",
-      "icon": "fa-solid fa-coins"
-    },
-    {
-      "label": "Ubicación",
-      "href": "#ubicacion",
-      "icon": "fa-solid fa-location-dot"
-    },
-    {
-      "label": "Eventos",
-      "href": "#eventos",
-      "icon": "fa-solid fa-calendar-day"
-    }
-  ],
   "hero": {
     "tagline": "El lugar donde tus sueños encuentran el ritmo",
     "headlinePrefix": "Aprende a",
     "headlineHighlight": "Bailar",
     "subheadline": "Salsa · Bachata · Cumbia<br>2 sucursales en Mérida, Yucatán",
     "primaryCtaLabel": "Informes por WhatsApp",
-    "primaryCtaHref": "https://wa.me/529994195286?text=Hola!%20Me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20las%20clases%20de%20Pulso%20Latino",
-    "secondaryCtaLabel": "Empieza a bailar hoy ↓",
-    "secondaryCtaHref": "#about-teaser"
-  },
-  "schedulesSection": {
-    "label": "Nuestras clases",
-    "title": "HORARIOS",
-    "branches": [
-      {
-        "id": "madero",
-        "label": "Av. Madero",
-        "icon": "fa-solid fa-location-dot",
-        "ctaLabel": "Agenda tu clase",
-        "ctaHref": "https://wa.me/529994195286?text=Hola%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20las%20clases%20en%20Av.%20Madero"
-      },
-      {
-        "id": "pacabtun",
-        "label": "Pacabtún",
-        "icon": "fa-solid fa-location-dot",
-        "ctaLabel": "Agenda tu clase",
-        "ctaHref": "https://wa.me/529994195286?text=Hola%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20las%20clases%20en%20Pacabt%C3%BAn"
-      }
-    ]
-  },
-  "pricesSection": {
-    "label": "Sin inscripción para nuevos alumnos",
-    "title": "PRECIOS",
-    "ctaLabel": "Pregunta por nuestras promociones",
-    "ctaHref": "https://wa.me/529994195286?text=Hola%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20acerca%20de%20promociones"
-  },
-  "eventsSection": {
-    "label": "Flyers y promociones",
-    "title": "EVENTOS"
+    "primaryCtaMessage": "Hola! Me gustaría información sobre las clases de Pulso Latino",
+    "secondaryCtaLabel": "Empieza a bailar hoy ↓"
   },
   "footer": {
     "locationText": "Av. Madero · Pacabtún · Mérida, Yucatán",
     "whatsappText": "WhatsApp: 999 419 5286",
-    "copyrightText": "© 2026 Pulso Latino · Estudio de Danza y Baile Latino"
+    "copyrightText": "© 2026 Pulso Latino · Estudio de Danza y Baile Latino",
+    "socials": [
+      {
+        "icon": "fa-brands fa-facebook-f",
+        "label": "PulsoLatinoMid",
+        "href": "https://www.facebook.com/PulsoLatinoMid"
+      },
+      {
+        "icon": "fa-brands fa-instagram",
+        "label": "@pulso_latino",
+        "href": "https://www.instagram.com/pulso_latino/"
+      }
+    ]
   },
   "floatingWhatsapp": {
     "label": "Escríbenos",
-    "href": "https://wa.me/529994195286?text=Hola!%20Me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20las%20clases%20de%20Pulso%20Latino"
+    "message": "Hola! Me gustaría información sobre las clases de Pulso Latino"
   }
 }

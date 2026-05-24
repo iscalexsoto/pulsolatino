@@ -152,34 +152,11 @@
         </div>
 
         <section>
-          <span class="section-label" id="schedules-label"></span>
-          <h2 class="section-title reveal" id="schedules-title"></h2>
-          <div class="divider"></div>
-        </section>
-
-        <section>
-          <span class="section-label" id="prices-label"></span>
-          <h2 class="section-title reveal" id="prices-title"></h2>
-          <div class="divider"></div>
-          <div class="section-whatsapp-cta">
-            <a class="btn-primary" id="prices-cta" href="#" target="_blank" rel="noopener">
-              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-              <span id="prices-cta-label"></span>
-            </a>
-          </div>
-        </section>
-
-        <section>
-          <span class="section-label" id="events-label"></span>
-          <h2 class="section-title reveal" id="events-title"></h2>
-          <div class="divider"></div>
-        </section>
-
-        <section>
           <span class="section-label">Contacto</span>
           <div class="copy-card">
             <p id="footer-location"></p>
             <p><a id="footer-whatsapp" href="#" target="_blank" rel="noopener"></a></p>
+            <div id="footer-socials"></div>
             <p id="footer-copyright"></p>
             <div class="section-whatsapp-cta">
               <a class="btn-primary" id="floating-whatsapp" href="#" target="_blank" rel="noopener">
@@ -362,86 +339,20 @@
   }
 
   function buildSchedulesMetaFallback(schedulesEntry) {
-    const branches = Array.isArray(schedulesEntry && schedulesEntry.branches) ? schedulesEntry.branches : [];
-    const defaults = {
-      icon: "fa-solid fa-location-dot",
-      ctaLabel: "Agenda tu clase",
-      ctaHref: "#"
-    };
-
-    return {
-      schedulesSection: {
-        label: "Nuestras clases",
-        title: "HORARIOS",
-        branches: branches.map(function (branch) {
-          const id = branch && branch.id ? branch.id : "sucursal";
-          const normalizedId = String(id).trim();
-          const labelById = {
-            madero: "Av. Madero",
-            pacabtun: "Pacabtún"
-          };
-
-          return {
-            id: normalizedId,
-            label: labelById[normalizedId.toLowerCase()] || normalizedId,
-            icon: defaults.icon,
-            ctaLabel: defaults.ctaLabel,
-            ctaHref: defaults.ctaHref
-          };
-        })
-      }
-    };
+    return schedulesEntry || {};
   }
 
   function getEffectiveSchedulesSiteData(siteData, schedulesEntry) {
-    const metaBranches =
-      siteData &&
-      siteData.schedulesSection &&
-      Array.isArray(siteData.schedulesSection.branches) &&
-      siteData.schedulesSection.branches.length > 0;
-
-    if (metaBranches) {
-      return siteData;
-    }
-
-    return buildSchedulesMetaFallback(schedulesEntry);
-  }
-
-  function getEffectivePricesSiteData(siteData) {
-    const hasPricesMeta =
-      siteData &&
-      siteData.pricesSection &&
-      (siteData.pricesSection.label || siteData.pricesSection.title || siteData.pricesSection.ctaLabel);
-
-    if (hasPricesMeta) {
-      return siteData;
-    }
-
     return {
-      pricesSection: {
-        label: "Sin inscripción para nuevos alumnos",
-        title: "PRECIOS",
-        ctaLabel: "Pregunta por nuestras promociones",
-        ctaHref: "#"
-      }
+      whatsappPhone: (siteData && siteData.whatsappPhone) || "529994195286",
+      whatsappDefaultMessage: (siteData && siteData.whatsappDefaultMessage) || ""
     };
   }
 
-  function getEffectiveEventsSiteData(siteData) {
-    const hasEventsMeta =
-      siteData &&
-      siteData.eventsSection &&
-      (siteData.eventsSection.label || siteData.eventsSection.title);
-
-    if (hasEventsMeta) {
-      return siteData;
-    }
-
+  function getEffectivePricesSiteData(siteData) {
     return {
-      eventsSection: {
-        label: "Flyers y promociones",
-        title: "EVENTOS"
-      }
+      whatsappPhone: (siteData && siteData.whatsappPhone) || "529994195286",
+      whatsappDefaultMessage: (siteData && siteData.whatsappDefaultMessage) || ""
     };
   }
 
@@ -465,11 +376,7 @@
       getSiteData().then(function (siteData) {
         if (!self._mounted || !self.rootEl) return;
         const effectiveSiteData = getEffectiveSchedulesSiteData(siteData || {}, schedules || {});
-        const sectionData = effectiveSiteData.schedulesSection || {};
-
-        renderers.textById(self.rootEl, "schedules-label", sectionData.label || "Nuestras clases");
-        renderers.textById(self.rootEl, "schedules-title", sectionData.title || "HORARIOS");
-        renderers.renderSchedules(self.rootEl, effectiveSiteData, schedules || {}, { bindEvents: true });
+        renderers.renderSchedules(self.rootEl, buildSchedulesMetaFallback(schedules || {}), effectiveSiteData, { bindEvents: true });
         revealAll(self.rootEl);
       });
     },
@@ -488,8 +395,7 @@
 
     getSiteData().then(function (siteData) {
       const effectiveSiteData = getEffectivePricesSiteData(siteData || {});
-      renderers.renderLandingSiteContent(rootEl, effectiveSiteData);
-      renderers.renderPrices(rootEl, prices || {});
+      renderers.renderPrices(rootEl, prices || {}, effectiveSiteData);
       revealAll(rootEl);
     });
   });
@@ -505,9 +411,7 @@
       };
     });
 
-    getSiteData().then(function (siteData) {
-      const effectiveSiteData = getEffectiveEventsSiteData(siteData || {});
-      renderers.renderLandingSiteContent(rootEl, effectiveSiteData);
+    getSiteData().then(function () {
       renderers.renderEvents(rootEl, events);
       revealAll(rootEl);
     });

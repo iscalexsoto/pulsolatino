@@ -1,20 +1,19 @@
 const FALLBACK_CONTENT = {
   site: {
     whatsappPhone: "529994195286",
-    navLinks: [
-      { label: "Nosotros", href: "nosotros.html", icon: "fa-solid fa-users" },
-      { label: "Horarios", href: "#horarios", icon: "fa-solid fa-clock" },
-      { label: "Precios", href: "#precios", icon: "fa-solid fa-coins" },
-      { label: "Ubicación", href: "#ubicacion", icon: "fa-solid fa-location-dot" },
-      { label: "Eventos", href: "#eventos", icon: "fa-solid fa-calendar-day" }
-    ],
+    whatsappDefaultMessage: "Hola! Me gustaría información sobre las clases de Pulso Latino",
     footer: {
       whatsappText: "WhatsApp: 999 419 5286",
-      copyrightText: "© 2026 Pulso Latino · Estudio de Danza y Baile Latino"
+      locationText: "Av. Madero · Pacabtún · Mérida, Yucatán",
+      copyrightText: "© 2026 Pulso Latino · Estudio de Danza y Baile Latino",
+      socials: [
+        { icon: "fa-brands fa-facebook-f", label: "PulsoLatinoMid", href: "https://www.facebook.com/PulsoLatinoMid" },
+        { icon: "fa-brands fa-instagram", label: "@pulso_latino", href: "https://www.instagram.com/pulso_latino/" }
+      ]
     },
     floatingWhatsapp: {
       label: "Escríbenos",
-      href: "https://wa.me/529994195286?text=Hola!%20Me%20gustaría%20información%20sobre%20las%20clases%20de%20Pulso%20Latino"
+      message: "Hola! Me gustaría información sobre las clases de Pulso Latino"
     }
   },
   about: {

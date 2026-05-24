@@ -1,67 +1,40 @@
 const FALLBACK_CONTENT = {
   site: {
     whatsappPhone: "529994195286",
-    navLinks: [
-      { label: "Nosotros", href: "nosotros.html", icon: "fa-solid fa-users" },
-      { label: "Horarios", href: "#horarios", icon: "fa-solid fa-clock" },
-      { label: "Precios", href: "#precios", icon: "fa-solid fa-coins" },
-      { label: "Ubicación", href: "#ubicacion", icon: "fa-solid fa-location-dot" },
-      { label: "Eventos", href: "#eventos", icon: "fa-solid fa-calendar-day" }
-    ],
+    whatsappDefaultMessage: "Hola! Me gustaría información sobre las clases de Pulso Latino",
     hero: {
       tagline: "El lugar donde tus suenos encuentran el ritmo",
       headlinePrefix: "Aprende a",
       headlineHighlight: "Bailar",
       subheadline: "Salsa · Bachata · Cumbia<br>2 sucursales en Merida, Yucatan",
       primaryCtaLabel: "Informes por WhatsApp",
-      primaryCtaHref: "https://wa.me/529994195286?text=Hola!%20Me%20gustaria%20informacion%20sobre%20las%20clases%20de%20Pulso%20Latino",
-      secondaryCtaLabel: "Empieza a bailar hoy ↓",
-      secondaryCtaHref: "#about-teaser"
-    },
-    schedulesSection: {
-      label: "Nuestras clases",
-      title: "HORARIOS",
-      branches: [
-        {
-          id: "madero",
-          label: "Av. Madero",
-          icon: "fa-solid fa-location-dot",
-          ctaLabel: "Agenda tu clase",
-          ctaHref: "https://wa.me/529994195286?text=Hola%2C%20me%20gustaria%20informacion%20sobre%20las%20clases%20en%20Av.%20Madero"
-        },
-        {
-          id: "pacabtun",
-          label: "Pacabtun",
-          icon: "fa-solid fa-location-dot",
-          ctaLabel: "Agenda tu clase",
-          ctaHref: "https://wa.me/529994195286?text=Hola%2C%20me%20gustaria%20informacion%20sobre%20las%20clases%20en%20Pacabtun"
-        }
-      ]
-    },
-    pricesSection: {
-      label: "Sin inscripcion para nuevos alumnos",
-      title: "PRECIOS",
-      ctaLabel: "Pregunta por nuestras promociones",
-      ctaHref: "https://wa.me/529994195286?text=Hola%2C%20me%20gustaria%20informacion%20acerca%20de%20promociones"
-    },
-    eventsSection: {
-      label: "Flyers y promociones",
-      title: "EVENTOS"
+      primaryCtaMessage: "Hola! Me gustaría información sobre las clases de Pulso Latino",
+      secondaryCtaLabel: "Empieza a bailar hoy ↓"
     },
     footer: {
       locationText: "Av. Madero · Pacabtun · Merida, Yucatan",
       whatsappText: "WhatsApp: 999 419 5286",
-      copyrightText: "© 2025 Pulso Latino · Estudio de Danza y Baile Latino"
+      copyrightText: "© 2025 Pulso Latino · Estudio de Danza y Baile Latino",
+      socials: [
+        { icon: "fa-brands fa-facebook-f", label: "PulsoLatinoMid", href: "https://www.facebook.com/PulsoLatinoMid" },
+        { icon: "fa-brands fa-instagram", label: "@pulso_latino", href: "https://www.instagram.com/pulso_latino/" }
+      ]
     },
     floatingWhatsapp: {
       label: "Escribenos",
-      href: "https://wa.me/529994195286?text=Hola!%20Me%20gustaria%20informacion%20sobre%20las%20clases%20de%20Pulso%20Latino"
+      message: "Hola! Me gustaría información sobre las clases de Pulso Latino"
     }
   },
   schedules: {
+    sectionLabel: "Nuestras clases",
+    sectionTitle: "HORARIOS",
     branches: [
       {
         id: "madero",
+        label: "Av. Madero",
+        icon: "fa-solid fa-location-dot",
+        ctaLabel: "Agenda tu clase",
+        ctaMessage: "Hola, me gustaría información sobre las clases en Av. Madero",
         dayGroups: [
           {
             dayTitle: "Martes y Jueves",
@@ -76,6 +49,10 @@ const FALLBACK_CONTENT = {
       },
       {
         id: "pacabtun",
+        label: "Pacabtún",
+        icon: "fa-solid fa-location-dot",
+        ctaLabel: "Agenda tu clase",
+        ctaMessage: "Hola, me gustaría información sobre las clases en Pacabtún",
         dayGroups: [
           {
             dayTitle: "Lunes, Miercoles y Viernes",
@@ -111,6 +88,10 @@ const FALLBACK_CONTENT = {
     ]
   },
   prices: {
+    sectionLabel: "Sin inscripción para nuevos alumnos",
+    sectionTitle: "PRECIOS",
+    ctaLabel: "Pregunta por nuestras promociones",
+    ctaMessage: "Hola, me gustaría información acerca de promociones",
     promoHtml: "<i class=\"fa-solid fa-sparkles\" aria-hidden=\"true\"></i><strong>Promocion nuevo ingreso:</strong> Sin inscripcion + <strong>$350/mes los primeros 2 meses</strong> (individual, 1 ritmo)",
     individualTitle: "INDIVIDUAL",
     individualPlans: [
@@ -129,6 +110,8 @@ const FALLBACK_CONTENT = {
     finePrint: "* Precios respetados para familia, antiguedad y permanencia activa de mas de un ano. La clase de Ritmos Latinos matutina es $450/mes (3 veces por semana)."
   },
   events: {
+    sectionLabel: "Flyers y promociones",
+    sectionTitle: "EVENTOS",
     items: [
       { image: "assets/flyers/flyer-aniversario.png", alt: "10 Aniversario Pulso Latino Conexiones" },
       { image: "assets/flyers/flyer-precios-conexiones.png", alt: "Precios Conexiones" },
@@ -329,8 +312,8 @@ async function boot() {
 
   const renderers = getRenderers();
   renderers.renderLandingSiteContent(document, site);
-  renderers.renderSchedules(document, site, schedules);
-  renderers.renderPrices(document, prices);
+  renderers.renderSchedules(document, schedules, site);
+  renderers.renderPrices(document, prices, site);
   renderers.renderEvents(document, events, { onSelect: openLightbox });
 
   initRevealObserver();

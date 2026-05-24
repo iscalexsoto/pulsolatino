@@ -1,7 +1,13 @@
 {
+  "sectionLabel": "Nuestras clases",
+  "sectionTitle": "HORARIOS",
   "branches": [
     {
       "id": "madero",
+      "label": "Av. Madero",
+      "icon": "fa-solid fa-location-dot",
+      "ctaLabel": "Agenda tu clase",
+      "ctaMessage": "Hola, me gustaría información sobre las clases en Av. Madero",
       "dayGroups": [
         {
           "dayTitle": "Martes y Jueves",
@@ -34,6 +40,10 @@
     },
     {
       "id": "pacabtun",
+      "label": "Pacabtún",
+      "icon": "fa-solid fa-location-dot",
+      "ctaLabel": "Agenda tu clase",
+      "ctaMessage": "Hola, me gustaría información sobre las clases en Pacabtún",
       "dayGroups": [
         {
           "dayTitle": "Lunes, Miércoles y Viernes",
