@@ -33,7 +33,7 @@ collections:
               - { label: "Titulo destacado", name: "headlineHighlight", widget: "string" }
               - { label: "Subtitulo", name: "subheadline", widget: "text" }
               - { label: "Boton principal texto", name: "primaryCtaLabel", widget: "string" }
-              - { label: "Mensaje de WhatsApp del boton principal (opcional)", name: "primaryCtaMessage", widget: "text", required: false }
+              - { label: "Mensaje de WhatsApp del boton principal", name: "primaryCtaMessage", widget: "text", required: false }
               - { label: "Boton secundario texto", name: "secondaryCtaLabel", widget: "string" }
           - label: "Footer"
             name: "footer"
@@ -54,7 +54,7 @@ collections:
             widget: "object"
             fields:
               - { label: "Texto", name: "label", widget: "string" }
-              - { label: "Mensaje de WhatsApp (opcional)", name: "message", widget: "text", required: false }
+              - { label: "Mensaje de WhatsApp", name: "message", widget: "text", required: false }
 
   - name: "schedules"
     label: "Horarios"
@@ -74,7 +74,7 @@ collections:
               - { label: "ID sucursal", name: "id", widget: "string" }
               - { label: "Etiqueta", name: "label", widget: "string" }
               - { label: "Texto boton CTA", name: "ctaLabel", widget: "string" }
-              - { label: "Mensaje de WhatsApp del CTA (opcional)", name: "ctaMessage", widget: "text", required: false }
+              - { label: "Mensaje de WhatsApp del CTA", name: "ctaMessage", widget: "text", required: false }
               - label: "Bloques por dias"
                 name: "dayGroups"
                 widget: "list"
@@ -95,7 +95,7 @@ collections:
                           - { label: "VERDE", value: "verde" }
                         default: "rojo"
                       - { label: "Nombre clase", name: "name", widget: "string" }
-                      - { label: "Area (opcional)", name: "area", widget: "string", required: false }
+                      - { label: "Area", name: "area", widget: "string", required: false }
 
   - name: "prices"
     label: "Precios"
@@ -109,7 +109,7 @@ collections:
           - { label: "Etiqueta de seccion", name: "sectionLabel", widget: "string" }
           - { label: "Titulo de seccion", name: "sectionTitle", widget: "string" }
           - { label: "Texto boton CTA", name: "ctaLabel", widget: "string" }
-          - { label: "Mensaje de WhatsApp del CTA (opcional)", name: "ctaMessage", widget: "text", required: false }
+          - { label: "Mensaje de WhatsApp del CTA", name: "ctaMessage", widget: "text", required: false }
           - { label: "Texto promocion (HTML permitido)", name: "promoHtml", widget: "text" }
           - label: "Secciones de precios"
             name: "sections"
@@ -128,7 +128,7 @@ collections:
                   - { label: "Sufijo (ej. /mes)", name: "suffix", widget: "string" }
                   - { label: "Icono (SVG)", name: "iconImage", widget: "image", allow_multiple: false, media_folder: "../assets/icons", public_folder: "/assets/icons", required: false }
                   - { label: "Destacado", name: "featured", widget: "boolean", default: false, required: false }
-                  - { label: "Badge (opcional)", name: "badge", widget: "string", required: false }
+                  - { label: "Badge", name: "badge", widget: "string", required: false }
           - { label: "Nota inferior", name: "finePrint", widget: "text" }
 
   - name: "events"
@@ -197,7 +197,7 @@ collections:
                 fields:
                   - { label: "Titulo", name: "title", widget: "string" }
                   - { label: "Descripcion", name: "description", widget: "text" }
-                  - label: "Bullets (opcional)"
+                  - label: "Bullets"
                     name: "bullets"
                     widget: "list"
                     required: false
