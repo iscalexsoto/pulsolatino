@@ -13,24 +13,6 @@ display_url: https://www.pulsolatinoestudio.com
 locale: "es"
 
 collections:
-  - name: "icons"
-    label: "Biblioteca de iconos"
-    preview: false
-    files:
-      - label: "Iconos"
-        name: "icons"
-        file: "content/icons.json"
-        format: "json"
-        fields:
-          - label: "Iconos"
-            name: "icons"
-            widget: "list"
-            summary: "{{fields.id}} · {{fields.name}}"
-            fields:
-              - { label: "ID", name: "id", widget: "string", hint: "Slug unico. Ej: social-facebook" }
-              - { label: "Nombre", name: "name", widget: "string" }
-              - { label: "Archivo SVG", name: "svg", widget: "image", required: false, hint: "Sube un SVG para este icono" }
-
   - name: "site"
     label: "Sitio"
     preview: true
@@ -65,8 +47,6 @@ collections:
                 widget: "list"
                 required: false
                 fields:
-                  - { label: "ID de icono", name: "iconId", widget: "string", hint: "ID definido en la colección Biblioteca de iconos" }
-                  - { label: "Icono legacy (Font Awesome)", name: "icon", widget: "string", required: false }
                   - { label: "Texto", name: "label", widget: "string" }
                   - { label: "Link", name: "href", widget: "string" }
           - label: "Boton WhatsApp flotante"
@@ -93,8 +73,6 @@ collections:
             fields:
               - { label: "ID sucursal", name: "id", widget: "string" }
               - { label: "Etiqueta", name: "label", widget: "string" }
-              - { label: "ID de icono", name: "iconId", widget: "string", hint: "ID definido en la colección Biblioteca de iconos" }
-              - { label: "Icono legacy (Font Awesome)", name: "icon", widget: "string", required: false }
               - { label: "Texto boton CTA", name: "ctaLabel", widget: "string" }
               - { label: "Mensaje de WhatsApp del CTA (opcional)", name: "ctaMessage", widget: "text", required: false }
               - label: "Bloques por dias"
@@ -140,8 +118,7 @@ collections:
                   - { label: "Descripcion", name: "description", widget: "string" }
                   - { label: "Monto", name: "amount", widget: "string" }
                   - { label: "Sufijo (ej. /mes)", name: "suffix", widget: "string" }
-                  - { label: "Icono (SVG)", name: "iconImage", widget: "image", allow_multiple: false, media_folder: "../assets/icons", public_folder: "/assets/icons" }
-                  - { label: "Icono legacy (Font Awesome)", name: "icon", widget: "string", required: false }
+                  - { label: "Icono (SVG)", name: "iconImage", widget: "image", allow_multiple: false, media_folder: "../assets/icons", public_folder: "/assets/icons", required: false }
                   - { label: "Destacado", name: "featured", widget: "boolean", default: false, required: false }
                   - { label: "Badge (opcional)", name: "badge", widget: "string", required: false }
           - { label: "Nota inferior", name: "finePrint", widget: "text" }

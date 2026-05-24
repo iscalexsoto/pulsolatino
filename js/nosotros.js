@@ -7,8 +7,8 @@ const FALLBACK_CONTENT = {
       locationText: "Av. Madero · Pacabtún · Mérida, Yucatán",
       copyrightText: "© 2026 Pulso Latino · Estudio de Danza y Baile Latino",
       socials: [
-        { iconId: "social-facebook", icon: "fa-brands fa-facebook-f", label: "PulsoLatinoMid", href: "https://www.facebook.com/PulsoLatinoMid" },
-        { iconId: "social-instagram", icon: "fa-brands fa-instagram", label: "@pulso_latino", href: "https://www.instagram.com/pulso_latino/" }
+        { label: "PulsoLatinoMid", href: "https://www.facebook.com/PulsoLatinoMid" },
+        { label: "@pulso_latino", href: "https://www.instagram.com/pulso_latino/" }
       ]
     },
     floatingWhatsapp: {
@@ -104,9 +104,6 @@ const FALLBACK_CONTENT = {
       buttonHref: "https://wa.me/529994195286?text=Hola%2C%20me%20gustaria%20informacion%20sobre%20Pulso%20Latino%20Estudio"
     }
   },
-  icons: {
-    icons: []
-  }
 };
 
 let revealObserver;
@@ -179,14 +176,13 @@ function initMobileMenu() {
 }
 
 async function boot() {
-  const [site, about, icons] = await Promise.all([
+  const [site, about] = await Promise.all([
     fetchJson("content/site.json", FALLBACK_CONTENT.site),
-    fetchJson("content/nosotros.json", FALLBACK_CONTENT.about),
-    fetchJson("content/icons.json", FALLBACK_CONTENT.icons)
+    fetchJson("content/nosotros.json", FALLBACK_CONTENT.about)
   ]);
 
   const renderers = getRenderers();
-  renderers.renderSharedSite(document, site, { icons: icons });
+  renderers.renderSharedSite(document, site);
   renderers.renderAboutContent(document, about);
 
   initRevealObserver();

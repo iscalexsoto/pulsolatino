@@ -316,14 +316,13 @@
   const sitePreview = createStaticPreview(function (rootEl, props) {
     rootEl.innerHTML = buildSiteShell();
     const site = entryToObject(props.entry);
-    getIconsData().then(function (iconsData) {
-      renderers.renderLandingSiteContent(rootEl, site, { icons: iconsData || {} });
+    getSiteData().then(function () {
+      renderers.renderLandingSiteContent(rootEl, site);
       revealAll(rootEl);
     });
   });
 
   let siteDataPromise;
-  let iconsDataPromise;
   function getSiteData() {
     if (!siteDataPromise) {
       siteDataPromise = fetch("/content/site.json", { cache: "no-store" })
@@ -336,20 +335,6 @@
         });
     }
     return siteDataPromise;
-  }
-
-  function getIconsData() {
-    if (!iconsDataPromise) {
-      iconsDataPromise = fetch("/content/icons.json", { cache: "no-store" })
-        .then(function (response) {
-          if (!response.ok) throw new Error("status " + response.status);
-          return response.json();
-        })
-        .catch(function () {
-          return { icons: [] };
-        });
-    }
-    return iconsDataPromise;
   }
 
   function buildSchedulesMetaFallback(schedulesEntry) {
@@ -380,8 +365,6 @@
         return {
           id: id,
           label: label,
-          iconId: asString(branch && branch.iconId),
-          icon: asString(branch && branch.icon),
           ctaLabel: ctaLabel,
           ctaMessage: asString((branch && branch.ctaMessage) || (branch && branch.ctaWhatsappMessage)),
           dayGroups: Array.isArray(branch && branch.dayGroups) ? branch.dayGroups : []
@@ -427,15 +410,10 @@
       this.rootEl.innerHTML = buildSchedulesShell();
       const self = this;
 
-      Promise.all([getSiteData(), getIconsData()]).then(function (data) {
+      getSiteData().then(function (siteData) {
         if (!self._mounted || !self.rootEl) return;
-        const siteData = data[0];
-        const iconsData = data[1];
         const effectiveSiteData = getEffectiveSchedulesSiteData(siteData || {}, schedules || {});
-        renderers.renderSchedules(self.rootEl, normalizedSchedules, effectiveSiteData, {
-          bindEvents: true,
-          icons: iconsData || {}
-        });
+        renderers.renderSchedules(self.rootEl, normalizedSchedules, effectiveSiteData, { bindEvents: true });
 
         if (previousSelectedBranchId) {
           const selectedExists = normalizedSchedules.branches.some(function (branch) {
@@ -483,7 +461,6 @@
             amount: pkg.amount || "",
             suffix: pkg.suffix || "",
             iconImage: resolveImage(pkg.iconImage, props.getAsset),
-            icon: pkg.icon || "",
             featured: Boolean(pkg.featured),
             badge: pkg.badge || ""
           };

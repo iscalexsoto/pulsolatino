@@ -5,8 +5,6 @@
     {
       "id": "madero",
       "label": "Av. Madero",
-      "iconId": "location-pin",
-      "icon": "fa-solid fa-location-dot",
       "ctaLabel": "Agenda tu clase",
       "ctaMessage": "Hola, me gustaría información sobre las clases en Av. Madero",
       "dayGroups": [
@@ -42,8 +40,6 @@
     {
       "id": "pacabtun",
       "label": "Pacabtún",
-      "iconId": "location-pin",
-      "icon": "fa-solid fa-location-dot",
       "ctaLabel": "Agenda tu clase",
       "ctaMessage": "Hola, me gustaría información sobre las clases en Pacabtún",
       "dayGroups": [

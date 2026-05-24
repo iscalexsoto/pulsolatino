@@ -91,59 +91,36 @@
     return "/" + normalized.replace(/^\.?\//, "");
   }
 
-  function buildIconsIndex(iconLibrary) {
-    const source = Array.isArray(iconLibrary) ? iconLibrary : Array.isArray(iconLibrary && iconLibrary.icons) ? iconLibrary.icons : [];
-    const index = {};
-    source.forEach(function (iconItem) {
-      if (!iconItem || typeof iconItem.id !== "string") return;
-      const id = iconItem.id.trim();
-      if (!id) return;
-      index[id] = iconItem;
-    });
-    return index;
+  function buildIconTag(iconClass, className) {
+    if (!iconClass) return "";
+    const extraClass = className ? " " + className : "";
+    return '<i class="' + escapeAttr(iconClass + extraClass) + '" aria-hidden="true"></i>';
   }
 
-  function buildIconMarkup(entity, iconsIndex, options) {
-    const opts = options || {};
-    const iconId = entity && typeof entity.iconId === "string" ? entity.iconId.trim() : "";
-    const fallbackClass = opts.fallbackClass || (entity && typeof entity.icon === "string" ? entity.icon : "");
-    const className = opts.className ? " " + opts.className : "";
-    const iconFromLibrary = iconId && iconsIndex ? iconsIndex[iconId] : null;
-    const svgPath = iconFromLibrary && typeof iconFromLibrary.svg === "string" ? iconFromLibrary.svg.trim() : "";
-
-    if (svgPath) {
-      return (
-        '<img src="' +
-        escapeAttr(svgPath) +
-        '" alt="" aria-hidden="true" class="cms-icon' +
-        className +
-        '" loading="lazy" decoding="async" />'
-      );
+  function getSocialIconClass(social) {
+    const href = social && typeof social.href === "string" ? social.href.toLowerCase() : "";
+    const label = social && typeof social.label === "string" ? social.label.toLowerCase() : "";
+    if (href.indexOf("facebook") !== -1 || label.indexOf("facebook") !== -1) {
+      return "fa-brands fa-facebook-f";
     }
-
-    if (fallbackClass) {
-      return '<i class="' + escapeAttr(fallbackClass) + className + '" aria-hidden="true"></i>';
+    if (href.indexOf("instagram") !== -1 || label.indexOf("instagram") !== -1 || label.indexOf("@") !== -1) {
+      return "fa-brands fa-instagram";
     }
-
-    return "";
+    if (href.indexOf("whatsapp") !== -1 || href.indexOf("wa.me") !== -1) {
+      return "fa-brands fa-whatsapp";
+    }
+    return "fa-solid fa-link";
   }
 
   function buildPriceCard(plan) {
     const featuredClass = plan.featured ? " featured" : "";
     const badge = plan.badge ? '<div class="precio-badge">' + plan.badge + "</div>" : "";
     const iconImage = normalizeAssetUrl(plan.iconImage);
-    const fallbackClass = plan.icon || "fa-solid fa-circle";
-    const fallbackMarkup = buildIconMarkup({ icon: fallbackClass }, null, {
-      fallbackClass: fallbackClass,
-      className: "cms-icon-price cms-icon-price-fallback"
-    });
     const iconMarkup = iconImage
       ? '<span class="cms-icon-price-wrap"><img src="' +
         escapeAttr(iconImage) +
-        '" alt="" aria-hidden="true" class="cms-icon cms-icon-price" loading="lazy" decoding="async" onerror="this.style.display=\'none\';if(this.nextElementSibling){this.nextElementSibling.style.display=\'block\';}" />' +
-        fallbackMarkup.replace('cms-icon-price-fallback"', 'cms-icon-price-fallback" style="display:none;"') +
-        "</span>"
-      : fallbackMarkup;
+        '" alt="" aria-hidden="true" class="cms-icon cms-icon-price" loading="lazy" decoding="async" /></span>'
+      : "";
     return (
       '\n    <div class="precio-card' +
       featuredClass +
@@ -221,8 +198,6 @@
   }
 
   function renderLandingSiteContent(root, site, options) {
-    const opts = options || {};
-    const iconsIndex = buildIconsIndex(opts.icons);
     textById(root, "hero-tagline", site.hero && site.hero.tagline);
     htmlById(
       root,
@@ -251,10 +226,7 @@
     if (socialsContainer && Array.isArray(site.footer && site.footer.socials)) {
       socialsContainer.innerHTML = site.footer.socials
         .map(function (social) {
-          const iconMarkup = buildIconMarkup(social, iconsIndex, {
-            fallbackClass: social.icon || "fa-solid fa-link",
-            className: "cms-icon-social"
-          });
+          const iconMarkup = buildIconTag(getSocialIconClass(social), "cms-icon-social");
           return (
             '<p class="footer-social-link"><a href="' +
             (social.href || "#") +
@@ -280,7 +252,6 @@
     const phone = site && site.whatsappPhone;
     const defaultMessage = site && site.whatsappDefaultMessage;
     const opts = options || {};
-    const iconsIndex = buildIconsIndex(opts.icons);
     const tabsContainer = findById(root, "schedules-tabs");
     const panelsContainer = findById(root, "schedules-panels");
 
@@ -290,10 +261,7 @@
 
     tabsContainer.innerHTML = branchesData
       .map(function (branch, index) {
-        const iconMarkup = buildIconMarkup(branch, iconsIndex, {
-          fallbackClass: branch.icon || "fa-solid fa-location-dot",
-          className: "cms-icon-tab"
-        });
+        const iconMarkup = buildIconTag("fa-solid fa-location-dot", "cms-icon-tab");
         return (
           '\n        <button class="tab-btn' +
           (index === 0 ? " active" : "") +
@@ -390,8 +358,6 @@
   }
 
   function renderSharedSite(root, site, options) {
-    const opts = options || {};
-    const iconsIndex = buildIconsIndex(opts.icons);
     textById(root, "footer-location", site.footer && site.footer.locationText);
     textById(root, "footer-whatsapp", site.footer && site.footer.whatsappText);
     setHrefById(root, "footer-whatsapp", buildWhatsAppUrl(site.whatsappPhone, "", ""));
@@ -400,10 +366,7 @@
     if (socialsContainer && Array.isArray(site.footer && site.footer.socials)) {
       socialsContainer.innerHTML = site.footer.socials
         .map(function (social) {
-          const iconMarkup = buildIconMarkup(social, iconsIndex, {
-            fallbackClass: social.icon || "fa-solid fa-link",
-            className: "cms-icon-social"
-          });
+          const iconMarkup = buildIconTag(getSocialIconClass(social), "cms-icon-social");
           return (
             '<p class="footer-social-link"><a href="' +
             (social.href || "#") +
@@ -510,8 +473,8 @@
 
   global.PulsoRenderers = {
     buildWhatsAppUrl: buildWhatsAppUrl,
-    buildIconsIndex: buildIconsIndex,
-    buildIconMarkup: buildIconMarkup,
+    buildIconTag: buildIconTag,
+    getSocialIconClass: getSocialIconClass,
     normalizeSimpleList: normalizeSimpleList,
     textById: textById,
     htmlById: htmlById,
