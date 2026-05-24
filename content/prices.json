@@ -13,7 +13,7 @@
           "description": "Salsa, Bachata o Cumbia - cualquier horario (no aplica en cardio baile)",
           "amount": "$400",
           "suffix": "/mes",
-          "iconImage": "/assets/icons/crown-solid-full.svg",
+          "iconImage": "/assets/icons/person-solid-full.svg",
           "icon": "fa-solid fa-music"
         },
         {
@@ -21,7 +21,7 @@
           "description": "Cualquier combinación entre salsa, bachata o cumbia por sucursal",
           "amount": "$600",
           "suffix": "/mes",
-          "iconImage": "/assets/icons/crown-solid-full.svg",
+          "iconImage": "/assets/icons/handshake-solid-full.svg",
           "icon": "fa-solid fa-handshake"
         },
         {
@@ -29,7 +29,7 @@
           "description": "Salsa, Bachata y Cumbia en las dos sucursales, horario nocturno",
           "amount": "$800",
           "suffix": "/mes",
-          "iconImage": "/assets/icons/crown-solid-full.svg",
+          "iconImage": "/assets/icons/gem-solid-full.svg",
           "icon": "fa-solid fa-gem"
         },
         {
@@ -37,7 +37,7 @@
           "description": "Solo clases matutinas de lunes a viernes",
           "amount": "$750",
           "suffix": "/mes",
-          "iconImage": "/assets/icons/crown-solid-full.svg",
+          "iconImage": "/assets/icons/sun-solid-full.svg",
           "icon": "fa-solid fa-sun"
         },
         {
