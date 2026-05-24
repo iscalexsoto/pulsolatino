@@ -45,7 +45,7 @@ alwaysApply: true
 - Mantener consistencia visual y jerarquia de informacion.
 
 ## Publicacion
-- Proyecto desplegado en GitHub Pages.
+- Proyecto desplegado en Cloudflare Pages.
 - Dominio en produccion: https://www.pulsolatinoestudio.com
 - Mantener compatibilidad con hosting estatico y flujo de deploy actual.
 

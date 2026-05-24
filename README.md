@@ -11,7 +11,7 @@ El contenido principal se administra con JSON y se puede editar desde Decap CMS.
 - CSS3 (estilos globales + estilos de pagina `Nosotros`)
 - JavaScript vanilla (sin framework)
 - Decap CMS (`/admin`)
-- GitHub Pages (publicacion)
+- Cloudflare Pages (publicacion)
 
 ## Sitio en produccion
 
