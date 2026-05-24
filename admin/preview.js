@@ -151,21 +151,22 @@
           </div>
         </div>
 
-        <section>
-          <span class="section-label">Contacto</span>
-          <div class="copy-card">
-            <p id="footer-location"></p>
-            <p><a id="footer-whatsapp" href="#" target="_blank" rel="noopener"></a></p>
-            <div id="footer-socials"></div>
-            <p id="footer-copyright"></p>
-            <div class="section-whatsapp-cta">
-              <a class="btn-primary" id="floating-whatsapp" href="#" target="_blank" rel="noopener">
-                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-                <span id="floating-whatsapp-label"></span>
-              </a>
-            </div>
-          </div>
-        </section>
+        <footer style="margin-top:2rem;">
+          <img src="/assets/logos/logo-pulso.png" alt="Pulso Latino" />
+          <p id="footer-location"></p>
+          <p style="margin-top:0.5rem;">
+            <a id="footer-whatsapp" href="#" target="_blank" rel="noopener"></a>
+          </p>
+          <div id="footer-socials" style="margin-top:0.75rem;"></div>
+          <p id="footer-copyright" style="margin-top:1rem; opacity:0.4;"></p>
+        </footer>
+
+        <div style="display:flex; justify-content:flex-end; margin-top:1rem; margin-bottom:1rem;">
+          <a class="wa-float" id="floating-whatsapp" href="#" target="_blank" rel="noopener" style="position:static;">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+            <span id="floating-whatsapp-label"></span>
+          </a>
+        </div>
       </div>
     `;
   }
