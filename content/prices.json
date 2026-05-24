@@ -13,8 +13,8 @@
           "description": "Salsa, Bachata o Cumbia - cualquier horario (no aplica en cardio baile)",
           "amount": "$400",
           "suffix": "/mes",
-          "iconImage": "/assets/icons/person-solid-full.svg",
-          "icon": "fa-solid fa-music"
+          "iconImage": "/assets/icons/music-solid-full.svg",
+          "icon": ""
         },
         {
           "name": "2 Ritmos",
@@ -22,7 +22,7 @@
           "amount": "$600",
           "suffix": "/mes",
           "iconImage": "/assets/icons/handshake-solid-full.svg",
-          "icon": "fa-solid fa-handshake"
+          "icon": ""
         },
         {
           "name": "3 Ritmos ",
@@ -30,7 +30,7 @@
           "amount": "$800",
           "suffix": "/mes",
           "iconImage": "/assets/icons/gem-solid-full.svg",
-          "icon": "fa-solid fa-gem"
+          "icon": ""
         },
         {
           "name": "Full Morning",
@@ -38,7 +38,7 @@
           "amount": "$750",
           "suffix": "/mes",
           "iconImage": "/assets/icons/sun-solid-full.svg",
-          "icon": "fa-solid fa-sun"
+          "icon": ""
         },
         {
           "name": "TODAS LAS CLASES",
@@ -60,24 +60,25 @@
           "description": "Promo primeros 2 meses: $550 x pareja",
           "amount": "$700",
           "suffix": "/mes",
-          "iconImage": "/assets/icons/crown-solid-full.svg",
-          "icon": "fa-solid fa-heart"
+          "iconImage": "/assets/icons/heart-solid-full.svg",
+          "icon": "",
+          "featured": false
         },
         {
           "name": "2 Ritmos",
           "description": "Promo primeros 2 meses: $900 x pareja",
           "amount": "$1,200",
           "suffix": "/mes",
-          "iconImage": "/assets/icons/crown-solid-full.svg",
-          "icon": "fa-solid fa-face-smile"
+          "iconImage": "/assets/icons/face-smile-solid-full.svg",
+          "icon": ""
         },
         {
           "name": "3 Ritmos",
           "description": "La experiencia completa en pareja, aprendiendo los tres géneros",
           "amount": "$1,500",
           "suffix": "/mes",
-          "iconImage": "/assets/icons/crown-solid-full.svg",
-          "icon": "fa-solid fa-trophy"
+          "iconImage": "/assets/icons/trophy-solid-full.svg",
+          "icon": ""
         }
       ]
     }
