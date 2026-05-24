@@ -161,7 +161,7 @@
           <p id="footer-copyright" style="margin-top:1rem; opacity:0.4;"></p>
         </footer>
 
-        <div style="display:flex; justify-content:flex-end; margin-top:1rem; margin-bottom:1rem;">
+        <div style="display:flex; justify-content:center; margin-top:1rem; margin-bottom:1rem;">
           <a class="wa-float" id="floating-whatsapp" href="#" target="_blank" rel="noopener" style="position:static;">
             <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
             <span id="floating-whatsapp-label"></span>
