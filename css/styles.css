@@ -400,6 +400,7 @@ section { padding: 4rem 1.5rem; max-width: 900px; margin: 0 auto; }
   width: 1em;
   height: 1em;
   display: block;
+  filter: brightness(0) invert(1);
 }
 .precio-icon .cms-icon-price-wrap {
   display: inline-block;
