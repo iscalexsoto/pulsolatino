@@ -13,7 +13,7 @@
           "description": "Salsa, Bachata o Cumbia - cualquier horario (no aplica en cardio baile)",
           "amount": "$400",
           "suffix": "/mes",
-          "iconImage": "",
+          "iconImage": "/assets/icons/crown-solid-full.svg",
           "icon": "fa-solid fa-music"
         },
         {
@@ -21,7 +21,7 @@
           "description": "Cualquier combinación entre salsa, bachata o cumbia por sucursal",
           "amount": "$600",
           "suffix": "/mes",
-          "iconImage": "",
+          "iconImage": "/assets/icons/crown-solid-full.svg",
           "icon": "fa-solid fa-handshake"
         },
         {
@@ -29,7 +29,7 @@
           "description": "Salsa, Bachata y Cumbia en las dos sucursales, horario nocturno",
           "amount": "$800",
           "suffix": "/mes",
-          "iconImage": "",
+          "iconImage": "/assets/icons/crown-solid-full.svg",
           "icon": "fa-solid fa-gem"
         },
         {
@@ -37,7 +37,7 @@
           "description": "Solo clases matutinas de lunes a viernes",
           "amount": "$750",
           "suffix": "/mes",
-          "iconImage": "",
+          "iconImage": "/assets/icons/crown-solid-full.svg",
           "icon": "fa-solid fa-sun"
         },
         {
@@ -45,8 +45,8 @@
           "description": "Todas las clases · Madero y Pacabtún · Todos los horarios (no aplica en talleres especiales)",
           "amount": "$1,000",
           "suffix": "/mes",
-          "iconImage": "",
-          "icon": "fa-solid fa-crown",
+          "iconImage": "/assets/icons/crown-solid-full.svg",
+          "icon": "",
           "featured": true,
           "badge": "PRECIO ESPECIAL"
         }
@@ -60,7 +60,7 @@
           "description": "Promo primeros 2 meses: $550 x pareja",
           "amount": "$700",
           "suffix": "/mes",
-          "iconImage": "",
+          "iconImage": "/assets/icons/crown-solid-full.svg",
           "icon": "fa-solid fa-heart"
         },
         {
@@ -68,7 +68,7 @@
           "description": "Promo primeros 2 meses: $900 x pareja",
           "amount": "$1,200",
           "suffix": "/mes",
-          "iconImage": "",
+          "iconImage": "/assets/icons/crown-solid-full.svg",
           "icon": "fa-solid fa-face-smile"
         },
         {
@@ -76,7 +76,7 @@
           "description": "La experiencia completa en pareja, aprendiendo los tres géneros",
           "amount": "$1,500",
           "suffix": "/mes",
-          "iconImage": "",
+          "iconImage": "/assets/icons/crown-solid-full.svg",
           "icon": "fa-solid fa-trophy"
         }
       ]
