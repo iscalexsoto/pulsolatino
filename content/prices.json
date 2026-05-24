@@ -1,43 +1,43 @@
 {
-  "promoHtml": "<i class=\"fa-solid fa-sparkles\" aria-hidden=\"true\"></i><strong>Promoción nuevo ingreso:</strong> Sin inscripción + <strong>$350/mes los primeros 2 meses</strong> (individual, 1 ritmo)",
+  "promoHtml": "<i class=\"fa-solid fa-sparkles\" aria-hidden=\"true\"></i><strong>Promoción nuevo ingreso:</strong> Sin inscripción individual + <strong>$350/mes los primeros 2 meses</strong> (1 ritmo)\n<br>\n<strongverde>   ¡PRECIO PROMOCIÓN PAREJA!</strongverde <br>\n<strong>$500/mes *solo el primer mes</strong>\n<br>\n<strong>* Estos precios son solo durante el mes de Mayo y Junio, igual pregunta por nuestros precios en familia o grupo de amigos</strong>\n",
   "individualTitle": "INDIVIDUAL",
   "individualPlans": [
     {
-      "icon": "fa-solid fa-person",
+      "icon": "fa-solid fa-music",
       "name": "1 Ritmo",
-      "description": "Salsa, Bachata o Cumbia nocturno",
+      "description": "Salsa, Bachata o Cumbia - cualquier horario (no aplica en cardio baile)",
       "amount": "$400",
       "suffix": "/mes"
     },
     {
-      "icon": "fa-solid fa-person-running",
+      "icon": "fa-solid fa-handshake",
       "name": "2 Ritmos",
-      "description": "Cualquier combinación por sucursal",
+      "description": "Cualquier combinación entre salsa, bachata o cumbia por sucursal",
       "amount": "$600",
       "suffix": "/mes"
     },
     {
-      "icon": "fa-solid fa-star",
-      "name": "3 Ritmos",
-      "description": "Salsa, Bachata y Cumbia · 2 sucursales",
+      "icon": "fa-solid fa-gem",
+      "name": "3 Ritmos ",
+      "description": "Salsa, Bachata y Cumbia en las dos sucursales, horario nocturno",
       "amount": "$800",
       "suffix": "/mes"
     },
     {
       "icon": "fa-solid fa-sun",
       "name": "Full Morning",
-      "description": "Solo clases matutinas",
+      "description": "Solo clases matutinas de lunes a viernes",
       "amount": "$750",
       "suffix": "/mes"
     },
     {
       "icon": "fa-solid fa-crown",
-      "name": "Pase Completo",
-      "description": "Todas las clases · Madero y Pacabtún · Todos los horarios",
+      "name": "TODAS LAS CLASES",
+      "description": "Todas las clases · Madero y Pacabtún · Todos los horarios (no aplica en talleres especiales)",
       "amount": "$1,000",
       "suffix": "/mes",
       "featured": true,
-      "badge": "FULL"
+      "badge": "PRECIO ESPECIAL"
     }
   ],
   "coupleTitle": "EN PAREJA",
@@ -50,7 +50,7 @@
       "suffix": "/mes"
     },
     {
-      "icon": "fa-solid fa-user-group",
+      "icon": "fa-solid fa-face-smile",
       "name": "2 Ritmos",
       "description": "Promo primeros 2 meses: $900 x pareja",
       "amount": "$1,200",
@@ -59,10 +59,10 @@
     {
       "icon": "fa-solid fa-trophy",
       "name": "3 Ritmos",
-      "description": "La experiencia completa en pareja",
+      "description": "La experiencia completa en pareja, aprendiendo los tres géneros",
       "amount": "$1,500",
       "suffix": "/mes"
     }
   ],
-  "finePrint": "* Precios respetados para familia, antigüedad y permanencia activa de más de un año. La clase de Ritmos Latinos matutina es $450/mes (3 veces por semana)."
+  "finePrint": "* LOS PRECIOS PUEDEN VARIAS SI HAY PROMOCIÓN EN FAMILIA O GRUPOS DE AMIGOS, MANEJAMOS PLANES ANUALES CON PAGO A MESES SIN INTERESES (no plica en todas las tarjetas)"
 }
