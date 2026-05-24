@@ -340,6 +340,16 @@ section { padding: 4rem 1.5rem; max-width: 900px; margin: 0 auto; }
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1rem;
 }
+.prices-block-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.3rem;
+  letter-spacing:1px;
+  margin: 2rem 0 1rem;
+  color:var(--text-muted);
+}
+#prices-sections .prices-block-title:first-child {
+  margin-top: 0;
+}
 
 .precio-card {
   background: var(--navy-card);

@@ -125,30 +125,25 @@ collections:
           - { label: "Texto boton CTA", name: "ctaLabel", widget: "string" }
           - { label: "Mensaje de WhatsApp del CTA (opcional)", name: "ctaMessage", widget: "text", required: false }
           - { label: "Texto promocion (HTML permitido)", name: "promoHtml", widget: "text" }
-          - { label: "Titulo bloque individual", name: "individualTitle", widget: "string" }
-          - label: "Planes individuales"
-            name: "individualPlans"
+          - label: "Secciones de precios"
+            name: "sections"
             widget: "list"
+            summary: "{{fields.title}}"
             fields:
-              - { label: "ID de icono", name: "iconId", widget: "string", hint: "ID definido en la colección Biblioteca de iconos" }
-              - { label: "Icono legacy (Font Awesome)", name: "icon", widget: "string", required: false }
-              - { label: "Nombre", name: "name", widget: "string" }
-              - { label: "Descripcion", name: "description", widget: "string" }
-              - { label: "Monto", name: "amount", widget: "string" }
-              - { label: "Sufijo (ej. /mes)", name: "suffix", widget: "string" }
-              - { label: "Destacado", name: "featured", widget: "boolean", default: false, required: false }
-              - { label: "Badge (opcional)", name: "badge", widget: "string", required: false }
-          - { label: "Titulo bloque pareja", name: "coupleTitle", widget: "string" }
-          - label: "Planes en pareja"
-            name: "couplePlans"
-            widget: "list"
-            fields:
-              - { label: "ID de icono", name: "iconId", widget: "string", hint: "ID definido en la colección Biblioteca de iconos" }
-              - { label: "Icono legacy (Font Awesome)", name: "icon", widget: "string", required: false }
-              - { label: "Nombre", name: "name", widget: "string" }
-              - { label: "Descripcion", name: "description", widget: "string" }
-              - { label: "Monto", name: "amount", widget: "string" }
-              - { label: "Sufijo (ej. /mes)", name: "suffix", widget: "string" }
+              - { label: "Titulo", name: "title", widget: "string" }
+              - label: "Paquetes"
+                name: "packages"
+                widget: "list"
+                summary: "{{fields.name}}"
+                fields:
+                  - { label: "Nombre", name: "name", widget: "string" }
+                  - { label: "Descripcion", name: "description", widget: "string" }
+                  - { label: "Monto", name: "amount", widget: "string" }
+                  - { label: "Sufijo (ej. /mes)", name: "suffix", widget: "string" }
+                  - { label: "Icono (SVG)", name: "iconImage", widget: "image", allow_multiple: false, media_folder: "assets/icons", public_folder: "/assets/icons" }
+                  - { label: "Icono legacy (Font Awesome)", name: "icon", widget: "string", required: false }
+                  - { label: "Destacado", name: "featured", widget: "boolean", default: false, required: false }
+                  - { label: "Badge (opcional)", name: "badge", widget: "string", required: false }
           - { label: "Nota inferior", name: "finePrint", widget: "text" }
 
   - name: "events"

@@ -95,19 +95,25 @@ const FALLBACK_CONTENT = {
     ctaLabel: "Pregunta por nuestras promociones",
     ctaMessage: "Hola, me gustaría información acerca de promociones",
     promoHtml: "<i class=\"fa-solid fa-sparkles\" aria-hidden=\"true\"></i><strong>Promocion nuevo ingreso:</strong> Sin inscripcion + <strong>$350/mes los primeros 2 meses</strong> (individual, 1 ritmo)",
-    individualTitle: "INDIVIDUAL",
-    individualPlans: [
-      { iconId: "price-music", icon: "fa-solid fa-person", name: "1 Ritmo", description: "Salsa, Bachata o Cumbia nocturno", amount: "$400", suffix: "/mes" },
-      { iconId: "price-handshake", icon: "fa-solid fa-person-running", name: "2 Ritmos", description: "Cualquier combinacion por sucursal", amount: "$600", suffix: "/mes" },
-      { iconId: "price-gem", icon: "fa-solid fa-star", name: "3 Ritmos", description: "Salsa, Bachata y Cumbia · 2 sucursales", amount: "$800", suffix: "/mes" },
-      { iconId: "price-sun", icon: "fa-solid fa-sun", name: "Full Morning", description: "Solo clases matutinas", amount: "$750", suffix: "/mes" },
-      { iconId: "price-crown", icon: "fa-solid fa-crown", name: "Pase Completo", description: "Todas las clases · Madero y Pacabtun · Todos los horarios", amount: "$1,000", suffix: "/mes", featured: true, badge: "FULL" }
-    ],
-    coupleTitle: "EN PAREJA",
-    couplePlans: [
-      { iconId: "price-heart", icon: "fa-solid fa-heart", name: "1 Ritmo", description: "Promo primeros 2 meses: $550 x pareja", amount: "$700", suffix: "/mes" },
-      { iconId: "price-smile", icon: "fa-solid fa-user-group", name: "2 Ritmos", description: "Promo primeros 2 meses: $900 x pareja", amount: "$1,200", suffix: "/mes" },
-      { iconId: "price-trophy", icon: "fa-solid fa-trophy", name: "3 Ritmos", description: "La experiencia completa en pareja", amount: "$1,500", suffix: "/mes" }
+    sections: [
+      {
+        title: "INDIVIDUAL",
+        packages: [
+          { iconImage: "", icon: "fa-solid fa-person", name: "1 Ritmo", description: "Salsa, Bachata o Cumbia nocturno", amount: "$400", suffix: "/mes" },
+          { iconImage: "", icon: "fa-solid fa-person-running", name: "2 Ritmos", description: "Cualquier combinacion por sucursal", amount: "$600", suffix: "/mes" },
+          { iconImage: "", icon: "fa-solid fa-star", name: "3 Ritmos", description: "Salsa, Bachata y Cumbia · 2 sucursales", amount: "$800", suffix: "/mes" },
+          { iconImage: "", icon: "fa-solid fa-sun", name: "Full Morning", description: "Solo clases matutinas", amount: "$750", suffix: "/mes" },
+          { iconImage: "", icon: "fa-solid fa-crown", name: "Pase Completo", description: "Todas las clases · Madero y Pacabtun · Todos los horarios", amount: "$1,000", suffix: "/mes", featured: true, badge: "FULL" }
+        ]
+      },
+      {
+        title: "EN PAREJA",
+        packages: [
+          { iconImage: "", icon: "fa-solid fa-heart", name: "1 Ritmo", description: "Promo primeros 2 meses: $550 x pareja", amount: "$700", suffix: "/mes" },
+          { iconImage: "", icon: "fa-solid fa-user-group", name: "2 Ritmos", description: "Promo primeros 2 meses: $900 x pareja", amount: "$1,200", suffix: "/mes" },
+          { iconImage: "", icon: "fa-solid fa-trophy", name: "3 Ritmos", description: "La experiencia completa en pareja", amount: "$1,500", suffix: "/mes" }
+        ]
+      }
     ],
     finePrint: "* Precios respetados para familia, antiguedad y permanencia activa de mas de un ano. La clase de Ritmos Latinos matutina es $450/mes (3 veces por semana)."
   },

@@ -267,10 +267,7 @@
           <h2 class="section-title reveal" id="prices-title"></h2>
           <div class="divider"></div>
           <div class="promo-banner reveal" id="prices-promo"></div>
-          <h3 id="prices-individual-title" style="font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:1px; margin-bottom:1rem; color:var(--text-muted);"></h3>
-          <div class="precios-grid reveal" id="prices-individual-grid"></div>
-          <h3 id="prices-couple-title" style="font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:1px; margin: 2rem 0 1rem; color:var(--text-muted);"></h3>
-          <div class="precios-grid reveal" id="prices-couple-grid"></div>
+          <div id="prices-sections"></div>
           <p id="prices-fineprint" style="margin-top:1rem; font-size:0.75rem; color:var(--text-muted); line-height:1.6;"></p>
           <div class="section-whatsapp-cta">
             <a class="btn-primary" id="prices-cta" href="#" target="_blank" rel="noopener">
@@ -473,12 +470,30 @@
   const pricesPreview = createStaticPreview(function (rootEl, props) {
     rootEl.innerHTML = buildPricesShell();
     const prices = entryToObject(props.entry);
+    const sections = Array.isArray(prices.sections) ? prices.sections : [];
 
-    Promise.all([getSiteData(), getIconsData()]).then(function (data) {
-      const siteData = data[0];
-      const iconsData = data[1];
+    prices.sections = sections.map(function (section) {
+      const packages = Array.isArray(section.packages) ? section.packages : [];
+      return {
+        title: section.title || "",
+        packages: packages.map(function (pkg) {
+          return {
+            name: pkg.name || "",
+            description: pkg.description || "",
+            amount: pkg.amount || "",
+            suffix: pkg.suffix || "",
+            iconImage: resolveImage(pkg.iconImage, props.getAsset),
+            icon: pkg.icon || "",
+            featured: Boolean(pkg.featured),
+            badge: pkg.badge || ""
+          };
+        })
+      };
+    });
+
+    getSiteData().then(function (siteData) {
       const effectiveSiteData = getEffectivePricesSiteData(siteData || {});
-      renderers.renderPrices(rootEl, prices || {}, effectiveSiteData, { icons: iconsData || {} });
+      renderers.renderPrices(rootEl, prices || {}, effectiveSiteData);
       revealAll(rootEl);
     });
   });

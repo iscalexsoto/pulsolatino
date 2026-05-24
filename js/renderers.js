@@ -112,13 +112,18 @@
     return "";
   }
 
-  function buildPriceCard(plan, iconsIndex) {
+  function buildPriceCard(plan) {
     const featuredClass = plan.featured ? " featured" : "";
     const badge = plan.badge ? '<div class="precio-badge">' + plan.badge + "</div>" : "";
-    const iconMarkup = buildIconMarkup(plan, iconsIndex, {
-      fallbackClass: plan.icon || "fa-solid fa-circle",
-      className: "cms-icon-price"
-    });
+    const iconImage = typeof plan.iconImage === "string" ? plan.iconImage.trim() : "";
+    const iconMarkup = iconImage
+      ? '<img src="' +
+        escapeAttr(iconImage) +
+        '" alt="" aria-hidden="true" class="cms-icon cms-icon-price" loading="lazy" decoding="async" />'
+      : buildIconMarkup(plan, null, {
+          fallbackClass: plan.icon || "fa-solid fa-circle",
+          className: "cms-icon-price"
+        });
     return (
       '\n    <div class="precio-card' +
       featuredClass +
@@ -303,14 +308,10 @@
     }
   }
 
-  function renderPrices(root, prices, site, options) {
-    const opts = options || {};
-    const iconsIndex = buildIconsIndex(opts.icons);
+  function renderPrices(root, prices, site) {
     textById(root, "prices-label", prices.sectionLabel || "Sin inscripción para nuevos alumnos");
     textById(root, "prices-title", prices.sectionTitle || "PRECIOS");
     htmlById(root, "prices-promo", prices.promoHtml || "");
-    textById(root, "prices-individual-title", prices.individualTitle);
-    textById(root, "prices-couple-title", prices.coupleTitle);
     textById(root, "prices-fineprint", prices.finePrint);
     textById(root, "prices-cta-label", prices.ctaLabel || "Pregunta por nuestras promociones");
     setHrefById(
@@ -319,20 +320,28 @@
       buildWhatsAppUrl(site && site.whatsappPhone, prices.ctaMessage, site && site.whatsappDefaultMessage)
     );
 
-    const individualGrid = findById(root, "prices-individual-grid");
-    if (individualGrid) {
-      individualGrid.innerHTML = (prices.individualPlans || [])
-        .map(function (plan) {
-          return buildPriceCard(plan, iconsIndex);
-        })
-        .join("");
-    }
+    const sectionsContainer = findById(root, "prices-sections");
+    if (sectionsContainer) {
+      const sections = Array.isArray(prices.sections)
+        ? prices.sections
+        : [
+            { title: prices.individualTitle || "INDIVIDUAL", packages: prices.individualPlans || [] },
+            { title: prices.coupleTitle || "EN PAREJA", packages: prices.couplePlans || [] }
+          ];
 
-    const coupleGrid = findById(root, "prices-couple-grid");
-    if (coupleGrid) {
-      coupleGrid.innerHTML = (prices.couplePlans || [])
-        .map(function (plan) {
-          return buildPriceCard(plan, iconsIndex);
+      sectionsContainer.innerHTML = sections
+        .map(function (section) {
+          return (
+            '<h3 class="prices-block-title">' +
+            (section.title || "") +
+            '</h3><div class="precios-grid reveal">' +
+            (section.packages || [])
+              .map(function (plan) {
+                return buildPriceCard(plan);
+              })
+              .join("") +
+            "</div>"
+          );
         })
         .join("");
     }

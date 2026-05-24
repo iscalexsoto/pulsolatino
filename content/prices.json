@@ -4,76 +4,82 @@
   "ctaLabel": "Pregunta por nuestras promociones",
   "ctaMessage": "Hola, me gustaría información acerca de promociones",
   "promoHtml": "<i class=\"fa-solid fa-sparkles\" aria-hidden=\"true\"></i><strong>Promoción nuevo ingreso:</strong> Sin inscripción individual + <strong>$350/mes los primeros 2 meses</strong> (1 ritmo)\n<br>\n<strongverde>   ¡PRECIO PROMOCIÓN PAREJA!</strongverde <br>\n<strong>$500/mes *solo el primer mes</strong>\n<br>\n<strong>* Estos precios son solo durante el mes de Mayo y Junio, igual pregunta por nuestros precios en familia o grupo de amigos</strong>\n",
-  "individualTitle": "INDIVIDUAL",
-  "individualPlans": [
+  "sections": [
     {
-      "iconId": "price-music",
-      "icon": "fa-solid fa-music",
-      "name": "1 Ritmo",
-      "description": "Salsa, Bachata o Cumbia - cualquier horario (no aplica en cardio baile)",
-      "amount": "$400",
-      "suffix": "/mes"
+      "title": "INDIVIDUAL",
+      "packages": [
+        {
+          "name": "1 Ritmo",
+          "description": "Salsa, Bachata o Cumbia - cualquier horario (no aplica en cardio baile)",
+          "amount": "$400",
+          "suffix": "/mes",
+          "iconImage": "",
+          "icon": "fa-solid fa-music"
+        },
+        {
+          "name": "2 Ritmos",
+          "description": "Cualquier combinación entre salsa, bachata o cumbia por sucursal",
+          "amount": "$600",
+          "suffix": "/mes",
+          "iconImage": "",
+          "icon": "fa-solid fa-handshake"
+        },
+        {
+          "name": "3 Ritmos ",
+          "description": "Salsa, Bachata y Cumbia en las dos sucursales, horario nocturno",
+          "amount": "$800",
+          "suffix": "/mes",
+          "iconImage": "",
+          "icon": "fa-solid fa-gem"
+        },
+        {
+          "name": "Full Morning",
+          "description": "Solo clases matutinas de lunes a viernes",
+          "amount": "$750",
+          "suffix": "/mes",
+          "iconImage": "",
+          "icon": "fa-solid fa-sun"
+        },
+        {
+          "name": "TODAS LAS CLASES",
+          "description": "Todas las clases · Madero y Pacabtún · Todos los horarios (no aplica en talleres especiales)",
+          "amount": "$1,000",
+          "suffix": "/mes",
+          "iconImage": "",
+          "icon": "fa-solid fa-crown",
+          "featured": true,
+          "badge": "PRECIO ESPECIAL"
+        }
+      ]
     },
     {
-      "iconId": "price-handshake",
-      "icon": "fa-solid fa-handshake",
-      "name": "2 Ritmos",
-      "description": "Cualquier combinación entre salsa, bachata o cumbia por sucursal",
-      "amount": "$600",
-      "suffix": "/mes"
-    },
-    {
-      "iconId": "price-gem",
-      "icon": "fa-solid fa-gem",
-      "name": "3 Ritmos ",
-      "description": "Salsa, Bachata y Cumbia en las dos sucursales, horario nocturno",
-      "amount": "$800",
-      "suffix": "/mes"
-    },
-    {
-      "iconId": "price-sun",
-      "icon": "fa-solid fa-sun",
-      "name": "Full Morning",
-      "description": "Solo clases matutinas de lunes a viernes",
-      "amount": "$750",
-      "suffix": "/mes"
-    },
-    {
-      "iconId": "price-crown",
-      "icon": "fa-solid fa-crown",
-      "name": "TODAS LAS CLASES",
-      "description": "Todas las clases · Madero y Pacabtún · Todos los horarios (no aplica en talleres especiales)",
-      "amount": "$1,000",
-      "suffix": "/mes",
-      "featured": true,
-      "badge": "PRECIO ESPECIAL"
-    }
-  ],
-  "coupleTitle": "EN PAREJA",
-  "couplePlans": [
-    {
-      "iconId": "price-heart",
-      "icon": "fa-solid fa-heart",
-      "name": "1 Ritmo",
-      "description": "Promo primeros 2 meses: $550 x pareja",
-      "amount": "$700",
-      "suffix": "/mes"
-    },
-    {
-      "iconId": "price-smile",
-      "icon": "fa-solid fa-face-smile",
-      "name": "2 Ritmos",
-      "description": "Promo primeros 2 meses: $900 x pareja",
-      "amount": "$1,200",
-      "suffix": "/mes"
-    },
-    {
-      "iconId": "price-trophy",
-      "icon": "fa-solid fa-trophy",
-      "name": "3 Ritmos",
-      "description": "La experiencia completa en pareja, aprendiendo los tres géneros",
-      "amount": "$1,500",
-      "suffix": "/mes"
+      "title": "EN PAREJA",
+      "packages": [
+        {
+          "name": "1 Ritmo",
+          "description": "Promo primeros 2 meses: $550 x pareja",
+          "amount": "$700",
+          "suffix": "/mes",
+          "iconImage": "",
+          "icon": "fa-solid fa-heart"
+        },
+        {
+          "name": "2 Ritmos",
+          "description": "Promo primeros 2 meses: $900 x pareja",
+          "amount": "$1,200",
+          "suffix": "/mes",
+          "iconImage": "",
+          "icon": "fa-solid fa-face-smile"
+        },
+        {
+          "name": "3 Ritmos",
+          "description": "La experiencia completa en pareja, aprendiendo los tres géneros",
+          "amount": "$1,500",
+          "suffix": "/mes",
+          "iconImage": "",
+          "icon": "fa-solid fa-trophy"
+        }
+      ]
     }
   ],
   "finePrint": "* LOS PRECIOS PUEDEN VARIAS SI HAY PROMOCIÓN EN FAMILIA O GRUPOS DE AMIGOS, MANEJAMOS PLANES ANUALES CON PAGO A MESES SIN INTERESES (no plica en todas las tarjetas)"
