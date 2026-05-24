@@ -161,8 +161,7 @@ function closeLightbox() {
 
 async function fetchJson(path, fallback) {
   try {
-    const separator = path.includes("?") ? "&" : "?";
-    const response = await fetch(path + separator + "v=" + Date.now(), { cache: "no-store" });
+    const response = await fetch(path, { cache: "no-store" });
     if (!response.ok) {
       throw new Error("status " + response.status);
     }

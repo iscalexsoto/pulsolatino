@@ -9,15 +9,9 @@
   const h = window.h;
   const createClass = window.createClass;
   const renderers = window.PulsoRenderers;
-  const ASSET_VERSION = Date.now();
 
-  function withVersion(url) {
-    const separator = url.includes("?") ? "&" : "?";
-    return url + separator + "v=" + ASSET_VERSION;
-  }
-
-  CMS.registerPreviewStyle(withVersion("/css/styles.css"));
-  CMS.registerPreviewStyle(withVersion("/css/nosotros.css"));
+  CMS.registerPreviewStyle("/css/styles.css");
+  CMS.registerPreviewStyle("/css/nosotros.css");
   CMS.registerPreviewStyle("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css");
   CMS.registerPreviewStyle("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;900&family=Dancing+Script:wght@700&family=Asap+Condensed:wght@500;700;900&display=swap");
 
@@ -332,7 +326,7 @@
   let siteDataPromise;
   function getSiteData() {
     if (!siteDataPromise) {
-      siteDataPromise = fetch(withVersion("/content/site.json"), { cache: "no-store" })
+      siteDataPromise = fetch("/content/site.json", { cache: "no-store" })
         .then(function (response) {
           if (!response.ok) throw new Error("status " + response.status);
           return response.json();
