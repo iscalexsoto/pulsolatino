@@ -140,7 +140,7 @@ collections:
                   - { label: "Descripcion", name: "description", widget: "string" }
                   - { label: "Monto", name: "amount", widget: "string" }
                   - { label: "Sufijo (ej. /mes)", name: "suffix", widget: "string" }
-                  - { label: "Icono (SVG)", name: "iconImage", widget: "image", allow_multiple: false, media_folder: "assets/icons", public_folder: "/assets/icons" }
+                  - { label: "Icono (SVG)", name: "iconImage", widget: "image", allow_multiple: false, media_folder: "../assets/icons", public_folder: "/assets/icons" }
                   - { label: "Icono legacy (Font Awesome)", name: "icon", widget: "string", required: false }
                   - { label: "Destacado", name: "featured", widget: "boolean", default: false, required: false }
                   - { label: "Badge (opcional)", name: "badge", widget: "string", required: false }
