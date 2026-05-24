@@ -319,11 +319,14 @@
   const sitePreview = createStaticPreview(function (rootEl, props) {
     rootEl.innerHTML = buildSiteShell();
     const site = entryToObject(props.entry);
-    renderers.renderLandingSiteContent(rootEl, site);
-    revealAll(rootEl);
+    getIconsData().then(function (iconsData) {
+      renderers.renderLandingSiteContent(rootEl, site, { icons: iconsData || {} });
+      revealAll(rootEl);
+    });
   });
 
   let siteDataPromise;
+  let iconsDataPromise;
   function getSiteData() {
     if (!siteDataPromise) {
       siteDataPromise = fetch("/content/site.json", { cache: "no-store" })
@@ -336,6 +339,20 @@
         });
     }
     return siteDataPromise;
+  }
+
+  function getIconsData() {
+    if (!iconsDataPromise) {
+      iconsDataPromise = fetch("/content/icons.json", { cache: "no-store" })
+        .then(function (response) {
+          if (!response.ok) throw new Error("status " + response.status);
+          return response.json();
+        })
+        .catch(function () {
+          return { icons: [] };
+        });
+    }
+    return iconsDataPromise;
   }
 
   function buildSchedulesMetaFallback(schedulesEntry) {
@@ -366,6 +383,7 @@
         return {
           id: id,
           label: label,
+          iconId: asString(branch && branch.iconId),
           icon: asString(branch && branch.icon),
           ctaLabel: ctaLabel,
           ctaMessage: asString((branch && branch.ctaMessage) || (branch && branch.ctaWhatsappMessage)),
@@ -412,10 +430,15 @@
       this.rootEl.innerHTML = buildSchedulesShell();
       const self = this;
 
-      getSiteData().then(function (siteData) {
+      Promise.all([getSiteData(), getIconsData()]).then(function (data) {
         if (!self._mounted || !self.rootEl) return;
+        const siteData = data[0];
+        const iconsData = data[1];
         const effectiveSiteData = getEffectiveSchedulesSiteData(siteData || {}, schedules || {});
-        renderers.renderSchedules(self.rootEl, normalizedSchedules, effectiveSiteData, { bindEvents: true });
+        renderers.renderSchedules(self.rootEl, normalizedSchedules, effectiveSiteData, {
+          bindEvents: true,
+          icons: iconsData || {}
+        });
 
         if (previousSelectedBranchId) {
           const selectedExists = normalizedSchedules.branches.some(function (branch) {
@@ -451,9 +474,11 @@
     rootEl.innerHTML = buildPricesShell();
     const prices = entryToObject(props.entry);
 
-    getSiteData().then(function (siteData) {
+    Promise.all([getSiteData(), getIconsData()]).then(function (data) {
+      const siteData = data[0];
+      const iconsData = data[1];
       const effectiveSiteData = getEffectivePricesSiteData(siteData || {});
-      renderers.renderPrices(rootEl, prices || {}, effectiveSiteData);
+      renderers.renderPrices(rootEl, prices || {}, effectiveSiteData, { icons: iconsData || {} });
       revealAll(rootEl);
     });
   });

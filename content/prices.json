@@ -7,6 +7,7 @@
   "individualTitle": "INDIVIDUAL",
   "individualPlans": [
     {
+      "iconId": "price-music",
       "icon": "fa-solid fa-music",
       "name": "1 Ritmo",
       "description": "Salsa, Bachata o Cumbia - cualquier horario (no aplica en cardio baile)",
@@ -14,6 +15,7 @@
       "suffix": "/mes"
     },
     {
+      "iconId": "price-handshake",
       "icon": "fa-solid fa-handshake",
       "name": "2 Ritmos",
       "description": "Cualquier combinación entre salsa, bachata o cumbia por sucursal",
@@ -21,6 +23,7 @@
       "suffix": "/mes"
     },
     {
+      "iconId": "price-gem",
       "icon": "fa-solid fa-gem",
       "name": "3 Ritmos ",
       "description": "Salsa, Bachata y Cumbia en las dos sucursales, horario nocturno",
@@ -28,6 +31,7 @@
       "suffix": "/mes"
     },
     {
+      "iconId": "price-sun",
       "icon": "fa-solid fa-sun",
       "name": "Full Morning",
       "description": "Solo clases matutinas de lunes a viernes",
@@ -35,6 +39,7 @@
       "suffix": "/mes"
     },
     {
+      "iconId": "price-crown",
       "icon": "fa-solid fa-crown",
       "name": "TODAS LAS CLASES",
       "description": "Todas las clases · Madero y Pacabtún · Todos los horarios (no aplica en talleres especiales)",
@@ -47,6 +52,7 @@
   "coupleTitle": "EN PAREJA",
   "couplePlans": [
     {
+      "iconId": "price-heart",
       "icon": "fa-solid fa-heart",
       "name": "1 Ritmo",
       "description": "Promo primeros 2 meses: $550 x pareja",
@@ -54,6 +60,7 @@
       "suffix": "/mes"
     },
     {
+      "iconId": "price-smile",
       "icon": "fa-solid fa-face-smile",
       "name": "2 Ritmos",
       "description": "Promo primeros 2 meses: $900 x pareja",
@@ -61,6 +68,7 @@
       "suffix": "/mes"
     },
     {
+      "iconId": "price-trophy",
       "icon": "fa-solid fa-trophy",
       "name": "3 Ritmos",
       "description": "La experiencia completa en pareja, aprendiendo los tres géneros",

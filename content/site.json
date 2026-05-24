@@ -16,11 +16,13 @@
     "copyrightText": "© 2026 Pulso Latino · Estudio de Danza y Baile Latino",
     "socials": [
       {
+        "iconId": "social-facebook",
         "icon": "fa-brands fa-facebook-f",
         "label": "PulsoLatinoMid",
         "href": "https://www.facebook.com/PulsoLatinoMid"
       },
       {
+        "iconId": "social-instagram",
         "icon": "fa-brands fa-instagram",
         "label": "@pulso_latino",
         "href": "https://www.instagram.com/pulso_latino/"

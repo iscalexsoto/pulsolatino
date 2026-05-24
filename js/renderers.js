@@ -67,17 +67,66 @@
       .filter(Boolean);
   }
 
-  function buildPriceCard(plan) {
+  function escapeAttr(value) {
+    return String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/"/g, "&quot;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
+  function buildIconsIndex(iconLibrary) {
+    const source = Array.isArray(iconLibrary) ? iconLibrary : Array.isArray(iconLibrary && iconLibrary.icons) ? iconLibrary.icons : [];
+    const index = {};
+    source.forEach(function (iconItem) {
+      if (!iconItem || typeof iconItem.id !== "string") return;
+      const id = iconItem.id.trim();
+      if (!id) return;
+      index[id] = iconItem;
+    });
+    return index;
+  }
+
+  function buildIconMarkup(entity, iconsIndex, options) {
+    const opts = options || {};
+    const iconId = entity && typeof entity.iconId === "string" ? entity.iconId.trim() : "";
+    const fallbackClass = opts.fallbackClass || (entity && typeof entity.icon === "string" ? entity.icon : "");
+    const className = opts.className ? " " + opts.className : "";
+    const iconFromLibrary = iconId && iconsIndex ? iconsIndex[iconId] : null;
+    const svgPath = iconFromLibrary && typeof iconFromLibrary.svg === "string" ? iconFromLibrary.svg.trim() : "";
+
+    if (svgPath) {
+      return (
+        '<img src="' +
+        escapeAttr(svgPath) +
+        '" alt="" aria-hidden="true" class="cms-icon' +
+        className +
+        '" loading="lazy" decoding="async" />'
+      );
+    }
+
+    if (fallbackClass) {
+      return '<i class="' + escapeAttr(fallbackClass) + className + '" aria-hidden="true"></i>';
+    }
+
+    return "";
+  }
+
+  function buildPriceCard(plan, iconsIndex) {
     const featuredClass = plan.featured ? " featured" : "";
     const badge = plan.badge ? '<div class="precio-badge">' + plan.badge + "</div>" : "";
+    const iconMarkup = buildIconMarkup(plan, iconsIndex, {
+      fallbackClass: plan.icon || "fa-solid fa-circle",
+      className: "cms-icon-price"
+    });
     return (
       '\n    <div class="precio-card' +
       featuredClass +
       '">\n      ' +
       badge +
-      '\n      <div class="precio-icon"><i class="' +
-      (plan.icon || "") +
-      '" aria-hidden="true"></i></div>\n      <div class="precio-name">' +
+      '\n      <div class="precio-icon">' +
+      iconMarkup +
+      '</div>\n      <div class="precio-name">' +
       (plan.name || "") +
       '</div>\n      <div class="precio-desc">' +
       (plan.description || "") +
@@ -146,7 +195,9 @@
     });
   }
 
-  function renderLandingSiteContent(root, site) {
+  function renderLandingSiteContent(root, site, options) {
+    const opts = options || {};
+    const iconsIndex = buildIconsIndex(opts.icons);
     textById(root, "hero-tagline", site.hero && site.hero.tagline);
     htmlById(
       root,
@@ -175,12 +226,15 @@
     if (socialsContainer && Array.isArray(site.footer && site.footer.socials)) {
       socialsContainer.innerHTML = site.footer.socials
         .map(function (social) {
+          const iconMarkup = buildIconMarkup(social, iconsIndex, {
+            fallbackClass: social.icon || "fa-solid fa-link",
+            className: "cms-icon-social"
+          });
           return (
             '<p class="footer-social-link"><a href="' +
             (social.href || "#") +
-            '" target="_blank" rel="noopener"><i class="' +
-            (social.icon || "fa-solid fa-link") +
-            '" aria-hidden="true"></i>' +
+            '" target="_blank" rel="noopener">' +
+            iconMarkup +
             (social.label || "") +
             "</a></p>"
           );
@@ -201,6 +255,7 @@
     const phone = site && site.whatsappPhone;
     const defaultMessage = site && site.whatsappDefaultMessage;
     const opts = options || {};
+    const iconsIndex = buildIconsIndex(opts.icons);
     const tabsContainer = findById(root, "schedules-tabs");
     const panelsContainer = findById(root, "schedules-panels");
 
@@ -210,14 +265,18 @@
 
     tabsContainer.innerHTML = branchesData
       .map(function (branch, index) {
+        const iconMarkup = buildIconMarkup(branch, iconsIndex, {
+          fallbackClass: branch.icon || "fa-solid fa-location-dot",
+          className: "cms-icon-tab"
+        });
         return (
           '\n        <button class="tab-btn' +
           (index === 0 ? " active" : "") +
           '" data-branch-id="' +
           (branch.id || "") +
-          '">\n          <i class="' +
-          (branch.icon || "fa-solid fa-location-dot") +
-          '" aria-hidden="true"></i>' +
+          '">\n          ' +
+          iconMarkup +
+          " " +
           (branch.label || branch.id || "") +
           "\n        </button>\n      "
         );
@@ -244,7 +303,9 @@
     }
   }
 
-  function renderPrices(root, prices, site) {
+  function renderPrices(root, prices, site, options) {
+    const opts = options || {};
+    const iconsIndex = buildIconsIndex(opts.icons);
     textById(root, "prices-label", prices.sectionLabel || "Sin inscripción para nuevos alumnos");
     textById(root, "prices-title", prices.sectionTitle || "PRECIOS");
     htmlById(root, "prices-promo", prices.promoHtml || "");
@@ -260,12 +321,20 @@
 
     const individualGrid = findById(root, "prices-individual-grid");
     if (individualGrid) {
-      individualGrid.innerHTML = (prices.individualPlans || []).map(buildPriceCard).join("");
+      individualGrid.innerHTML = (prices.individualPlans || [])
+        .map(function (plan) {
+          return buildPriceCard(plan, iconsIndex);
+        })
+        .join("");
     }
 
     const coupleGrid = findById(root, "prices-couple-grid");
     if (coupleGrid) {
-      coupleGrid.innerHTML = (prices.couplePlans || []).map(buildPriceCard).join("");
+      coupleGrid.innerHTML = (prices.couplePlans || [])
+        .map(function (plan) {
+          return buildPriceCard(plan, iconsIndex);
+        })
+        .join("");
     }
   }
 
@@ -291,7 +360,9 @@
     }
   }
 
-  function renderSharedSite(root, site) {
+  function renderSharedSite(root, site, options) {
+    const opts = options || {};
+    const iconsIndex = buildIconsIndex(opts.icons);
     textById(root, "footer-location", site.footer && site.footer.locationText);
     textById(root, "footer-whatsapp", site.footer && site.footer.whatsappText);
     setHrefById(root, "footer-whatsapp", buildWhatsAppUrl(site.whatsappPhone, "", ""));
@@ -300,12 +371,15 @@
     if (socialsContainer && Array.isArray(site.footer && site.footer.socials)) {
       socialsContainer.innerHTML = site.footer.socials
         .map(function (social) {
+          const iconMarkup = buildIconMarkup(social, iconsIndex, {
+            fallbackClass: social.icon || "fa-solid fa-link",
+            className: "cms-icon-social"
+          });
           return (
             '<p class="footer-social-link"><a href="' +
             (social.href || "#") +
-            '" target="_blank" rel="noopener"><i class="' +
-            (social.icon || "fa-solid fa-link") +
-            '" aria-hidden="true"></i>' +
+            '" target="_blank" rel="noopener">' +
+            iconMarkup +
             (social.label || "") +
             "</a></p>"
           );
@@ -407,6 +481,8 @@
 
   global.PulsoRenderers = {
     buildWhatsAppUrl: buildWhatsAppUrl,
+    buildIconsIndex: buildIconsIndex,
+    buildIconMarkup: buildIconMarkup,
     normalizeSimpleList: normalizeSimpleList,
     textById: textById,
     htmlById: htmlById,

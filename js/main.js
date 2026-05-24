@@ -16,8 +16,8 @@ const FALLBACK_CONTENT = {
       whatsappText: "WhatsApp: 999 419 5286",
       copyrightText: "© 2025 Pulso Latino · Estudio de Danza y Baile Latino",
       socials: [
-        { icon: "fa-brands fa-facebook-f", label: "PulsoLatinoMid", href: "https://www.facebook.com/PulsoLatinoMid" },
-        { icon: "fa-brands fa-instagram", label: "@pulso_latino", href: "https://www.instagram.com/pulso_latino/" }
+        { iconId: "social-facebook", icon: "fa-brands fa-facebook-f", label: "PulsoLatinoMid", href: "https://www.facebook.com/PulsoLatinoMid" },
+        { iconId: "social-instagram", icon: "fa-brands fa-instagram", label: "@pulso_latino", href: "https://www.instagram.com/pulso_latino/" }
       ]
     },
     floatingWhatsapp: {
@@ -32,6 +32,7 @@ const FALLBACK_CONTENT = {
       {
         id: "madero",
         label: "Av. Madero",
+        iconId: "location-pin",
         icon: "fa-solid fa-location-dot",
         ctaLabel: "Agenda tu clase",
         ctaMessage: "Hola, me gustaría información sobre las clases en Av. Madero",
@@ -50,6 +51,7 @@ const FALLBACK_CONTENT = {
       {
         id: "pacabtun",
         label: "Pacabtún",
+        iconId: "location-pin",
         icon: "fa-solid fa-location-dot",
         ctaLabel: "Agenda tu clase",
         ctaMessage: "Hola, me gustaría información sobre las clases en Pacabtún",
@@ -95,17 +97,17 @@ const FALLBACK_CONTENT = {
     promoHtml: "<i class=\"fa-solid fa-sparkles\" aria-hidden=\"true\"></i><strong>Promocion nuevo ingreso:</strong> Sin inscripcion + <strong>$350/mes los primeros 2 meses</strong> (individual, 1 ritmo)",
     individualTitle: "INDIVIDUAL",
     individualPlans: [
-      { icon: "fa-solid fa-person", name: "1 Ritmo", description: "Salsa, Bachata o Cumbia nocturno", amount: "$400", suffix: "/mes" },
-      { icon: "fa-solid fa-person-running", name: "2 Ritmos", description: "Cualquier combinacion por sucursal", amount: "$600", suffix: "/mes" },
-      { icon: "fa-solid fa-star", name: "3 Ritmos", description: "Salsa, Bachata y Cumbia · 2 sucursales", amount: "$800", suffix: "/mes" },
-      { icon: "fa-solid fa-sun", name: "Full Morning", description: "Solo clases matutinas", amount: "$750", suffix: "/mes" },
-      { icon: "fa-solid fa-crown", name: "Pase Completo", description: "Todas las clases · Madero y Pacabtun · Todos los horarios", amount: "$1,000", suffix: "/mes", featured: true, badge: "FULL" }
+      { iconId: "price-music", icon: "fa-solid fa-person", name: "1 Ritmo", description: "Salsa, Bachata o Cumbia nocturno", amount: "$400", suffix: "/mes" },
+      { iconId: "price-handshake", icon: "fa-solid fa-person-running", name: "2 Ritmos", description: "Cualquier combinacion por sucursal", amount: "$600", suffix: "/mes" },
+      { iconId: "price-gem", icon: "fa-solid fa-star", name: "3 Ritmos", description: "Salsa, Bachata y Cumbia · 2 sucursales", amount: "$800", suffix: "/mes" },
+      { iconId: "price-sun", icon: "fa-solid fa-sun", name: "Full Morning", description: "Solo clases matutinas", amount: "$750", suffix: "/mes" },
+      { iconId: "price-crown", icon: "fa-solid fa-crown", name: "Pase Completo", description: "Todas las clases · Madero y Pacabtun · Todos los horarios", amount: "$1,000", suffix: "/mes", featured: true, badge: "FULL" }
     ],
     coupleTitle: "EN PAREJA",
     couplePlans: [
-      { icon: "fa-solid fa-heart", name: "1 Ritmo", description: "Promo primeros 2 meses: $550 x pareja", amount: "$700", suffix: "/mes" },
-      { icon: "fa-solid fa-user-group", name: "2 Ritmos", description: "Promo primeros 2 meses: $900 x pareja", amount: "$1,200", suffix: "/mes" },
-      { icon: "fa-solid fa-trophy", name: "3 Ritmos", description: "La experiencia completa en pareja", amount: "$1,500", suffix: "/mes" }
+      { iconId: "price-heart", icon: "fa-solid fa-heart", name: "1 Ritmo", description: "Promo primeros 2 meses: $550 x pareja", amount: "$700", suffix: "/mes" },
+      { iconId: "price-smile", icon: "fa-solid fa-user-group", name: "2 Ritmos", description: "Promo primeros 2 meses: $900 x pareja", amount: "$1,200", suffix: "/mes" },
+      { iconId: "price-trophy", icon: "fa-solid fa-trophy", name: "3 Ritmos", description: "La experiencia completa en pareja", amount: "$1,500", suffix: "/mes" }
     ],
     finePrint: "* Precios respetados para familia, antiguedad y permanencia activa de mas de un ano. La clase de Ritmos Latinos matutina es $450/mes (3 veces por semana)."
   },
@@ -121,6 +123,9 @@ const FALLBACK_CONTENT = {
       { image: "assets/flyers/flyer-precios-individual.png", alt: "Precios Individual" },
       { image: "assets/flyers/flyer-precios-pareja.png", alt: "Precios Pareja" }
     ]
+  },
+  icons: {
+    icons: []
   }
 };
 
@@ -303,17 +308,18 @@ window.openLightbox = openLightbox;
 window.closeLightbox = closeLightbox;
 
 async function boot() {
-  const [site, schedules, prices, events] = await Promise.all([
+  const [site, schedules, prices, events, icons] = await Promise.all([
     fetchJson("content/site.json", FALLBACK_CONTENT.site),
     fetchJson("content/schedules.json", FALLBACK_CONTENT.schedules),
     fetchJson("content/prices.json", FALLBACK_CONTENT.prices),
-    fetchJson("content/events.json", FALLBACK_CONTENT.events)
+    fetchJson("content/events.json", FALLBACK_CONTENT.events),
+    fetchJson("content/icons.json", FALLBACK_CONTENT.icons)
   ]);
 
   const renderers = getRenderers();
-  renderers.renderLandingSiteContent(document, site);
-  renderers.renderSchedules(document, schedules, site);
-  renderers.renderPrices(document, prices, site);
+  renderers.renderLandingSiteContent(document, site, { icons: icons });
+  renderers.renderSchedules(document, schedules, site, { icons: icons });
+  renderers.renderPrices(document, prices, site, { icons: icons });
   renderers.renderEvents(document, events, { onSelect: openLightbox });
 
   initRevealObserver();
