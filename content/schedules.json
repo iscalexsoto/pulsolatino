@@ -13,24 +13,24 @@
           "classes": [
             {
               "time": "7:15 PM",
-              "style": "cumbia",
+              "color": "amarillo",
               "name": "Cumbia"
             },
             {
               "time": "8:15 PM",
-              "style": "salsa",
+              "color": "rojo",
               "name": "Salsa desde cero",
               "area": "Área 1"
             },
             {
               "time": "8:15 PM",
-              "style": "salsa",
+              "color": "rojo",
               "name": "Salsa Iniciados 3",
               "area": "Área 2"
             },
             {
               "time": "9:15 PM",
-              "style": "bachata",
+              "color": "morado",
               "name": "Bachata"
             }
           ]
@@ -48,7 +48,7 @@
           "classes": [
             {
               "time": "8:00 AM",
-              "style": "cardio",
+              "color": "verde",
               "name": "Cardio Baile Ritmos Latinos"
             }
           ]
@@ -58,22 +58,22 @@
           "classes": [
             {
               "time": "10:00 AM",
-              "style": "bachata",
+              "color": "morado",
               "name": "Bachata desde cero"
             },
             {
               "time": "7:15 PM",
-              "style": "salsa",
+              "color": "rojo",
               "name": "Salsa desde cero"
             },
             {
               "time": "8:15 PM",
-              "style": "salsa",
+              "color": "rojo",
               "name": "Salsa nivel 2"
             },
             {
               "time": "9:15 PM",
-              "style": "bachata",
+              "color": "morado",
               "name": "Bachata"
             }
           ]
@@ -83,17 +83,17 @@
           "classes": [
             {
               "time": "8:00 AM",
-              "style": "bachata",
+              "color": "morado",
               "name": "Bachata Ladies"
             },
             {
               "time": "9:00 AM",
-              "style": "salsa",
+              "color": "rojo",
               "name": "Salsa nivel 1"
             },
             {
               "time": "10:00 AM",
-              "style": "salsa",
+              "color": "rojo",
               "name": "Salsa desde cero"
             }
           ]
@@ -103,17 +103,17 @@
           "classes": [
             {
               "time": "7:00 PM",
-              "style": "salsa",
+              "color": "rojo",
               "name": "Salsa desde cero"
             },
             {
               "time": "8:00 PM",
-              "style": "bachata",
+              "color": "morado",
               "name": "Bachata entrenamiento"
             },
             {
               "time": "9:00 PM",
-              "style": "cumbia",
+              "color": "amarillo",
               "name": "Cumbia intensivo"
             }
           ]

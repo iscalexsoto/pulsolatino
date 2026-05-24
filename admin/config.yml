@@ -85,7 +85,15 @@ collections:
                     widget: "list"
                     fields:
                       - { label: "Hora", name: "time", widget: "string" }
-                      - { label: "Estilo (salsa/bachata/cumbia/cardio)", name: "style", widget: "string" }
+                      - label: "Color"
+                        name: "color"
+                        widget: "select"
+                        options:
+                          - { label: "ROJO", value: "rojo" }
+                          - { label: "MORADO", value: "morado" }
+                          - { label: "AMARILLO", value: "amarillo" }
+                          - { label: "VERDE", value: "verde" }
+                        default: "rojo"
                       - { label: "Nombre clase", name: "name", widget: "string" }
                       - { label: "Area (opcional)", name: "area", widget: "string", required: false }
 

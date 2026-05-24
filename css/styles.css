@@ -295,7 +295,10 @@ section { padding: 4rem 1.5rem; max-width: 900px; margin: 0 auto; }
   font-size: 0.78rem;
   font-weight: 700;
   color: var(--gold-light);
-  min-width: 52px;
+  flex: 0 0 74px;
+  width: 74px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 .class-dot {
@@ -305,10 +308,10 @@ section { padding: 4rem 1.5rem; max-width: 900px; margin: 0 auto; }
   flex-shrink: 0;
 }
 
-.dot-salsa { background: #E84040; }
-.dot-bachata { background: #7C3AED; }
-.dot-cumbia { background: #F59E0B; }
-.dot-cardio { background: #10B981; }
+.dot-rojo { background: #E84040; }
+.dot-morado { background: #7C3AED; }
+.dot-amarillo { background: #F59E0B; }
+.dot-verde { background: #10B981; }
 
 .class-name {
   font-size: 0.85rem;

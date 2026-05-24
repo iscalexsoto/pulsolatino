@@ -38,10 +38,10 @@ const FALLBACK_CONTENT = {
           {
             dayTitle: "Martes y Jueves",
             classes: [
-              { time: "7:15 PM", style: "cumbia", name: "Cumbia" },
-              { time: "8:15 PM", style: "salsa", name: "Salsa desde cero", area: "Area 1" },
-              { time: "8:15 PM", style: "salsa", name: "Salsa Iniciados 3", area: "Area 2" },
-              { time: "9:15 PM", style: "bachata", name: "Bachata" }
+              { time: "7:15 PM", color: "amarillo", name: "Cumbia" },
+              { time: "8:15 PM", color: "rojo", name: "Salsa desde cero", area: "Area 1" },
+              { time: "8:15 PM", color: "rojo", name: "Salsa Iniciados 3", area: "Area 2" },
+              { time: "9:15 PM", color: "morado", name: "Bachata" }
             ]
           }
         ]
@@ -54,31 +54,31 @@ const FALLBACK_CONTENT = {
         dayGroups: [
           {
             dayTitle: "Lunes, Miercoles y Viernes",
-            classes: [{ time: "8:00 AM", style: "cardio", name: "Cardio Baile Ritmos Latinos" }]
+            classes: [{ time: "8:00 AM", color: "verde", name: "Cardio Baile Ritmos Latinos" }]
           },
           {
             dayTitle: "Lunes y Miercoles",
             classes: [
-              { time: "10:00 AM", style: "bachata", name: "Bachata desde cero" },
-              { time: "7:15 PM", style: "salsa", name: "Salsa desde cero" },
-              { time: "8:15 PM", style: "salsa", name: "Salsa nivel 2" },
-              { time: "9:15 PM", style: "bachata", name: "Bachata" }
+              { time: "10:00 AM", color: "morado", name: "Bachata desde cero" },
+              { time: "7:15 PM", color: "rojo", name: "Salsa desde cero" },
+              { time: "8:15 PM", color: "rojo", name: "Salsa nivel 2" },
+              { time: "9:15 PM", color: "morado", name: "Bachata" }
             ]
           },
           {
             dayTitle: "Martes y Jueves",
             classes: [
-              { time: "8:00 AM", style: "bachata", name: "Bachata Ladies" },
-              { time: "9:00 AM", style: "salsa", name: "Salsa nivel 1" },
-              { time: "10:00 AM", style: "salsa", name: "Salsa desde cero" }
+              { time: "8:00 AM", color: "morado", name: "Bachata Ladies" },
+              { time: "9:00 AM", color: "rojo", name: "Salsa nivel 1" },
+              { time: "10:00 AM", color: "rojo", name: "Salsa desde cero" }
             ]
           },
           {
             dayTitle: "Viernes y Sabados",
             classes: [
-              { time: "7:00 PM", style: "salsa", name: "Salsa desde cero" },
-              { time: "8:00 PM", style: "bachata", name: "Bachata entrenamiento" },
-              { time: "9:00 PM", style: "cumbia", name: "Cumbia intensivo" }
+              { time: "7:00 PM", color: "rojo", name: "Salsa desde cero" },
+              { time: "8:00 PM", color: "morado", name: "Bachata entrenamiento" },
+              { time: "9:00 PM", color: "amarillo", name: "Cumbia intensivo" }
             ]
           }
         ]

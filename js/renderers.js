@@ -149,17 +149,39 @@
     );
   }
 
+  function normalizeScheduleColor(value) {
+    const raw = String(value || "")
+      .trim()
+      .toLowerCase();
+    const aliasToColor = {
+      rojo: "rojo",
+      red: "rojo",
+      salsa: "rojo",
+      morado: "morado",
+      purple: "morado",
+      bachata: "morado",
+      amarillo: "amarillo",
+      yellow: "amarillo",
+      cumbia: "amarillo",
+      verde: "verde",
+      green: "verde",
+      cardio: "verde"
+    };
+    return aliasToColor[raw] || "rojo";
+  }
+
   function buildSchedulePanel(branchMeta, scheduleBranch, isActive) {
     const groups = (scheduleBranch && scheduleBranch.dayGroups ? scheduleBranch.dayGroups : [])
       .map(function (group) {
         const classes = (group.classes || [])
           .map(function (item) {
             const area = item.area ? '<span class="class-area">' + item.area + "</span>" : "";
+            const color = normalizeScheduleColor(item.color || item.style);
             return (
               '\n            <div class="class-row">\n              <span class="class-time">' +
               (item.time || "") +
               '</span>\n              <span class="class-dot dot-' +
-              (item.style || "salsa") +
+              color +
               '"></span>\n              <span class="class-name">' +
               (item.name || "") +
               "</span>\n              " +
