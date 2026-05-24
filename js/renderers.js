@@ -75,6 +75,22 @@
       .replace(/>/g, "&gt;");
   }
 
+  function normalizeAssetUrl(url) {
+    if (!url || typeof url !== "string") return "";
+    const normalized = url.trim();
+    if (!normalized) return "";
+    if (
+      normalized.startsWith("http://") ||
+      normalized.startsWith("https://") ||
+      normalized.startsWith("data:") ||
+      normalized.startsWith("blob:") ||
+      normalized.startsWith("/")
+    ) {
+      return normalized;
+    }
+    return "/" + normalized.replace(/^\.?\//, "");
+  }
+
   function buildIconsIndex(iconLibrary) {
     const source = Array.isArray(iconLibrary) ? iconLibrary : Array.isArray(iconLibrary && iconLibrary.icons) ? iconLibrary.icons : [];
     const index = {};
@@ -115,15 +131,19 @@
   function buildPriceCard(plan) {
     const featuredClass = plan.featured ? " featured" : "";
     const badge = plan.badge ? '<div class="precio-badge">' + plan.badge + "</div>" : "";
-    const iconImage = typeof plan.iconImage === "string" ? plan.iconImage.trim() : "";
+    const iconImage = normalizeAssetUrl(plan.iconImage);
+    const fallbackClass = plan.icon || "fa-solid fa-circle";
+    const fallbackMarkup = buildIconMarkup({ icon: fallbackClass }, null, {
+      fallbackClass: fallbackClass,
+      className: "cms-icon-price cms-icon-price-fallback"
+    });
     const iconMarkup = iconImage
-      ? '<img src="' +
+      ? '<span class="cms-icon-price-wrap"><img src="' +
         escapeAttr(iconImage) +
-        '" alt="" aria-hidden="true" class="cms-icon cms-icon-price" loading="lazy" decoding="async" />'
-      : buildIconMarkup(plan, null, {
-          fallbackClass: plan.icon || "fa-solid fa-circle",
-          className: "cms-icon-price"
-        });
+        '" alt="" aria-hidden="true" class="cms-icon cms-icon-price" loading="lazy" decoding="async" onerror="this.style.display=\'none\';if(this.nextElementSibling){this.nextElementSibling.style.display=\'block\';}" />' +
+        fallbackMarkup.replace('cms-icon-price-fallback"', 'cms-icon-price-fallback" style="display:none;"') +
+        "</span>"
+      : fallbackMarkup;
     return (
       '\n    <div class="precio-card' +
       featuredClass +

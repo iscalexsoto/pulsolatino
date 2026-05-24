@@ -401,6 +401,9 @@ section { padding: 4rem 1.5rem; max-width: 900px; margin: 0 auto; }
   height: 1em;
   display: block;
 }
+.precio-icon .cms-icon-price-wrap {
+  display: inline-block;
+}
 
 .precio-name {
   font-family: 'Bebas Neue', sans-serif;
