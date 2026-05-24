@@ -1,6 +1,8 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: iscalexsoto/pulsolatino
   branch: main
+  base_url: https://decap-cms-oauth.iscalexsoto.workers.dev
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
