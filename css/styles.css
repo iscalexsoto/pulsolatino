@@ -582,6 +582,10 @@ section { padding: 4rem 1.5rem; max-width: 900px; margin: 0 auto; }
   box-shadow: 0 10px 28px rgba(201, 168, 76, 0.34);
 }
 
+.lightbox-link[hidden] {
+  display: none !important;
+}
+
 .lightbox-close {
   position: absolute;
   top: 0.85rem;

@@ -144,17 +144,14 @@ function switchTab(id) {
 function normalizeAnnouncementLink(rawLink) {
   const value = String(rawLink || "").trim();
   if (!value) return "";
-  if (
-    value.startsWith("http://") ||
-    value.startsWith("https://") ||
-    value.startsWith("mailto:") ||
-    value.startsWith("tel:") ||
-    value.startsWith("#") ||
-    value.startsWith("/")
-  ) {
+  const lower = value.toLowerCase();
+  if (lower.startsWith("http://") || lower.startsWith("https://") || lower.startsWith("mailto:") || lower.startsWith("tel:")) {
     return value;
   }
-  return "https://" + value;
+  if (value.startsWith("#") || value.startsWith("/")) return "";
+  if (lower.startsWith("www.")) return "https://" + value;
+  if (/^[a-z0-9.-]+\.[a-z]{2,}(\/.*)?$/i.test(value)) return "https://" + value;
+  return "";
 }
 
 function openLightbox(src, title, linkText, link) {
@@ -177,7 +174,11 @@ function openLightbox(src, title, linkText, link) {
     const hasLink = Boolean(normalizedLink);
     const label = String(linkText || "").trim() || "Ir a la publicación";
     linkNode.textContent = label;
-    linkNode.setAttribute("href", hasLink ? normalizedLink : "#");
+    if (hasLink) {
+      linkNode.setAttribute("href", normalizedLink);
+    } else {
+      linkNode.removeAttribute("href");
+    }
     linkNode.hidden = !hasLink;
   }
 
