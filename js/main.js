@@ -175,7 +175,8 @@ function openLightbox(src, title, linkText, link) {
   if (linkNode) {
     const normalizedLink = normalizeAnnouncementLink(link);
     const hasLink = Boolean(normalizedLink);
-    linkNode.textContent = linkText || "Ir a la publicacion";
+    const label = String(linkText || "").trim() || "Ir a la publicación";
+    linkNode.textContent = label;
     linkNode.setAttribute("href", hasLink ? normalizedLink : "#");
     linkNode.hidden = !hasLink;
   }
