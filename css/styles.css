@@ -533,6 +533,7 @@ section { padding: 4rem 1.5rem; max-width: 900px; margin: 0 auto; }
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  gap: 0.65rem;
 }
 
 .lightbox img {
@@ -543,11 +544,10 @@ section { padding: 4rem 1.5rem; max-width: 900px; margin: 0 auto; }
 }
 
 .lightbox-caption {
-  margin-top: 0.65rem;
+  margin-top: 0.1rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
+  justify-content: center;
 }
 
 .lightbox-title {
@@ -559,16 +559,26 @@ section { padding: 4rem 1.5rem; max-width: 900px; margin: 0 auto; }
 }
 
 .lightbox-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
   color: var(--navy);
   background: linear-gradient(90deg, var(--gold), var(--gold-light));
   border-radius: 999px;
-  padding: 0.45rem 0.9rem;
+  padding: 0.55rem 1rem;
   font-size: 0.78rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(201, 168, 76, 0.24);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lightbox-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(201, 168, 76, 0.34);
 }
 
 .lightbox-close {
@@ -590,8 +600,11 @@ section { padding: 4rem 1.5rem; max-width: 900px; margin: 0 auto; }
 
 @media (max-width: 560px) {
   .lightbox-caption {
-    flex-direction: column;
-    align-items: flex-start;
+    width: 100%;
+  }
+
+  .lightbox-link {
+    width: 100%;
   }
 }
 
