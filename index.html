@@ -157,8 +157,14 @@
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-  <img id="lightbox-img" src="" alt="" />
+  <div class="lightbox-content" onclick="event.stopPropagation()">
+    <button type="button" class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="" />
+    <div class="lightbox-caption">
+      <p id="lightbox-title" class="lightbox-title" hidden></p>
+      <a id="lightbox-link" class="lightbox-link" href="#" target="_blank" rel="noopener" hidden>Ir a la publicacion</a>
+    </div>
+  </div>
 </div>
 
 <!-- FOOTER -->

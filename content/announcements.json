@@ -1,0 +1,54 @@
+{
+  "sectionLabel": "Flyers y promociones",
+  "sectionTitle": "EVENTOS",
+  "announcements": [
+    {
+      "title": "10 Aniversario Pulso Latino Conexiones",
+      "image": "/assets/flyers/flyer-aniversario.png",
+      "linkText": "",
+      "link": ""
+    },
+    {
+      "title": "Precios Conexiones",
+      "image": "/assets/flyers/flyer-precios-conexiones.png",
+      "linkText": "",
+      "link": ""
+    },
+    {
+      "title": "Cumbia Pacabtún",
+      "image": "/assets/flyers/flyer-cumbia-pacabtun.png",
+      "linkText": "",
+      "link": ""
+    },
+    {
+      "title": "Noche en Sucursal Madero",
+      "image": "/assets/flyers/flyer-madero-noche.png",
+      "linkText": "",
+      "link": ""
+    },
+    {
+      "title": "Mañanas Pacabtún",
+      "image": "/assets/flyers/flyer-mananas-pacabtun.png",
+      "linkText": "",
+      "link": ""
+    },
+    {
+      "title": "Precios Individual",
+      "image": "/assets/flyers/flyer-precios-individual.png",
+      "linkText": "",
+      "link": ""
+    },
+    {
+      "title": "Precios Pareja",
+      "image": "/assets/flyers/flyer-precios-pareja.png",
+      "linkText": "",
+      "link": ""
+    },
+    {
+      "title": "Infografía Salsa",
+      "image": "/assets/uploads/infografia_salsa.jpeg",
+      "linkText": "",
+      "link": ""
+    }
+  ]
+}

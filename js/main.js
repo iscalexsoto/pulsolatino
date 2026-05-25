@@ -113,17 +113,17 @@ const FALLBACK_CONTENT = {
     ],
     finePrint: "* Precios respetados para familia, antiguedad y permanencia activa de mas de un ano. La clase de Ritmos Latinos matutina es $450/mes (3 veces por semana)."
   },
-  events: {
+  announcements: {
     sectionLabel: "Flyers y promociones",
     sectionTitle: "EVENTOS",
-    items: [
-      { image: "assets/flyers/flyer-aniversario.png", alt: "10 Aniversario Pulso Latino Conexiones" },
-      { image: "assets/flyers/flyer-precios-conexiones.png", alt: "Precios Conexiones" },
-      { image: "assets/flyers/flyer-cumbia-pacabtun.png", alt: "Cumbia Pacabtun" },
-      { image: "assets/flyers/flyer-madero-noche.png", alt: "Noche en Sucursal Madero" },
-      { image: "assets/flyers/flyer-mananas-pacabtun.png", alt: "Mananas Pacabtun" },
-      { image: "assets/flyers/flyer-precios-individual.png", alt: "Precios Individual" },
-      { image: "assets/flyers/flyer-precios-pareja.png", alt: "Precios Pareja" }
+    announcements: [
+      { image: "/assets/flyers/flyer-aniversario.png", title: "10 Aniversario Pulso Latino Conexiones", linkText: "", link: "" },
+      { image: "/assets/flyers/flyer-precios-conexiones.png", title: "Precios Conexiones", linkText: "", link: "" },
+      { image: "/assets/flyers/flyer-cumbia-pacabtun.png", title: "Cumbia Pacabtun", linkText: "", link: "" },
+      { image: "/assets/flyers/flyer-madero-noche.png", title: "Noche en Sucursal Madero", linkText: "", link: "" },
+      { image: "/assets/flyers/flyer-mananas-pacabtun.png", title: "Mananas Pacabtun", linkText: "", link: "" },
+      { image: "/assets/flyers/flyer-precios-individual.png", title: "Precios Individual", linkText: "", link: "" },
+      { image: "/assets/flyers/flyer-precios-pareja.png", title: "Precios Pareja", linkText: "", link: "" }
     ]
   },
 };
@@ -141,13 +141,28 @@ function switchTab(id) {
   getRenderers().switchTab(document, id);
 }
 
-function openLightbox(src, alt) {
+function openLightbox(src, title, linkText, link) {
   const image = document.getElementById("lightbox-img");
   const lightbox = document.getElementById("lightbox");
+  const titleNode = document.getElementById("lightbox-title");
+  const linkNode = document.getElementById("lightbox-link");
   if (!image || !lightbox) return;
 
   image.src = src;
-  image.alt = alt || "";
+  image.alt = title || "";
+
+  if (titleNode) {
+    titleNode.textContent = title || "";
+    titleNode.hidden = !title;
+  }
+
+  if (linkNode) {
+    const hasLink = Boolean(link);
+    linkNode.textContent = linkText || "Ir a la publicacion";
+    linkNode.setAttribute("href", hasLink ? link : "#");
+    linkNode.hidden = !hasLink;
+  }
+
   lightbox.classList.add("open");
   document.body.style.overflow = "hidden";
 }
@@ -307,18 +322,18 @@ window.openLightbox = openLightbox;
 window.closeLightbox = closeLightbox;
 
 async function boot() {
-  const [site, schedules, prices, events] = await Promise.all([
+  const [site, schedules, prices, announcements] = await Promise.all([
     fetchJson("content/site.json", FALLBACK_CONTENT.site),
     fetchJson("content/schedules.json", FALLBACK_CONTENT.schedules),
     fetchJson("content/prices.json", FALLBACK_CONTENT.prices),
-    fetchJson("content/events.json", FALLBACK_CONTENT.events)
+    fetchJson("content/announcements.json", FALLBACK_CONTENT.announcements)
   ]);
 
   const renderers = getRenderers();
   renderers.renderLandingSiteContent(document, site);
   renderers.renderSchedules(document, schedules, site);
   renderers.renderPrices(document, prices, site);
-  renderers.renderEvents(document, events, { onSelect: openLightbox });
+  renderers.renderAnnouncements(document, announcements, { onSelect: openLightbox });
 
   initRevealObserver();
   initSmoothAnchorScroll();

@@ -281,7 +281,7 @@
     `;
   }
 
-  function buildEventsShell() {
+  function buildAnnouncementsShell() {
     return `
       <section id="eventos">
         <span class="section-label" id="events-label"></span>
@@ -476,19 +476,25 @@
     });
   });
 
-  const eventsPreview = createStaticPreview(function (rootEl, props) {
-    rootEl.innerHTML = buildEventsShell();
-    const events = entryToObject(props.entry);
-    const items = Array.isArray(events.items) ? events.items : [];
-    events.items = items.map(function (item) {
+  const announcementsPreview = createStaticPreview(function (rootEl, props) {
+    rootEl.innerHTML = buildAnnouncementsShell();
+    const announcements = entryToObject(props.entry);
+    const items = Array.isArray(announcements.announcements)
+      ? announcements.announcements
+      : Array.isArray(announcements.items)
+      ? announcements.items
+      : [];
+    announcements.announcements = items.map(function (item) {
       return {
         image: resolveImage(item.image, props.getAsset),
-        alt: item.alt || ""
+        title: item.title || item.alt || "",
+        linkText: item.linkText || "",
+        link: item.link || ""
       };
     });
 
     getSiteData().then(function () {
-      renderers.renderEvents(rootEl, events);
+      renderers.renderAnnouncements(rootEl, announcements);
       revealAll(rootEl);
     });
   });
@@ -529,6 +535,6 @@
   CMS.registerPreviewTemplate("site", sitePreview);
   CMS.registerPreviewTemplate("schedules", schedulesPreview);
   CMS.registerPreviewTemplate("prices", pricesPreview);
-  CMS.registerPreviewTemplate("events", eventsPreview);
+  CMS.registerPreviewTemplate("announcements", announcementsPreview);
   CMS.registerPreviewTemplate("about", aboutPreview);
 })();

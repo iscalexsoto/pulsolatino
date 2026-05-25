@@ -131,23 +131,26 @@ collections:
                   - { label: "Badge", name: "badge", widget: "string", required: false }
           - { label: "Nota inferior", name: "finePrint", widget: "text" }
 
-  - name: "events"
-    label: "Eventos y flyers"
+  - name: "announcements"
+    label: "Anuncios"
     preview: true
     files:
-      - label: "Galeria de eventos"
-        name: "events"
-        file: "content/events.json"
+      - label: "Datos de anuncios"
+        name: "announcements"
+        file: "content/announcements.json"
         format: "json"
         fields:
           - { label: "Etiqueta de seccion", name: "sectionLabel", widget: "string" }
           - { label: "Titulo de seccion", name: "sectionTitle", widget: "string" }
-          - label: "Items"
-            name: "items"
+          - label: "ANUNCIOS"
+            label_singular: "Anuncio"
+            name: "announcements"
             widget: "list"
             fields:
-              - { label: "Imagen", name: "image", widget: "image" }
-              - { label: "Texto alternativo", name: "alt", widget: "string" }
+              - { label: "Titulo", name: "title", widget: "string", required: false }
+              - { label: "Imagen", name: "image", widget: "image", media_folder: "../assets/announcements", public_folder: "/assets/announcements" }
+              - { label: "Texto link (ej. Ir a la Publicacion)", name: "linkText", widget: "string", required: false }
+              - { label: "Link", name: "link", widget: "string", required: false }
 
   - name: "about"
     label: "Nosotros"

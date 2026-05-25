@@ -366,26 +366,54 @@
     }
   }
 
-  function renderEvents(root, events, options) {
-    textById(root, "events-label", events.sectionLabel || "Flyers y promociones");
-    textById(root, "events-title", events.sectionTitle || "EVENTOS");
+  function renderAnnouncements(root, announcementsData, options) {
+    textById(root, "events-label", announcementsData.sectionLabel || "Flyers y promociones");
+    textById(root, "events-title", announcementsData.sectionTitle || "EVENTOS");
     const grid = findById(root, "events-grid");
     const opts = options || {};
     if (!grid) return;
 
-    grid.innerHTML = (events.items || [])
+    const announcements = Array.isArray(announcementsData.announcements)
+      ? announcementsData.announcements
+      : Array.isArray(announcementsData.items)
+      ? announcementsData.items
+      : [];
+
+    grid.innerHTML = announcements
       .map(function (item) {
-        return '\n        <div class="evento-card" data-image="' + (item.image || "") + '" data-alt="' + (item.alt || "") + '">\n          <img src="' + (item.image || "") + '" alt="' + (item.alt || "") + '" loading="lazy" />\n        </div>\n      ';
+        const image = normalizeAssetUrl(item.image);
+        const title = item.title || item.alt || "";
+        const linkText = item.linkText || "";
+        const link = item.link || "";
+        return (
+          '\n        <div class="evento-card" data-image="' +
+          escapeAttr(image) +
+          '" data-title="' +
+          escapeAttr(title) +
+          '" data-link-text="' +
+          escapeAttr(linkText) +
+          '" data-link="' +
+          escapeAttr(link) +
+          '">\n          <img src="' +
+          escapeAttr(image) +
+          '" alt="' +
+          escapeAttr(title) +
+          '" loading="lazy" />\n        </div>\n      '
+        );
       })
       .join("");
 
     if (typeof opts.onSelect === "function") {
       grid.querySelectorAll(".evento-card").forEach(function (card) {
         card.addEventListener("click", function () {
-          opts.onSelect(card.dataset.image, card.dataset.alt);
+          opts.onSelect(card.dataset.image, card.dataset.title, card.dataset.linkText, card.dataset.link);
         });
       });
     }
+  }
+
+  function renderEvents(root, events, options) {
+    renderAnnouncements(root, events, options);
   }
 
   function renderSharedSite(root, site, options) {
@@ -517,6 +545,7 @@
     renderLandingSiteContent: renderLandingSiteContent,
     renderSchedules: renderSchedules,
     renderPrices: renderPrices,
+    renderAnnouncements: renderAnnouncements,
     renderEvents: renderEvents,
     renderSharedSite: renderSharedSite,
     renderAboutContent: renderAboutContent

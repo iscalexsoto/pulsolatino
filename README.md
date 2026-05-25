@@ -29,7 +29,7 @@ El contenido principal se administra con JSON y se puede editar desde Decap CMS.
 - `content/site.json`: contenido global (nav, hero, labels, footer, WhatsApp)
 - `content/schedules.json`: horarios por sucursal
 - `content/prices.json`: tarjetas y textos de precios
-- `content/events.json`: galeria de flyers/eventos
+- `content/announcements.json`: galeria de anuncios
 - `content/nosotros.json`: contenido de la pagina Nosotros
 - `admin/config.yml`: colecciones y campos de Decap CMS
 - `admin/index.html`: entrada del panel Decap CMS
