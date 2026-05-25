@@ -186,7 +186,10 @@ function openLightbox(src, title, linkText, link) {
   document.body.style.overflow = "hidden";
 }
 
-function closeLightbox() {
+function closeLightbox(event) {
+  if (event && event.currentTarget && event.target !== event.currentTarget) {
+    return;
+  }
   const lightbox = document.getElementById("lightbox");
   if (!lightbox) return;
   lightbox.classList.remove("open");
@@ -258,10 +261,10 @@ function initSmoothAnchorScroll() {
     requestAnimationFrame(step);
   };
 
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  document.querySelectorAll("a[href]").forEach((link) => {
     link.addEventListener("click", (event) => {
-      const href = link.getAttribute("href");
-      if (!href || href === "#") return;
+      const href = String(link.getAttribute("href") || "").trim();
+      if (!href || !href.startsWith("#") || href === "#") return;
 
       event.preventDefault();
 

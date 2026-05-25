@@ -156,9 +156,9 @@
 </section>
 
 <!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
   <div class="lightbox-content" onclick="event.stopPropagation()">
-    <button type="button" class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <button type="button" class="lightbox-close" onclick="closeLightbox(event)">✕</button>
     <p id="lightbox-title" class="lightbox-title" hidden></p>
     <img id="lightbox-img" src="" alt="" />
     <div class="lightbox-caption">
