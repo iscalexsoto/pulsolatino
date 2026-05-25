@@ -556,6 +556,7 @@ section { padding: 4rem 1.5rem; max-width: 900px; margin: 0 auto; }
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.5px;
+  text-align: center;
 }
 
 .lightbox-link {

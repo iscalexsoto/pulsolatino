@@ -141,6 +141,22 @@ function switchTab(id) {
   getRenderers().switchTab(document, id);
 }
 
+function normalizeAnnouncementLink(rawLink) {
+  const value = String(rawLink || "").trim();
+  if (!value) return "";
+  if (
+    value.startsWith("http://") ||
+    value.startsWith("https://") ||
+    value.startsWith("mailto:") ||
+    value.startsWith("tel:") ||
+    value.startsWith("#") ||
+    value.startsWith("/")
+  ) {
+    return value;
+  }
+  return "https://" + value;
+}
+
 function openLightbox(src, title, linkText, link) {
   const image = document.getElementById("lightbox-img");
   const lightbox = document.getElementById("lightbox");
@@ -157,9 +173,10 @@ function openLightbox(src, title, linkText, link) {
   }
 
   if (linkNode) {
-    const hasLink = Boolean(link);
+    const normalizedLink = normalizeAnnouncementLink(link);
+    const hasLink = Boolean(normalizedLink);
     linkNode.textContent = linkText || "Ir a la publicacion";
-    linkNode.setAttribute("href", hasLink ? link : "#");
+    linkNode.setAttribute("href", hasLink ? normalizedLink : "#");
     linkNode.hidden = !hasLink;
   }
 
