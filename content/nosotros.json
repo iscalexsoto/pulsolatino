@@ -22,8 +22,8 @@
     "imageAlt": "David Sinué Zalapa Requena, director de Pulso Latino Estudio"
   },
   "history": {
-    "sectionLabel": "Nuestra trayectoria",
-    "sectionTitle": "Historia",
+    "sectionLabel": "¿Cómo inicia nuestra",
+    "sectionTitle": "Historia?",
     "items": [
       {
         "title": "Inicio del sueño",
@@ -49,7 +49,7 @@
     ]
   },
   "values": {
-    "sectionLabel": "Nuestra esencia",
+    "sectionLabel": "¿Cuál es nuestra esencia?",
     "sectionTitle": "Valores",
     "items": [
       {
@@ -76,7 +76,7 @@
     ]
   },
   "missionVision": {
-    "sectionLabel": "Mirando al futuro",
+    "sectionLabel": "Mirando al futuro con...",
     "sectionTitle": "Misión y Visión",
     "missionTitle": "Misión",
     "missionText": "Brindar enseñanza de danza y baile latino con pasión, disciplina y creatividad, creando un espacio donde las personas desarrollen su talento, confianza y amor por el baile en un ambiente inclusivo y motivador.",
