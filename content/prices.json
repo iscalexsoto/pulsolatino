@@ -6,7 +6,7 @@
   "promoHtml": "<i class=\"fa-solid fa-sparkles\" aria-hidden=\"true\"></i><strong>Promoción nuevo ingreso:</strong> Sin inscripción individual + <strong>$350/mes los primeros 2 meses</strong> (1 ritmo)\n<br>\n<strongverde>   ¡PRECIO PROMOCIÓN PAREJA!</strongverde <br>\n<strong>$500/mes *solo el primer mes</strong>\n<br>\n<strong>* Estos precios son solo durante el mes de Mayo y Junio, igual pregunta por nuestros precios en familia o grupo de amigos</strong>\n",
   "sections": [
     {
-      "title": "INDIVIDUAL",
+      "title": "por persona",
       "packages": [
         {
           "name": "1 Ritmo",
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "title": "EN PAREJA",
+      "title": "por PAREJA",
       "packages": [
         {
           "name": "1 Ritmo",
@@ -181,6 +181,20 @@
           "suffix": "por pareja o individual",
           "iconImage": "/assets/icons/23_20260529_172006_0022.svg",
           "badge": "SOBRE DISPONIBILIDAD"
+        }
+      ]
+    },
+    {
+      "title": "PROMOCIONES POR FAMILIA O GRUPO DE AMIGOS",
+      "packages": [
+        {
+          "featured": true,
+          "name": "PRECIOS FIJOS SI PERMANECEN TODOS",
+          "description": "SI TU FAMILIA O GRUPO DE AMIGOS VIENE A CLASES ESTO A PARTIR DE 3 PERSONAS, SE MANTENDRA UN COSTO ESPECIAL, SI TOMAS MAS DE UN RITMO SOLO SE AGREGARA $150 PESOS ADIONALES , EN CASO DE TOMAR LOS 3 RITMOS EL PRECIO FINAL SERA DE $500 PR PERSONA POR 3 DIFERENTES RITMOS EJEMPLO: SALSA, BACHATA Y CUMBIA",
+          "amount": "$300 ",
+          "suffix": "/mensual",
+          "iconImage": "/assets/icons/30_20260529_172006_0029.svg",
+          "badge": "PROMOCION ÚNICA "
         }
       ]
     }
