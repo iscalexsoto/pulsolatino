@@ -129,10 +129,27 @@
           "description": "PAQUETE 2: CONTENIDO PAQUETE 1 + ZAPATOS ESPECIALES PARA FIESTA  (sin pedrería) cómodas y hechos a medida, animación y activación de boda con personaje \"La Mascara\" ",
           "amount": "$7500 ",
           "suffix": "primer  pago 60%",
-          "badge": "PAQUETE VIP"
+          "badge": "PAQUETE VIP",
+          "iconImage": "/assets/icons/18_20260529_172006_0017.svg"
+        },
+        {
+          "featured": true,
+          "badge": "ADICIONALES ",
+          "name": "CHAMBELAN",
+          "description": "INCLUYE: Traje base negra, saco, pantalon, chaleco y camisa blanca o negra, Vestuarios para baile moderno de los que tenemos en stock (de querer otro estilo de vestuario será a costo del cliente)",
+          "amount": "$1850 ",
+          "suffix": "máximo 7 ensayos "
+        },
+        {
+          "featured": true,
+          "name": "BAILE EXTRA",
+          "description": "Baile con damas. amigos o familiares  que deseen, aplica en xv años y bodas , el baile podrá ser un collage de máximo 3:30 min. ",
+          "amount": "$3000",
+          "suffix": "pago parcial 50%",
+          "badge": "ADICIONALES"
         }
       ]
     }
   ],
-  "finePrint": "* LOS PRECIOS PUEDEN VARIAS SI HAY PROMOCIÓN EN FAMILIA O GRUPOS DE AMIGOS, MANEJAMOS PLANES ANUALES CON PAGO A MESES SIN INTERESES (no plica en todas las tarjetas)"
+  "finePrint": "INFORMACIÓN PARA ALUMNOS * LOS PRECIOS PUEDEN VARIAS SI HAY PROMOCIÓN EN FAMILIA O GRUPOS DE AMIGOS, MANEJAMOS PLANES ANUALES CON PAGO A MESES SIN INTERESES (no plica en todas las tarjetas)\nINFORMACION PARA SERVICIOS ESPECIALES: Todos los ensayos de XV AÑOS Y BODAS serán en la sucursal Col. Pacabtún, la sede sucursal AV. MADERO solo estará disponible fin de semana y es sobre disponibilidad ya que nosotros rentamos ese espacio solo por días. para ensayos o clases a domicilio se paga adicional de $250 "
 }
