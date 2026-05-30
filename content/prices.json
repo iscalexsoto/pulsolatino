@@ -92,6 +92,46 @@
           "badge": "PROMOCIÓN JUNIO"
         }
       ]
+    },
+    {
+      "title": "SERVICIOS ESPECIALES ",
+      "packages": [
+        {
+          "featured": false,
+          "name": "COREOGRAFÍA XV AÑOS",
+          "description": "PAQUETE 1: Montaje coreográfico entrada, vals y baile moderno (solo un baile)    *Todas las canciones serán editadas a un tiempo máximo de 2:30 min. EDICION MUSICAL se entrega en USB en formato MP3. ARCHIVO para el presentador del evento y coordinación de la parte artística. ZAPATOS ESPECIALES de baile (sin pedrería) cómodos y hechos a medida. ",
+          "amount": "$6500",
+          "suffix": "primer pago 60%",
+          "iconImage": "/assets/icons/20_20260529_172006_0019.svg",
+          "badge": "PAQUETE PLATA"
+        },
+        {
+          "featured": false,
+          "name": "COREOGRAFÍA BODA",
+          "description": "PAQUETE 1: MONTAJE COREOGRAFICO, 2 bailes que son el VALS Y BAILE SOPRESA, EDICIÓN MUSICAL entrega en USB y formato MP3 , Cordinación de la parte artistica.",
+          "amount": "$5000 ",
+          "suffix": "primer pago 60%",
+          "iconImage": "/assets/icons/19_20260529_172006_0018.svg",
+          "badge": "PAQUETE BÁSICO "
+        },
+        {
+          "featured": false,
+          "badge": "PAQUETE ORO",
+          "description": "PAQUETE 2: CONTENIDO DEL PAQUETE PLATA + VESTUARIO EN RENTA DE NUESTRA BOUTIQUE, animación del personaje \"la mascara\"  con activación de la fiesta o el maestro baila la moderna con la festejada",
+          "name": "COREOGRAFÍA XV AÑOS PLUS",
+          "amount": "$8000",
+          "suffix": "primer pago 60% ",
+          "iconImage": "/assets/icons/32_20260529_172006_0031.svg"
+        },
+        {
+          "featured": false,
+          "name": "COREOGRAFÍA BODA",
+          "description": "PAQUETE 2: CONTENIDO PAQUETE 1 + ZAPATOS ESPECIALES PARA FIESTA  (sin pedrería) cómodas y hechos a medida, animación y activación de boda con personaje \"La Mascara\" ",
+          "amount": "$7500 ",
+          "suffix": "primer  pago 60%",
+          "badge": "PAQUETE VIP"
+        }
+      ]
     }
   ],
   "finePrint": "* LOS PRECIOS PUEDEN VARIAS SI HAY PROMOCIÓN EN FAMILIA O GRUPOS DE AMIGOS, MANEJAMOS PLANES ANUALES CON PAGO A MESES SIN INTERESES (no plica en todas las tarjetas)"
