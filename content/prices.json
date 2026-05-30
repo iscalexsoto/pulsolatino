@@ -56,7 +56,7 @@
           "description": "SALSA, BACHATA Ó CUMBIA",
           "amount": "$700",
           "suffix": "/mes",
-          "iconImage": "/assets/icons/7_20260529_172005_0006.svg",
+          "iconImage": "/assets/icons/1_20260529_173831_0000.svg",
           "featured": false
         },
         {
@@ -64,14 +64,14 @@
           "description": "Promo primeros 2 meses: $900 x pareja",
           "amount": "$1,200",
           "suffix": "/mes",
-          "iconImage": "/assets/icons/face-smile-solid-full.svg"
+          "iconImage": "/assets/icons/34_20260529_172006_0033.svg"
         },
         {
           "name": "3 Ritmos",
           "description": "La experiencia completa en pareja, aprendiendo los tres géneros",
           "amount": "$1,500",
           "suffix": "/mes",
-          "iconImage": "/assets/icons/trophy-solid-full.svg"
+          "iconImage": "/assets/icons/gem-solid-full.svg"
         },
         {
           "featured": true,
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "title": "SERVICIOS ESPECIALES ",
+      "title": "SERVICIO DE FIESTA",
       "packages": [
         {
           "featured": false,
@@ -147,6 +147,40 @@
           "amount": "$3000",
           "suffix": "pago parcial 50%",
           "badge": "ADICIONALES"
+        }
+      ]
+    },
+    {
+      "title": "CLASES PRIVADAS",
+      "packages": [
+        {
+          "featured": false,
+          "name": "PAQUETE 10 HORAS",
+          "description": "Este es el tiempo necesario para cubrir el nivel 1 & 2 de SALSA ó BACHATA",
+          "amount": "$3800 ",
+          "suffix": "primer pago 60%",
+          "iconImage": "/assets/icons/14_20260529_172005_0013.svg"
+        },
+        {
+          "featured": false,
+          "name": "paquete 16 horas",
+          "description": "Con estas horas completas los 3 niveles básicos de SALSA Ó BACHATA",
+          "amount": "$5700 ",
+          "suffix": "primer pago 60%",
+          "iconImage": "/assets/icons/13_20260529_172005_0012.svg"
+        }
+      ]
+    },
+    {
+      "packages": [
+        {
+          "featured": true,
+          "name": "clase privada por hora",
+          "description": "El costo de clase aplica solamente si asisten a la sucursal Col. Pacabtún, si la clase es a domicilio se cobra un adicional de $100 pesos, la clase puede ser en pareja o individual",
+          "amount": "$400",
+          "suffix": "por pareja o individual",
+          "iconImage": "/assets/icons/23_20260529_172006_0022.svg",
+          "badge": "SOBRE DISPONIBILIDAD"
         }
       ]
     }
