@@ -44,12 +44,12 @@
       "ctaMessage": "Hola, me gustaría información sobre las clases en Pacabtún",
       "dayGroups": [
         {
-          "dayTitle": "Lunes, Miércoles y Viernes",
+          "dayTitle": "Lunes y Miércoles ",
           "classes": [
             {
               "time": "8:00 AM",
               "color": "verde",
-              "name": "Cardio Baile Ritmos Latinos"
+              "name": "CARDIO BAILE & RITMOS LATINOS"
             }
           ]
         },
@@ -58,23 +58,23 @@
           "classes": [
             {
               "time": "10:00 AM",
-              "color": "morado",
-              "name": "Bachata desde cero"
+              "color": "verde",
+              "name": "BACHATA INICIADOS"
             },
             {
               "time": "7:15 PM",
               "color": "rojo",
-              "name": "Salsa desde cero"
+              "name": "SALSA DESDE CERO"
             },
             {
               "time": "8:15 PM",
               "color": "rojo",
-              "name": "Salsa nivel 2"
+              "name": "SALSA INTERMEDIOS 1"
             },
             {
               "time": "9:15 PM",
               "color": "morado",
-              "name": "Bachata"
+              "name": "BACHATA SOCIAL (nivel abierto)"
             }
           ]
         },
@@ -82,19 +82,19 @@
           "dayTitle": "Martes y Jueves",
           "classes": [
             {
-              "time": "8:00 AM",
+              "time": "8:15 AM",
               "color": "morado",
-              "name": "Bachata Ladies"
+              "name": "BACHATA FUSIÓN (estilo de mujer) "
             },
             {
-              "time": "9:00 AM",
+              "time": "9:15 AM",
               "color": "rojo",
-              "name": "Salsa nivel 1"
+              "name": "SALSA INICIADOS 1"
             },
             {
-              "time": "10:00 AM",
+              "time": "10:15 AM",
               "color": "rojo",
-              "name": "Salsa desde cero"
+              "name": "SALSA DESDE CERO"
             }
           ]
         },
@@ -102,19 +102,57 @@
           "dayTitle": "Viernes y Sábados",
           "classes": [
             {
-              "time": "7:00 PM",
+              "time": "7:15 PM",
               "color": "rojo",
-              "name": "Salsa desde cero"
+              "name": "SALSA DESDE CERO "
             },
             {
-              "time": "8:00 PM",
+              "time": "8:15 PM",
               "color": "morado",
-              "name": "Bachata entrenamiento"
+              "name": "BACHATA INTENSIVO (nivel abierto)",
+              "area": "SI QUIERES RETOMAR TUS CLASES"
             },
             {
-              "time": "9:00 PM",
+              "time": "9:15 PM",
               "color": "amarillo",
-              "name": "Cumbia intensivo"
+              "name": "BACHATA CHALLENGE LADIES ANIVERSARIO"
+            }
+          ]
+        },
+        {
+          "dayTitle": "LUNES A JUEVES PARA CLASES PRIVADAS Y COREOGRAFÍAS ",
+          "classes": [
+            {
+              "color": "verde",
+              "time": "3:00 PM",
+              "name": "DISPONIBLE PARA CLASE PRIVADA, XV AÑOS & BODAS"
+            },
+            {
+              "color": "verde",
+              "time": "4:00 PM",
+              "name": "DISPONIBLE PARA CLASE PRIVADA, XV AÑOS & BODAS"
+            }
+          ]
+        },
+        {
+          "dayTitle": "VIERNES Y SÁBADO PARA CLASES PRIVADAS Y COREOGRAFÍA",
+          "classes": [
+            {
+              "color": "verde",
+              "time": "11:00 AM",
+              "name": "DISPONIBLE PARA CLASE PRIVADA",
+              "area": "EN LINEA O PRESENCIAL"
+            },
+            {
+              "color": "amarillo",
+              "time": "3:00 PM",
+              "name": "ENSAYO XV AÑOS"
+            },
+            {
+              "color": "verde",
+              "time": "4:00 PM",
+              "name": "DISPONIBLE PARA CLASE PRIVADA",
+              "area": "EN LINEA O PRESENCIAL"
             }
           ]
         }
