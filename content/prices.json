@@ -53,10 +53,10 @@
       "packages": [
         {
           "name": "1 Ritmo",
-          "description": "Promo primeros 2 meses: $550 x pareja",
+          "description": "SALSA, BACHATA Ó CUMBIA",
           "amount": "$700",
           "suffix": "/mes",
-          "iconImage": "/assets/icons/heart-solid-full.svg",
+          "iconImage": "/assets/icons/7_20260529_172005_0006.svg",
           "featured": false
         },
         {
@@ -72,6 +72,24 @@
           "amount": "$1,500",
           "suffix": "/mes",
           "iconImage": "/assets/icons/trophy-solid-full.svg"
+        },
+        {
+          "featured": true,
+          "name": "PAREJAS NUEVAS 1 RITMO",
+          "description": "PRECIO ESPECIAL \"SOLO ALUMNOS NUEVO INGRESO, promocion fija en  2026",
+          "amount": "$550",
+          "suffix": "/mensual 2 meses",
+          "iconImage": "/assets/icons/11_20260529_172005_0010.svg",
+          "badge": "PROMOCIÓN JUNIO"
+        },
+        {
+          "featured": true,
+          "name": "PAREJAS NUEVAS  2 ritmos",
+          "description": "PRECIO ESPECIAL *SOLO ALUMNOS DE NUEVO INGRESO, promoción fija en 2026",
+          "amount": "$900",
+          "suffix": "/mensual, 2 meses",
+          "iconImage": "/assets/icons/36_20260529_172006_0035.svg",
+          "badge": "PROMOCIÓN JUNIO"
         }
       ]
     }
