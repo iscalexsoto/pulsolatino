@@ -14,31 +14,31 @@
             {
               "time": "7:15 PM",
               "color": "amarillo",
-              "name": "Cumbia"
+              "name": "CUMBIA INTENSIVO"
             },
             {
               "time": "8:15 PM",
-              "color": "rojo",
-              "name": "Salsa desde cero",
+              "color": "verde",
+              "name": "SALSA INICIADOS 1",
               "area": "Área 1"
             },
             {
               "time": "8:15 PM",
               "color": "rojo",
-              "name": "Salsa Iniciados 3",
+              "name": "SALSA INICIADOS 3",
               "area": "Área 2"
             },
             {
               "time": "9:15 PM",
               "color": "morado",
-              "name": "Bachata"
+              "name": "BACHATA SOCIAL (nivel abierto)"
             }
           ]
         }
       ]
     },
     {
-      "id": "pacabtun",
+      "id": "Col. Pacabtún",
       "label": "Pacabtún",
       "ctaLabel": "Agenda tu clase",
       "ctaMessage": "Hola, me gustaría información sobre las clases en Pacabtún",
